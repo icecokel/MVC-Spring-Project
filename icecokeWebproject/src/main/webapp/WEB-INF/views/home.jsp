@@ -3,12 +3,13 @@
 <!-- header.jsp 파일을 추가 -->
 <%@ include file="include/header2.jsp"%>
 <section class="content">
-	<div class='box'>
-		<div "class='box-header with-border'>
-			<a href="#">로그인</a>
-		</div>
-		
-	</div>
+<div class="listdiv">
+	<ul class="list-group list-group-flush">
+		<li class="list-group-item">로그인 페이지로 이동</li>
+		<li class="list-group-item">게시판으로 이동</li>
+		<li class="list-group-item">파일 리스트로 이동</li>
+	</ul>
+</div>
 </section>
 
 <!-- footer.jsp 파일을 추가 -->
