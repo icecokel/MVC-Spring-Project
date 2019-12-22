@@ -33,17 +33,17 @@
 	<div class="wrapper">
 		<header class="main-header">
 			<div class="page-header">
-				<h1>Spring MVC 게시판</h1>
+				<h1>ICE COKE PROJECT!</h1>
 			</div>
 		</header>
 	</div>
 	<aside class="main-sidebar">
 		<section class="sidebar">
 			<ul class="nav nav-tabs">
-				<li role="presentation" class="active"><a href="#">메인</a></li>
+				<li role="presentation" class="active"><a href="/">메인</a></li>
 				<li role="presentation"><a href="#">목록보기</a></li>
 				<li role="presentation"><a href="#">게시물 쓰기</a></li>
-				<li role="presentation"><a href="#">회원가입</a></li>
+				<li role="presentation"><a href="#">파일목록</a></li>
 			</ul>
 		</section>
 	</aside>

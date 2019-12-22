@@ -4,7 +4,7 @@
         <div class="pull-right hidden-xs">
           <b>Version</b> 1.0
         </div>
-        <strong>Copyright &copy; 2019 <a href="/">Spring MVC Board</a>.</strong> All rights reserved.
+       <span><P>The time on the server : ${serverTime}.</P></span>
       </footer>
     <script src="/resources/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
   </body>
