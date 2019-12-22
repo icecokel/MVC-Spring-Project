@@ -1,51 +1,93 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<!-- jstl 의 core 기능 사용을 위한 태그 라이브러리 설정 -->
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
-<html>
+<style>
+@import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
+
+.listdiv {
+	font-family: 'Jeju Gothic', sans-serif;
+	padding-left: 5%;
+	padding-right: 5%;
+}
+
+.logindiv {
+	font-family: 'Jeju Gothic', sans-serif;
+	text-align: center;
+	padding-left: 15%;
+	padding-right: 15%;
+}
+</style>
 <head>
-<meta charset="UTF-8">
-<title>Spring MVC Board</title>
-<!-- 화면 출력 크기 설정
-너비는 화면에 가득 차게 기본 비율은 1배 최대 비율은 1배 확대축소 안되게 설정
-모바일 페이지에서 주로 설정 -->
-<meta
-	content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no'
-	name='viewport'>
 
-<!-- 부트스트랩 적용을 위한 css 설정  -->
-<link href="/resources/bootstrap/css/bootstrap.min.css" rel="stylesheet"
-	type="text/css" />
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="">
+<meta name="author" content="">
 
-<!-- IE9 버전 이하의 브라우저에서 HTML5를 적용하기 위한 설정 -->
-<!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-        <script src="https://oss.maxcdn.comrespond/1.4.2respond.min.js"></script>
-    <![endif]-->
+<title>Welcome! ICE COKE PROJECT</title>
 
+<!-- Bootstrap core CSS -->
+<link
+	href="/resources/startbootstrap/vendor/bootstrap/css/bootstrap.min.css"
+	rel="stylesheet">
+
+<!-- Custom fonts for this template -->
+<link
+	href="/resources/startbootstrap/vendor/fontawesome-free/css/all.min.css"
+	rel="stylesheet" type="text/css">
+<link
+	href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic'
+	rel='stylesheet' type='text/css'>
+<link
+	href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800'
+	rel='stylesheet' type='text/css'>
+
+<!-- Custom styles for this template -->
+<link href="/resources/startbootstrap/css/clean-blog.min.css"
+	rel="stylesheet">
 </head>
-<!-- jquery 설정 -->
-<script src="/resources/jquery/jquery.js"></script>
 
-<!-- class 와 role 속성을 이용해서 부트스트랩 적용 -->
-<body class="skin-blue sidebar-mini">
-	<div class="wrapper">
-		<header class="main-header">
-			<div class="page-header">
-				<h1>ICE COKE PROJECT!</h1>
+<body>
+
+	<!-- Navigation -->
+	<nav class="navbar navbar-expand-lg navbar-light fixed-top"
+		id="mainNav">
+		<div class="container">
+			<a class="navbar-brand" href="/">IceCoke</a>
+			<button class="navbar-toggler navbar-toggler-right" type="button"
+				data-toggle="collapse" data-target="#navbarResponsive"
+				aria-controls="navbarResponsive" aria-expanded="false"
+				aria-label="Toggle navigation">
+				Menu <i class="fas fa-bars"></i>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarResponsive">
+				<ul class="navbar-nav ml-auto">
+					<li class="nav-item"><a class="nav-link" href="/user/login">Login</a>
+					</li>
+					<li class="nav-item"><a class="nav-link" href="">MyBoard</a></li>
+					<li class="nav-item"><a class="nav-link" href="">FileList</a>
+					</li>
+					<li class="nav-item"><a class="nav-link" href="">ETC</a></li>
+				</ul>
 			</div>
-		</header>
-	</div>
-	<aside class="main-sidebar">
-		<section class="sidebar">
-			<ul class="nav nav-tabs">
-				<li role="presentation" class="active"><a href="/">메인</a></li>
-				<li role="presentation"><a href="#">목록보기</a></li>
-				<li role="presentation"><a href="#">게시물 쓰기</a></li>
-				<li role="presentation"><a href="#">파일목록</a></li>
-			</ul>
-		</section>
-	</aside>
+		</div>
+	</nav>
+
+	<!-- Page Header -->
+	<header class="masthead"
+		style="background-image: url('/resources/startbootstrap/img/cokeHome-bg.jpg')">
+		<div class="overlay"></div>
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-8 col-md-10 mx-auto">
+					<div class="site-heading">
+						<h1>ICE COKE Webproject</h1>
+						<span class="subheading">공부 및 편의를 위한 개인 공간입니다.</span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</header>
 </body>
 </html>
