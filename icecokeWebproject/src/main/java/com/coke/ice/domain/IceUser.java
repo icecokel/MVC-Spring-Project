@@ -1,11 +1,12 @@
-package com.coke.ice.domian;
+package com.coke.ice.domain;
 
 import java.util.Date;
 
 import org.springframework.stereotype.Service;
 
 import lombok.Data;
-@Service
+
+
 @Data
 public class IceUser {
 	
