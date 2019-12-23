@@ -18,7 +18,7 @@
 			</c:if>
 
 			<li class="list-group-item">게시판으로 이동</li>
-			<li class="list-group-item">파일 리스트로 이동</li>
+			<li class="list-group-item"><a href="/file/filelist">파일 리스트로 이동</a></li>
 		</ul>
 	</div>
 </section>

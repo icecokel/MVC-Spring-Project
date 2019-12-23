@@ -73,7 +73,7 @@
 					</c:if>
 	
 					<li class="nav-item"><a class="nav-link" href="">MyBoard</a></li>
-					<li class="nav-item"><a class="nav-link" href="">FileList</a>
+					<li class="nav-item"><a class="nav-link" href="/file/filelist">FileList</a>
 					</li>
 					<li class="nav-item"><a class="nav-link" href="">ETC</a></li>
 				</ul>

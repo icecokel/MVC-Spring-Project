@@ -34,6 +34,13 @@ public class HomeController {
 		model.addAttribute("serverTime", formattedDate );
 		
 		return "home";
+		
+	}
+	
+	@RequestMapping(value="file/filelist", method = RequestMethod.GET)
+	public String filelist(Model model) {
+		
+		return "/file/filelist";
 	}
 	
 }
