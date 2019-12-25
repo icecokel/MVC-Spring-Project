@@ -4,9 +4,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="boardmapper">
-	<insert id="fileupload" parameterType="java.lang.String">
-		insert into FileList(filenum, filename, fileUUID , filesize)
-		values(#{filenum}, #{filename}, #{fileUUID}, #{filesize})
+	
+	
+	<insert id="boardwrite" parameterType="IceBoard">
+		insert into BOARD
+		(boardnum, boardtitle, boardcontent ,  email)
+		values(#{boardnum}, #{boardtitle}, #{boardcontent},#{email})
 	</insert>
+		
 </mapper>
 
