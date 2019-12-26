@@ -8,7 +8,7 @@ public class BoardServiceImpl implements BoardService {
 	public boolean boardwrite(HttpServletRequest request) {
 		boolean result = false;
 		
-		
+	
 		return result;
 	}
 

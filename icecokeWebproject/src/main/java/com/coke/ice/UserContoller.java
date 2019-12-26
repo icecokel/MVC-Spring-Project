@@ -48,6 +48,13 @@ public class UserContoller {
 		return "redirect:/";
 	}
 	
+	@RequestMapping (value="/user/join" , method= RequestMethod.GET)
+	public String join (Model model) {
+		
+		return "/user/join";
+	}
+	
+	
 
 	
 }

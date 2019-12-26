@@ -39,4 +39,34 @@ public class UserServiceImpl implements UserService {
 		return result;
 	}
 
+
+	@Override
+	public boolean checkemail(HttpServletRequest request) {
+		boolean result = false;
+		
+		String email = request.getParameter("email");
+		String r = userDao.checkemail(email);
+		if(r == null) {
+			result = true;
+		}else {
+			result = false;
+		}
+		return result;
+	}
+
+
+	@Override
+	public boolean checknickname(HttpServletRequest request) {
+		boolean result = false;
+		
+		String nickname = request.getParameter("nickname");
+		String r = userDao.checkemail(nickname);
+		if(r == null) {
+			result = true;
+		}else {
+			result = false;
+		}
+		return result;
+	}
+
 }

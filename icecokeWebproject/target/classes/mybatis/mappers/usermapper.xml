@@ -8,4 +8,23 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select * from users 
 		where email =#{email}
 	</select>
+	
+	<select id="checkemail" resultType = "java.lang.String" parameterType ="java.lang.String" >
+		select email
+		from users
+		where email = #{email}
+	</select>
+	
+	<select id="checknickname" resultType = "java.lang.String" parameterType ="java.lang.String">
+		select nickname
+		from nickname
+		where nickname = #{nickname}
+	 </select>
+	
+	
+	<insert id="join" parameterType="IceUser">
+		insert into users (email, password, name ,  nickname , image, birthday)
+		values(#{email}, #{password}, #{name},#{nickname} ,#{image} ,#{birthday} )
+	</insert>
+	
 </mapper>

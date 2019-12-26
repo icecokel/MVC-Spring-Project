@@ -18,6 +18,9 @@
 	padding-right: 15%;
 }
 </style>
+<!-- jquery 설정 -->
+<script src="/resources/jquery/jquery.js"></script>
+
 <head>
 
 <meta charset="utf-8">

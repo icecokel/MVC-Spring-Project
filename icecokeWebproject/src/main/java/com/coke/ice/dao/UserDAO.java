@@ -16,4 +16,16 @@ public class UserDAO {
 		
 		return sqlSession.selectOne("usermapper.login", email);
 	}
+	
+	
+	public String checkemail(String email) {
+		return sqlSession.selectOne("usermapper.checkemail",email);
+	}
+	
+	
+	public String checknickname(String nickname) {
+		return sqlSession.selectOne("usermapper.checknickname",nickname);
+	}
+	
+	
 }
