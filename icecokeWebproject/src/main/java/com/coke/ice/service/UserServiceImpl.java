@@ -1,5 +1,9 @@
 package com.coke.ice.service;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -60,13 +64,60 @@ public class UserServiceImpl implements UserService {
 		boolean result = false;
 		
 		String nickname = request.getParameter("nickname");
-		String r = userDao.checkemail(nickname);
+		String r = userDao.checknickname(nickname);
+		
+//		System.err.println(nickname);
+//		System.err.println(r);
+		
 		if(r == null) {
 			result = true;
 		}else {
 			result = false;
 		}
 		return result;
+	}
+
+
+	@Override
+	public void userjoin(HttpServletRequest request) {
+		String email = request.getParameter("email");
+		String pw = request.getParameter("pw");
+		String name = request.getParameter("name");
+		String nickname = request.getParameter("nickname");
+		String phone = request.getParameter("phone");
+		String image = request.getParameter("image");
+		if(image != null) {
+			image = "default.png";
+		}
+		String yyyy = request.getParameter("year");
+		String MM = request.getParameter("month");
+		String dd = request.getParameter("day");
+
+
+		String from = yyyy+MM+dd;
+
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		
+		Date birthday = null;
+		try {
+			birthday = sdf.parse(from);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		
+		
+		IceUser user = new IceUser();
+		user.setEmail(email);
+		user.setPassword(pw);
+		user.setName(name);
+		user.setNickname(nickname);
+		user.setImage(image);
+		user.setPassword(phone);
+		user.setBirthday(birthday);
+
+		userDao.userjoin(user);
+		
+		
 	}
 
 }

@@ -17,12 +17,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<select id="checknickname" resultType = "java.lang.String" parameterType ="java.lang.String">
 		select nickname
-		from nickname
+		from users
 		where nickname = #{nickname}
 	 </select>
 	
 	
-	<insert id="join" parameterType="IceUser">
+	<insert id="userjoin" parameterType="IceUser">
 		insert into users (email, password, name ,  nickname , image, birthday)
 		values(#{email}, #{password}, #{name},#{nickname} ,#{image} ,#{birthday} )
 	</insert>

@@ -19,7 +19,7 @@
             </li>
             
             <li class="list-inline-item">
-              <a href="https://github.com/icecokel">
+              <a href="https://github.com/icecokel" target ="_blank">
                 <span class="fa-stack fa-lg">
                   <i class="fas fa-circle fa-stack-2x"></i>
                   <i class="fab fa-github fa-stack-1x fa-inverse"></i>
@@ -35,7 +35,6 @@
 
   <!-- Bootstrap core JavaScript -->
   <script src="/resources/startbootstrap/vendor/jquery/jquery.min.js"></script>
-  <script src="/resources/startbootstrap/bootstrap/js/bootstrap.bundle.min.js"></script>
 
   <!-- Custom scripts for this template -->
   <script src="/resources/startbootstrap/js/clean-blog.min.js"></script>

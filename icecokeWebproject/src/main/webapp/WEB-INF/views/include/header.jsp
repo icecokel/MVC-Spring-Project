@@ -17,6 +17,13 @@
 	padding-left: 15%;
 	padding-right: 15%;
 }
+ .joinformdiv{
+ 	font-family: 'Jeju Gothic', sans-serif;
+	
+	padding-left: 15%;
+	padding-right: 15%;
+ 
+ }
 </style>
 <!-- jquery 설정 -->
 <script src="/resources/jquery/jquery.js"></script>
@@ -36,6 +43,7 @@
 <link
 	href="/resources/startbootstrap/vendor/bootstrap/css/bootstrap.min.css"
 	rel="stylesheet">
+	
 
 <!-- Custom fonts for this template -->
 <link
@@ -51,6 +59,8 @@
 <!-- Custom styles for this template -->
 <link href="/resources/startbootstrap/css/clean-blog.min.css"
 	rel="stylesheet">
+	<link href="/resources/bootstrap/css/bootstrap.min.css" rel="stylesheet"
+	type="text/css" />
 </head>
 
 <body>

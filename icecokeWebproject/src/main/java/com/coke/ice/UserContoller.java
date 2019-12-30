@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.coke.ice.service.UserService;
@@ -53,8 +54,15 @@ public class UserContoller {
 		
 		return "/user/join";
 	}
-	
-	
-
+	// 회원가입을 처리하는 메소드
+	@RequestMapping (value="user/join" , method = RequestMethod.POST)
+	public String join (MultipartHttpServletRequest request , RedirectAttributes attr) {
+		userService.userjoin(request);
+		
+		attr.addFlashAttribute("msg" , "회원가입을 성공했습니다.");
+		
+		return "redirect:login";
+		
+	}
 	
 }

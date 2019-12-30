@@ -37,6 +37,8 @@ public class JsonController {
 	public Map<String, Object> checknickname(HttpServletRequest request) {
 		boolean result = userService.checknickname(request);
 		Map<String, Object> map = new HashMap<String, Object>();
+//		System.err.println(result);
+		
 		map.put("result", result + "");
 		return map;
 

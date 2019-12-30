@@ -27,5 +27,7 @@ public class UserDAO {
 		return sqlSession.selectOne("usermapper.checknickname",nickname);
 	}
 	
-	
+	public int userjoin(IceUser iceUser) {
+		return sqlSession.insert("usermapper.userjoin", iceUser);
+	}
 }
