@@ -22,11 +22,14 @@
 	
 	padding-left: 15%;
 	padding-right: 15%;
- 
+ }
+ .filelistdiv{
+ 	font-family: 'Jeju Gothic', sans-serif;
+	
+	padding-left: 10%;
+	padding-right: 10%;
  }
 </style>
-<!-- jquery 설정 -->
-<script src="/resources/jquery/jquery.js"></script>
 
 
 <head>
@@ -70,14 +73,15 @@
 		id="mainNav">
 		<div class="container">
 			<a class="navbar-brand" href="/">IceCoke</a>
-			<button class="navbar-toggler navbar-toggler-right" type="button"
-				data-toggle="collapse" data-target="#navbarResponsive"
+			
+			<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive"
 				aria-controls="navbarResponsive" aria-expanded="false"
 				aria-label="Toggle navigation">
-				Menu <i class="fas fa-bars"></i>
+				Menu 
+				<!-- <i class="fas fa-bars"></i> -->
 			</button>
 			<div class="collapse navbar-collapse" id="navbarResponsive">
-				<ul class="navbar-nav ml-auto">
+				<ul class="navbar-nav mr-auto">
 					<c:if test="${user == null}">
 						<li class="nav-item"><a class="nav-link" href="/user/login">Login</a></li>
 					</c:if>
@@ -111,4 +115,6 @@
 		</div>
 	</header>
 </body>
+<!-- jquery 설정 -->
+<script src="/resources/jquery/jquery.js"></script>
 </html>

@@ -12,7 +12,7 @@
 			<thead class="thead-dark">
 				<tr>
 					<th colspan="3">
-						<h3 align="center">회원가입</h3>
+						<h3 align="center"> 계정 생성 페이지 </h3>
 					</th>
 				</tr>
 			</thead>
