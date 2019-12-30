@@ -30,7 +30,8 @@
 	padding-right: 10%;
  }
 </style>
-
+<!-- jquery 설정 -->
+<script src="/resources/jquery/jquery.js"></script>
 
 <head>
 
@@ -115,6 +116,4 @@
 		</div>
 	</header>
 </body>
-<!-- jquery 설정 -->
-<script src="/resources/jquery/jquery.js"></script>
 </html>
