@@ -6,6 +6,7 @@ import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -30,14 +31,13 @@ public class UserServiceImpl implements UserService {
 		
 		request.getSession().removeAttribute("user");
 		if(user != null) {
-			if(password.equals(user.getPassword())) {
+			if(BCrypt.checkpw(password, user.getPassword())) {
 				
 				user.setPassword(null);
 				request.getSession().setAttribute("user", user);
 				result = true;
 				
 			}
-			
 		}
 		
 		return result;
@@ -93,9 +93,9 @@ public class UserServiceImpl implements UserService {
 		String MM = request.getParameter("month");
 		String dd = request.getParameter("day");
 		
-		System.err.println(yyyy);
-		System.err.println(MM);
-		System.err.println(dd);
+//		System.err.println(yyyy);
+//		System.err.println(MM);
+//		System.err.println(dd);
 		
 		
 		String birth = yyyy+"-"+MM+"-"+dd;
@@ -113,13 +113,13 @@ public class UserServiceImpl implements UserService {
 			e.printStackTrace();
 		}
 		
-		System.err.print(phone);
+//		System.err.print(phone);
 		System.err.print(birthday);
 		
 		
 		IceUser user = new IceUser();
 		user.setEmail(email);
-		user.setPassword(pw);
+		user.setPassword(BCrypt.hashpw(pw, BCrypt.gensalt(10)));
 		user.setName(name);
 		user.setNickname(nickname);
 		user.setPhone(phone);
