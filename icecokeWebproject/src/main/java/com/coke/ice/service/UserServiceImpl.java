@@ -92,18 +92,29 @@ public class UserServiceImpl implements UserService {
 		String yyyy = request.getParameter("year");
 		String MM = request.getParameter("month");
 		String dd = request.getParameter("day");
-
-
-		String from = yyyy+MM+dd;
+		
+		System.err.println(yyyy);
+		System.err.println(MM);
+		System.err.println(dd);
+		
+		
+		String birth = yyyy+"-"+MM+"-"+dd;
 
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		
 		Date birthday = null;
+		
 		try {
-			birthday = sdf.parse(from);
+			
+			birthday = sdf.parse(birth);
+			
 		} catch (ParseException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		System.err.print(phone);
+		System.err.print(birthday);
 		
 		
 		IceUser user = new IceUser();
@@ -111,8 +122,7 @@ public class UserServiceImpl implements UserService {
 		user.setPassword(pw);
 		user.setName(name);
 		user.setNickname(nickname);
-		user.setImage(image);
-		user.setPassword(phone);
+		user.setPhone(phone);
 		user.setBirthday(birthday);
 
 		userDao.userjoin(user);

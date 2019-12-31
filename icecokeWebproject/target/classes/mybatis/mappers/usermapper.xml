@@ -23,8 +23,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	
 	<insert id="userjoin" parameterType="IceUser">
-		insert into users (email, password, name ,  nickname , image, birthday)
-		values(#{email}, #{password}, #{name},#{nickname} ,#{image} ,#{birthday} )
+		insert into users (email, password, name ,  nickname , phone, birthday)
+		values(#{email}, #{password}, #{name},#{nickname} ,#{phone} ,#{birthday} )
 	</insert>
 	
 </mapper>

@@ -17,13 +17,13 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr>
+<!-- 				<tr>
 					<td rowspan="8" align="center">
 						<p>사진 파일을 업로드 하세요</p> 
 						<img id="img" class="rounded-circle" width = "300" height = "300" /><br/>
 						<input type="file" id="image" name="image" accept=".jpg,.jpeg,.gif,.png" /> <br />
 					</td>
-				</tr>
+				</tr> -->
 				<tr>
 					<td>&nbsp;&nbsp;이메일</td>
 					<td>&nbsp;&nbsp; <input type="email" id="email" name="email"

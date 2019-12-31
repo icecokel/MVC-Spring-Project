@@ -94,11 +94,20 @@
 	var phonedisp = document.getElementById("phonedisp");
 	var phonedispori = document.getElementById("phonedisp").innerHTML;
 	phone.addEventListener("focusout", function(e) {
-		if (phone.value.trim() > 12) {
+		for (var i=0; i<phone.value.length ; i = i + 1){
+			var ch = phone.value.charAt(i);
+			
+			if(ch >='0' && ch <='9'){
+				phonecheck = true;
+				break;
+			}
+			
 			phonecheck = false;
-		}else{
-			phonecheck = true;
+			
+			
 		}
+				
+		
 	})
 	
 	
@@ -110,22 +119,35 @@
 			phonedisp.innerHTML = "전화번호는 11자리 이하 숫자로만 작성되어야 합니다.";
 			phonedisp.style.color ='red';
 			
+			phone.focus();
+			e.preventDefault();
+			return;
+			
 		}
 		
 		if(passwordcheck == false){
 			pwdisp.innerHTML = "비밀번호가 일치 하지 않거나 , 부적잘한 형식의 비밀번호 입니다."
 			pwdisp.style.color ='red';
 //	비밀번호 강도 추가하면 추가 진행.
+			pw1.focus();
+			e.preventDefault();
+			return;
 			
 		}
 		if(emailcheck == false){
 			emaildisp.innerHTML = "이메일 확인이 필요합니다."
 			emaildisp.style.color ='red';
+			email.focus();
+			e.preventDefault();
+			return;
 		}
 		
 		if(nicknamecheck == false){
 			nicknamedisp.innerHTML ="닉네임 확인이 필요합니다."
 			nicknamedisp.style.color = 'red';
+			nickname.focus();
+			e.preventDefault();
+			return;
 		}
 		
 		
