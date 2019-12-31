@@ -76,7 +76,10 @@ public class UserContoller {
 		
 		
 		if (result == true) {
-			attr.addFlashAttribute("msg" ,"비밀번호를 재발급 해드렸습니다.");
+			attr.addFlashAttribute("msg" ,"비밀번호를 재발급 해드렸습니다."+"\n"+ userService.temppassword(10));
+			
+			
+			
 		}else {
 			attr.addFlashAttribute("msg" ,"선택한 질문과 답이 일치 하지 않습니다.");
 		}

@@ -22,65 +22,61 @@ public class UserServiceImpl implements UserService {
 
 	@Autowired
 	private UserDAO userDao;
-	
-	
+
 	@Override
 	public boolean login(HttpServletRequest request) {
 		boolean result = false;
-		
+
 		String email = request.getParameter("inputemail");
 		String password = request.getParameter("inputpassword");
-				
+
 		IceUser user = userDao.login(email);
-		
+
 		request.getSession().removeAttribute("user");
-		if(user != null) {
-			if(BCrypt.checkpw(password, user.getPassword())) {
-				
+		if (user != null) {
+			if (BCrypt.checkpw(password, user.getPassword())) {
+
 				user.setPassword(null);
 				request.getSession().setAttribute("user", user);
 				result = true;
-				
+
 			}
 		}
-		
+
 		return result;
 	}
-
 
 	@Override
 	public boolean checkemail(HttpServletRequest request) {
 		boolean result = false;
-		
+
 		String email = request.getParameter("email");
 		String r = userDao.checkemail(email);
-		if(r == null) {
+		if (r == null) {
 			result = true;
-		}else {
+		} else {
 			result = false;
 		}
 		return result;
 	}
-
 
 	@Override
 	public boolean checknickname(HttpServletRequest request) {
 		boolean result = false;
-		
+
 		String nickname = request.getParameter("nickname");
 		String r = userDao.checknickname(nickname);
-		
-//		System.err.println(nickname);
-//		System.err.println(r);
-		
-		if(r == null) {
+
+		// System.err.println(nickname);
+		// System.err.println(r);
+
+		if (r == null) {
 			result = true;
-		}else {
+		} else {
 			result = false;
 		}
 		return result;
 	}
-
 
 	@Override
 	public void userjoin(MultipartHttpServletRequest request) {
@@ -93,55 +89,53 @@ public class UserServiceImpl implements UserService {
 		String yyyy = request.getParameter("year");
 		String MM = request.getParameter("month");
 		String day = request.getParameter("day");
-		int dd = Integer.parseInt(day)+1;
-		
+		int dd = Integer.parseInt(day) + 1;
+
 		String givenewpwA = request.getParameter("givenewpwA");
 		String givenewpwQ = request.getParameter("givenewpwQ");
-		
-//		System.err.println(yyyy);
-//		System.err.println(MM);
-//		System.err.println(dd);
-		
-		
-		String birth = yyyy+"-"+MM+"-"+dd;
+
+		// System.err.println(yyyy);
+		// System.err.println(MM);
+		// System.err.println(dd);
+
+		String birth = yyyy + "-" + MM + "-" + dd;
 
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-		
+
 		Date birthday = null;
-		
+
 		try {
-			
+
 			birthday = sdf.parse(birth);
-			
+
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-//		System.err.print(phone);
+
+		// System.err.print(phone);
 		System.err.print(birthday);
-		
+
 		MultipartFile file = request.getFile("image");
 		String origiName = file.getOriginalFilename();
-		
-		String fileName = email +":"+ origiName;
-		
+
+		String fileName = email + ":" + origiName;
+
 		String path = request.getServletContext().getRealPath("/useriamge");
-		
-		if(origiName.length() > 0) {
-			File f = new File(path +"/"+fileName);
-			
+
+		if (origiName.length() > 0) {
+			File f = new File(path + "/" + fileName);
+
 			try {
 				file.transferTo(f);
 			} catch (IllegalStateException | IOException e) {
 				e.printStackTrace();
 				System.out.println(e.getMessage());
 			}
-		}else {
+		} else {
 			fileName = "default.png";
 		}
-		
-		
+
 		IceUser user = new IceUser();
 		user.setEmail(email);
 		user.setPassword(BCrypt.hashpw(pw, BCrypt.gensalt(10)));
@@ -152,15 +146,12 @@ public class UserServiceImpl implements UserService {
 		user.setImage(fileName);
 		user.setGivenewpwA(givenewpwA);
 		user.setGivenewpwQ(givenewpwQ);
-		
+
 		System.err.println(birthday);
-		
 
 		userDao.userjoin(user);
-		
-		
-	}
 
+	}
 
 	@Override
 	public boolean newpassword(HttpServletRequest request) {
@@ -168,16 +159,34 @@ public class UserServiceImpl implements UserService {
 		String email = request.getParameter("email");
 		String givenewpwQ = request.getParameter("givenewpwQ");
 		String givenewpwA = request.getParameter("givenewpwA");
-		
-		
+
 		IceUser user = userDao.newpassword(email);
-		if(user.getGivenewpwQ().equals(givenewpwQ) && user.getGivenewpwA().equals(givenewpwA)) {
+		if (user.getGivenewpwQ().equals(givenewpwQ) && user.getGivenewpwA().equals(givenewpwA)) {
 			result = true;
-		}else {
+		} else {
 			result = false;
 		}
-		
+
 		return result;
 	}
+
+	@Override
+	public String temppassword(int len) {
+		char[] charSet = new char[] { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F',
+				'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z' };
+		int idx = 0;
+		StringBuffer sb = new StringBuffer();
+		for (int i = 0; i < len; i++) {
+			idx = (int) (charSet.length * Math.random());
+			// 36 * 생성된 난수를 Int로 추출 (소숫점제거) 
+			sb.append(charSet[idx]); 
+			} 
+			
+			return sb.toString();
+		}
+		
+		
+
+	
 
 }
