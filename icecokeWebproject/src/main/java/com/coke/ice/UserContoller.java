@@ -64,5 +64,23 @@ public class UserContoller {
 		return "redirect:login";
 		
 	}
+	@RequestMapping (value="/user/plznewpw" , method = RequestMethod.GET)
+	public String plznewpw (Model model) {
+		
+		return "/user/plznewpw";
+	}
+	
+	@RequestMapping (value="/user/plznewpw" , method = RequestMethod.POST)
+	public String plznewpw (Model model, HttpServletRequest request, RedirectAttributes attr) {
+		boolean result = userService.newpassword(request);
+		
+		
+		if (result == true) {
+			attr.addFlashAttribute("msg" ,"비밀번호를 재발급 해드렸습니다.");
+		}else {
+			attr.addFlashAttribute("msg" ,"선택한 질문과 답이 일치 하지 않습니다.");
+		}
+		return "redirect:plznewpw";
+	}
 	
 }

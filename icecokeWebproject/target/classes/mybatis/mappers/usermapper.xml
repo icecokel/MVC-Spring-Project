@@ -23,8 +23,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	
 	<insert id="userjoin" parameterType="IceUser">
-		insert into users (email, password, name ,  nickname , phone, birthday)
-		values(#{email}, #{password}, #{name},#{nickname} ,#{phone} ,#{birthday} )
+		insert into users (email, password, name ,  nickname , phone, birthday, image, givenewpwA, givenewpwQ)
+		values(#{email}, #{password}, #{name},#{nickname} ,#{phone} ,#{birthday},#{image} ,#{givenewpwA},#{givenewpwQ})
 	</insert>
+	
+	<select id="newpassword" parameterType="java.lang.String" resultType ="IceUser">
+		select givenewpwQ, givenewpwA
+		from users
+		Where email=#{email}
+	
+	</select>
 	
 </mapper>

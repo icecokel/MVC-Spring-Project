@@ -3,6 +3,7 @@ package com.coke.ice.service;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 @Service
 public interface UserService {
@@ -12,7 +13,10 @@ public interface UserService {
 	
 	public boolean checknickname (HttpServletRequest request);
 	
-	public void userjoin(HttpServletRequest request);
+	public void userjoin(MultipartHttpServletRequest request);
+	
+	public boolean newpassword(HttpServletRequest request);
+	
 	
 	
 }

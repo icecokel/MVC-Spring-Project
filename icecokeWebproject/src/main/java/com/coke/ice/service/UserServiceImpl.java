@@ -1,5 +1,7 @@
 package com.coke.ice.service;
 
+import java.io.File;
+import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -9,6 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.coke.ice.dao.UserDAO;
 import com.coke.ice.domain.IceUser;
@@ -79,19 +83,20 @@ public class UserServiceImpl implements UserService {
 
 
 	@Override
-	public void userjoin(HttpServletRequest request) {
+	public void userjoin(MultipartHttpServletRequest request) {
 		String email = request.getParameter("email");
 		String pw = request.getParameter("pw");
 		String name = request.getParameter("name");
 		String nickname = request.getParameter("nickname");
 		String phone = request.getParameter("phone");
-		String image = request.getParameter("image");
-		if(image != null) {
-			image = "default.png";
-		}
+
 		String yyyy = request.getParameter("year");
 		String MM = request.getParameter("month");
-		String dd = request.getParameter("day");
+		String day = request.getParameter("day");
+		int dd = Integer.parseInt(day)+1;
+		
+		String givenewpwA = request.getParameter("givenewpwA");
+		String givenewpwQ = request.getParameter("givenewpwQ");
 		
 //		System.err.println(yyyy);
 //		System.err.println(MM);
@@ -116,6 +121,26 @@ public class UserServiceImpl implements UserService {
 //		System.err.print(phone);
 		System.err.print(birthday);
 		
+		MultipartFile file = request.getFile("image");
+		String origiName = file.getOriginalFilename();
+		
+		String fileName = email +":"+ origiName;
+		
+		String path = request.getServletContext().getRealPath("/useriamge");
+		
+		if(origiName.length() > 0) {
+			File f = new File(path +"/"+fileName);
+			
+			try {
+				file.transferTo(f);
+			} catch (IllegalStateException | IOException e) {
+				e.printStackTrace();
+				System.out.println(e.getMessage());
+			}
+		}else {
+			fileName = "default.png";
+		}
+		
 		
 		IceUser user = new IceUser();
 		user.setEmail(email);
@@ -124,10 +149,35 @@ public class UserServiceImpl implements UserService {
 		user.setNickname(nickname);
 		user.setPhone(phone);
 		user.setBirthday(birthday);
+		user.setImage(fileName);
+		user.setGivenewpwA(givenewpwA);
+		user.setGivenewpwQ(givenewpwQ);
+		
+		System.err.println(birthday);
+		
 
 		userDao.userjoin(user);
 		
 		
+	}
+
+
+	@Override
+	public boolean newpassword(HttpServletRequest request) {
+		boolean result = false;
+		String email = request.getParameter("email");
+		String givenewpwQ = request.getParameter("givenewpwQ");
+		String givenewpwA = request.getParameter("givenewpwA");
+		
+		
+		IceUser user = userDao.newpassword(email);
+		if(user.getGivenewpwQ().equals(givenewpwQ) && user.getGivenewpwA().equals(givenewpwA)) {
+			result = true;
+		}else {
+			result = false;
+		}
+		
+		return result;
 	}
 
 }

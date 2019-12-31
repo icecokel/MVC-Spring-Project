@@ -15,6 +15,12 @@ public class IceUser {
 	private String name;
 	private String nickname;
 	private String phone;
-
 	private Date birthday;
+	
+	private String image ;
+	private String givenewpwA;
+	private String givenewpwQ;
+	
+	
+	
 }

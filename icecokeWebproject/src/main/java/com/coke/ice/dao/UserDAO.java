@@ -30,4 +30,9 @@ public class UserDAO {
 	public int userjoin(IceUser iceUser) {
 		return sqlSession.insert("usermapper.userjoin", iceUser);
 	}
+	
+	public IceUser newpassword (String email) {
+		
+		return sqlSession.selectOne("usermapper.newpassword", email);
+	}
 }

@@ -17,9 +17,12 @@
 						placeholder="비밀번호를 입력하세요">
 				</div>
 
-				<button type="submit" class="btn btn-primary btn-lg btn-block">로그인</button>
+				<button type="submit" class="btn btn-primary btn-lg btn-block">로그인</button><br/>
+				<a href="/user/plznewpw"><input type="button" id ="plznewpw" class="btn btn-primary btn-lg btn-block" value="비밀번호 찾기"/></a></a>
 			</form>
 		</div>
 	</div>
 </section>
 <%@ include file="../include/footer.jsp"%>
+
+</script>

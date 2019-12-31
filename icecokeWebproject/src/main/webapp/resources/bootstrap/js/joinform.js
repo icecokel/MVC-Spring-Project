@@ -120,17 +120,21 @@ phone.addEventListener("focusout", function (e){
 				if (ch <  '0' || ch > '9') {
 					phonecheck = false;
 					break;
+					phonedisp.innerHTML ="전화번호를 확인하세요!";
+					phonedisp.style.color = 'red';
 				}
 
 				phonecheck = true;
-
+				phonedisp.innerHTML ="";
+				phonedisp.style.color = 'green';
+				
 			}
 		} else {
 			phonecheck = false;
+			phonedisp.innerHTML ="전화번호를 확인하세요!";
+			phonedisp.style.color = 'red';
 		}
-	
-	phonedisp.innerHTML =phonecheck;
-	phonedisp.style.color = 'red';
+
 })
 
 joinform.addEventListener("submit", function(e) {
