@@ -27,8 +27,16 @@
 					<tr>
 						<td>&nbsp;&nbsp;이메일</td>
 						<td>&nbsp;&nbsp; <input type="email" id="email" name="email"
-							size="40" required="required" />
+							size="30" required="required" />
+							<select id="endemail" name="endemail">
+									<option value="@naver.com">@naver.com</option>
+									<option value="@daum.net">@daum.net</option>
+									<option value="@gmail.com">@gmail.com?</option>
+									<option value="@coke.com">@coke.com</option>
+									<option value="etcemail">직접 입력</option>
+								</select>
 							<div id="emaildisp"></div>
+							
 						</td>
 
 					</tr>
