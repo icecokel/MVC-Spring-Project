@@ -8,55 +8,98 @@ var emaildisp = document.getElementById("emaildisp");
 var nicknamedisp = document.getElementById("nicknamedisp");
 
 var endemail = document.getElementById("endemail");
-var enaemailtextfield = document.getElementById("enaemailtextfield");
+var endemailtextfield = document.getElementById("endemailtextfield");
 
+
+
+var method = {
+		
+	emailmethod(){
+		
+		
+		// email에 입력한 내용이 없으면 중복 검사를 수행하지 않음
+		if (email.value.trim().length < 1) {
+			return;
+		}
+		// 순수 자바스크립트로 ajax 구현
+		// ajax 요청 객체 생성
+		var request = new XMLHttpRequest();
+		
+		var emailcheckvalue =email.value + endemail.value;
+		// 요청 주소 생성
+		request.open('GET', 'emailcheck?email=' + emailcheckvalue );
+		// 요청
+		request.send('');
+		// ajax 콜백 함수 등록
+		request.onreadystatechange = function() {
+			// 정상 응답이 오면
+			if (request.readyState == 4) {
+				if (request.status >= 200 && request.status < 300) {
+					// 읽어온 데이터를 변수에 저장
+					var obj = request.responseText;
+					// json 문자열을 파싱
+					var json = JSON.parse(obj);
+					if (json.result === "true") {
+						emailcheck = true;
+						emaildisp.innerHTML = '&nbsp;&nbsp;사용 가능한 이메일';
+						emaildisp.style.color = 'green';
+					} else {
+						emailcheck = false;
+						emaildisp.innerHTML = '&nbsp;&nbsp;이미 존재하는 이메일';
+						emaildisp.style.color = 'red';
+					}
+				}
+			}
+		}
+	}	
+}	
 endemail.addEventListener('change', function(e) {
 
+	
 	if (endemail.value == "etcemail") {
-		enaemailtextfield.style.visibility = "visible";
+		endemailtextfield.style.visibility = "visible";
+		endemailtextfield.style.width = "50%";
+		
+		endemailtextfield.addEventListener("focusout", function(e){
+			
+			if(endemailtextfield.value.length > 0){
+				if(endemailtextfield.value.indexOf('.') >= 0){
+				if(endemailtextfield.value[0] != "@"){
+				endemail.value = "@" + endemailtextfield.value;}
+				else{
+					endemail.value = endemailtextfield.value;
+				}
+				method.emailmethod();
+				}else{
+					emaildisp.innerHTML = "이메일 형식이 잘못되었습니다."
+						emaildisp.style.color = 'red';
+						endemailtextfield.focus();
+						e.preventDefault();
+						return;
+				}
+				
+				
+			}else{
+				emaildisp.innerHTML = "메일 뒷 부분을 입력해 주세요."
+				emaildisp.style.color = 'red';
+				endemailtextfield.focus();
+				e.preventDefault();
+				return;
+				
+				
+			}
+		});
 		
 		} else {
-		enaemailtextfield.style.visibility = "hidden";
-		
-
+		endemailtextfield.style.visibility = "hidden";
+		method.emailmethod();
 	}
 
 });
 // email 입력 란에서 포커스가 떠나면
 email.addEventListener('focusout', function(e) {
-
-	// email에 입력한 내용이 없으면 중복 검사를 수행하지 않음
-	if (email.value.trim().length < 1) {
-		return;
-	}
-	// 순수 자바스크립트로 ajax 구현
-	// ajax 요청 객체 생성
-	var request = new XMLHttpRequest();
-	// 요청 주소 생성
-	request.open('GET', 'emailcheck?email=' + email.value);
-	// 요청
-	request.send('');
-	// ajax 콜백 함수 등록
-	request.onreadystatechange = function() {
-		// 정상 응답이 오면
-		if (request.readyState == 4) {
-			if (request.status >= 200 && request.status < 300) {
-				// 읽어온 데이터를 변수에 저장
-				var obj = request.responseText;
-				// json 문자열을 파싱
-				var json = JSON.parse(obj);
-				if (json.result === "true") {
-					emailcheck = true;
-					emaildisp.innerHTML = '&nbsp;&nbsp;사용 가능한 이메일';
-					emaildisp.style.color = 'green';
-				} else {
-					emailcheck = false;
-					emaildisp.innerHTML = '&nbsp;&nbsp;이미 존재하는 이메일';
-					emaildisp.style.color = 'red';
-				}
-			}
-		}
-	}
+	
+	method.emailmethod();
 
 });
 

@@ -26,17 +26,18 @@
 					</tr>
 					<tr>
 						<td>&nbsp;&nbsp;이메일</td>
-						<td>&nbsp;&nbsp; <input type="email" id="email" name="email"
+						<td>&nbsp;&nbsp; 
+						<input type="email" id="email" name="email"
 							size="30" required="required" />
 							<select id="endemail" name="endemail">
-									<option value="@naver.com">@naver.com</option>
-									<option value="@daum.net">@daum.net</option>
-									<option value="@gmail.com">@gmail.com</option>
-									<option value="@coke.com">@coke.com</option>
+									<option value="@naver.com">naver.com</option>
+									<option value="@daum.net">daum.net</option>
+									<option value="@gmail.com">gmail.com</option>
+									<option value="@coke.com">coke.com</option>
 									<option value="etcemail">직접 입력</option>
 								</select>
 							
-								<input type="text" id= "enaemailtextfield" name = "enaemailtextfield"style="visibility :hidden" placeholder="사용하시는 메일을 적어주세요"/>
+								<input type="text" id= "endemailtextfield" style="visibility :hidden" placeholder="사용하시는 메일을 적어주세요"/>
 							
 							<div id="emaildisp"></div>
 							
