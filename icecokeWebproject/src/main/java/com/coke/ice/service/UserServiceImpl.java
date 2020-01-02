@@ -114,23 +114,24 @@ public class UserServiceImpl implements UserService {
 		}
 
 		// System.err.print(phone);
-		System.err.print(birthday);
+//		System.err.println(birthday);
 
-		MultipartFile file = request.getFile("image");
-		String origiName = file.getOriginalFilename();
-
-		String fileName = email + ":" + origiName;
-
-		String path = request.getServletContext().getRealPath("/useriamge");
-
+		MultipartFile f = request.getFile("image");
+		
+		String origiName = f.getOriginalFilename();
+		String fileName = email + origiName;
+		String path = request.getServletContext().getRealPath("/userimage");
+		
 		if (origiName.length() > 0) {
-			File f = new File(path + "/" + fileName);
-
+			File file = new File(path + "/" + fileName);
 			try {
-				file.transferTo(f);
-			} catch (IllegalStateException | IOException e) {
+				f.transferTo(file);
+				System.out.println("여긴가요ㅕ:" + f.toString());
+			} catch (Exception e) {
 				e.printStackTrace();
 				System.out.println(e.getMessage());
+				
+				System.out.println("여기일것 같아");
 			}
 		} else {
 			fileName = "default.png";

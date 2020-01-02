@@ -9,11 +9,9 @@ var nicknamedisp = document.getElementById("nicknamedisp");
 
 var endemail = document.getElementById("endemail");
 var endemailtextfield = document.getElementById("endemailtextfield");
-
-
-
+var emailcheckvalue ="";
+// 반복되는 기능을 매소드로 선언 하여, 호출하기 위함.
 var method = {
-		
 	emailmethod(){
 		
 		
@@ -25,7 +23,8 @@ var method = {
 		// ajax 요청 객체 생성
 		var request = new XMLHttpRequest();
 		
-		var emailcheckvalue =email.value + endemail.value;
+		emailcheckvalue = email.value + endemail.value;
+		
 		// 요청 주소 생성
 		request.open('GET', 'emailcheck?email=' + emailcheckvalue );
 		// 요청
@@ -43,6 +42,7 @@ var method = {
 						emailcheck = true;
 						emaildisp.innerHTML = '&nbsp;&nbsp;사용 가능한 이메일';
 						emaildisp.style.color = 'green';
+						
 					} else {
 						emailcheck = false;
 						emaildisp.innerHTML = '&nbsp;&nbsp;이미 존재하는 이메일';
@@ -53,54 +53,32 @@ var method = {
 		}
 	}	
 }	
+// 직접 입력을 선택했을 때 진행할 기능 구현
 endemail.addEventListener('change', function(e) {
-
-	
 	if (endemail.value == "etcemail") {
-		endemailtextfield.style.visibility = "visible";
-		endemailtextfield.style.width = "50%";
-		
-		endemailtextfield.addEventListener("focusout", function(e){
-			
-			if(endemailtextfield.value.length > 0){
-				if(endemailtextfield.value.indexOf('.') >= 0){
-				if(endemailtextfield.value[0] != "@"){
-				endemail.value = "@" + endemailtextfield.value;}
-				else{
-					endemail.value = endemailtextfield.value;
-				}
-				method.emailmethod();
-				}else{
-					emaildisp.innerHTML = "이메일 형식이 잘못되었습니다."
-						emaildisp.style.color = 'red';
-						endemailtextfield.focus();
-						e.preventDefault();
-						return;
-				}
-				
-				
-			}else{
-				emaildisp.innerHTML = "메일 뒷 부분을 입력해 주세요."
-				emaildisp.style.color = 'red';
-				endemailtextfield.focus();
-				e.preventDefault();
-				return;
-				
-				
-			}
-		});
-		
-		} else {
-		endemailtextfield.style.visibility = "hidden";
-		method.emailmethod();
+		endemail.style.visibility = "hidden";
+
 	}
 
 });
 // email 입력 란에서 포커스가 떠나면
 email.addEventListener('focusout', function(e) {
-	
-	method.emailmethod();
+	if (endemail.value == "etcemail" ) {
+		if(email.value.indexOf('@') <= 0 || email.value.indexOf('.') <= 0){
+			emaildisp.innerHTML = "이메일 형식이 잘못되었습니다."
+			emaildisp.style.color = 'red';
+			email.focus();
+			e.preventDefault();
+			return;
+		}else{
+			method.emailmethod();
+		}
+					
 
+	// 매소드를 호출하여 간단하게 기능 구현.
+	}else{
+		method.emailmethod();
+	}
 });
 
 // 닉네임 중복 검사
@@ -200,6 +178,10 @@ phone.addEventListener("focusout", function(e) {
 })
 
 joinform.addEventListener("submit", function(e) {
+	if (endemail.value != "etcemail" ) {
+		email.value = emailcheckvalue;
+	}
+	
 	if (phonecheck == false) {
 		phonedisp.innerHTML = "전화번호는 10 ~ 11자리 이하 숫자로만 작성되어야 합니다.";
 		phonedisp.style.color = 'red';

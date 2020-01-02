@@ -27,9 +27,9 @@
 					<tr>
 						<td>&nbsp;&nbsp;이메일</td>
 						<td>&nbsp;&nbsp; 
-						<input type="email" id="email" name="email"
+						<input type="text" id="email" name="email"
 							size="30" required="required" />
-							<select id="endemail" name="endemail">
+							<select id="endemail" name="endemail" style="visibility :visible">
 									<option value="@naver.com">naver.com</option>
 									<option value="@daum.net">daum.net</option>
 									<option value="@gmail.com">gmail.com</option>
@@ -37,7 +37,7 @@
 									<option value="etcemail">직접 입력</option>
 								</select>
 							
-								<input type="text" id= "endemailtextfield" style="visibility :hidden" placeholder="사용하시는 메일을 적어주세요"/>
+								<!-- <input type="text" id= "endemailtextfield" style="visibility :hidden" placeholder="사용하시는 메일을 적어주세요"/> -->
 							
 							<div id="emaildisp"></div>
 							
@@ -47,7 +47,8 @@
 
 					<tr>
 						<td>&nbsp;&nbsp;비밀번호</td>
-						<td>&nbsp;&nbsp; <input type="password" id="pw" name="pw"
+						<td>&nbsp;&nbsp; 
+						<input type="password" id="pw" name="pw"
 							size="40" required="required" />
 						</td>
 					</tr>

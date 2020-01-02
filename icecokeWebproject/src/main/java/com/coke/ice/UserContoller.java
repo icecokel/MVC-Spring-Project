@@ -90,4 +90,10 @@ public class UserContoller {
 		return "redirect:plznewpw";
 	}
 	
+	@RequestMapping (value="/user/profile" , method = RequestMethod.GET)
+	public String profile (Model model) {
+		
+		return "/user/profile";
+	}
+	
 }

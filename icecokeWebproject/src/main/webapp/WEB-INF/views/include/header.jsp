@@ -88,6 +88,10 @@
 					</c:if>
 	
 					<c:if test="${user != null}">
+
+						<a href ="/user/profile" ><img src ="/userimage/${user.image}" id="img" class="rounded-circle" width="30" height="30" /></a>
+						
+						<li class="nav-item"><a class="nav-link" href="/user/profile">${user.nickname}님이 로그인 </a></li>
 						<li class="nav-item"><a class="nav-link" href="/user/logout">Logout</a></li>
 					</c:if>
 	
