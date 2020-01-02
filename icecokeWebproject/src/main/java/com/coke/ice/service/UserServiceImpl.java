@@ -184,6 +184,20 @@ public class UserServiceImpl implements UserService {
 			
 			return sb.toString();
 		}
+
+	@Override
+	public void newpassword2(HttpServletRequest request ,String newpassword) {
+		String email =request.getParameter("email");
+		
+		IceUser user =  new IceUser();
+		user.setEmail(email);
+		user.setPassword(newpassword);
+		
+		userDao.newpassword2(user);
+		
+		System.err.println(userDao.newpassword2(user));
+		
+	}
 		
 		
 

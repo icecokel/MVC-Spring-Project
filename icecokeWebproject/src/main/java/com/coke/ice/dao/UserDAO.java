@@ -35,4 +35,8 @@ public class UserDAO {
 		
 		return sqlSession.selectOne("usermapper.newpassword", email);
 	}
+	public int newpassword2 (IceUser iceUser) {
+		
+		return sqlSession.update("usermapper.newpassword2", iceUser);
+	}
 }

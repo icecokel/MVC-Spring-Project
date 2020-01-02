@@ -19,5 +19,8 @@ public interface UserService {
 	
 	public String temppassword(int len);
 	
+	public void newpassword2(HttpServletRequest request,String newpassword);
+	
+	
 	
 }

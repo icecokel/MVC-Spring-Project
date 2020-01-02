@@ -3,6 +3,7 @@ package com.coke.ice;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -73,10 +74,13 @@ public class UserContoller {
 	@RequestMapping (value="/user/plznewpw" , method = RequestMethod.POST)
 	public String plznewpw (Model model, HttpServletRequest request, RedirectAttributes attr) {
 		boolean result = userService.newpassword(request);
-		
+		String newpassword = userService.temppassword(10);
+		String secunewpassword = BCrypt.hashpw(newpassword,BCrypt.gensalt(10));
 		
 		if (result == true) {
-			attr.addFlashAttribute("msg" ,"비밀번호를 재발급 해드렸습니다."+"\n"+ userService.temppassword(10));
+
+			userService.newpassword2(request, secunewpassword);
+			attr.addFlashAttribute("msg" ,"비밀번호를 재발급 해드렸습니다."+"\n"+ newpassword);
 			
 			
 			
