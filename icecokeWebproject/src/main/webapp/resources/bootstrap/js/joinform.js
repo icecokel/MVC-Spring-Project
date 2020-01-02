@@ -7,8 +7,24 @@ var nickname = document.getElementById("nickname");
 var emaildisp = document.getElementById("emaildisp");
 var nicknamedisp = document.getElementById("nicknamedisp");
 
+var endemail = document.getElementById("endemail");
+var enaemailtextfield = document.getElementById("enaemailtextfield");
+
+endemail.addEventListener('change', function(e) {
+
+	if (endemail.value == "etcemail") {
+		enaemailtextfield.style.visibility = "visible";
+		
+		} else {
+		enaemailtextfield.style.visibility = "hidden";
+		
+
+	}
+
+});
 // email 입력 란에서 포커스가 떠나면
 email.addEventListener('focusout', function(e) {
+
 	// email에 입력한 내용이 없으면 중복 검사를 수행하지 않음
 	if (email.value.trim().length < 1) {
 		return;
@@ -72,21 +88,24 @@ var pw1 = document.getElementById("pw1");
 
 var pwdisp = document.getElementById("pwdisp");
 var passwordcheck = false;
-// 비밀번호 강도 정규식 
-pw.addEventListener("keyup", function(e){
-	var pwVlaue = pw.value.trim();
-	
-	var passRule = /^.*(?=^.{8,15}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$/;
+// 비밀번호 강도 정규식
+pw
+		.addEventListener(
+				"keyup",
+				function(e) {
+					var pwVlaue = pw.value.trim();
 
-	if(passRule.test(pwVlaue)){
-		pwdisp.innerHTML = '&nbsp;&nbsp; 비밀번호 강도 강함!';
-		pwdisp.style.color = 'green';
-	}else{
-		pwdisp.innerHTML = '&nbsp;&nbsp; 비밀번호 강도 약함!';
-		pwdisp.style.color = 'red';
-	}
-	
-});
+					var passRule = /^.*(?=^.{8,15}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$/;
+
+					if (passRule.test(pwVlaue)) {
+						pwdisp.innerHTML = '&nbsp;&nbsp; 비밀번호 강도 강함!';
+						pwdisp.style.color = 'green';
+					} else {
+						pwdisp.innerHTML = '&nbsp;&nbsp; 비밀번호 강도 약함!';
+						pwdisp.style.color = 'red';
+					}
+
+				});
 
 pw1.addEventListener('focusout', function(e) {
 	if (pw.value.trim() != "" && pw1.value.trim() != "") {
@@ -95,7 +114,7 @@ pw1.addEventListener('focusout', function(e) {
 			pwdisp.innerHTML = '&nbsp;&nbsp;비밀번호가 일치하지 않습니다.';
 			pwdisp.style.color = 'red';
 		} else {
-			
+
 			passwordcheck = true;
 			pwdisp.innerHTML = '&nbsp;&nbsp;비밀번호가 일치합니다.';
 			pwdisp.style.color = 'green';
@@ -110,30 +129,30 @@ var phonedisp = document.getElementById("phonedisp");
 var phonecheck = false;
 var joinform = document.getElementById("joinform");
 
-phone.addEventListener("focusout", function (e){
+phone.addEventListener("focusout", function(e) {
 	if (phone.value.length <= 11 && phone.value.length >= 10) {
 		// 전화번호 길이 유효성 검사 / true 라면
-		
-			for (var i = 0; i < phone.value.length; i = i + 1) {
-				var ch = phone.value.charAt(i);
 
-				if (ch <  '0' || ch > '9') {
-					phonecheck = false;
-					break;
-					phonedisp.innerHTML ="전화번호를 확인하세요!";
-					phonedisp.style.color = 'red';
-				}
+		for (var i = 0; i < phone.value.length; i = i + 1) {
+			var ch = phone.value.charAt(i);
 
-				phonecheck = true;
-				phonedisp.innerHTML ="";
-				phonedisp.style.color = 'green';
-				
+			if (ch < '0' || ch > '9') {
+				phonecheck = false;
+				break;
+				phonedisp.innerHTML = "전화번호를 확인하세요!";
+				phonedisp.style.color = 'red';
 			}
-		} else {
-			phonecheck = false;
-			phonedisp.innerHTML ="전화번호를 확인하세요!";
-			phonedisp.style.color = 'red';
+
+			phonecheck = true;
+			phonedisp.innerHTML = "";
+			phonedisp.style.color = 'green';
+
 		}
+	} else {
+		phonecheck = false;
+		phonedisp.innerHTML = "전화번호를 확인하세요!";
+		phonedisp.style.color = 'red';
+	}
 
 })
 
