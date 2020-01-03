@@ -113,6 +113,7 @@
 					<tr>
 					<td>&nbsp;&nbsp;비밀번호 재발급 질문</td>
 						<td>
+							<div>
 								<select id="givenewpwQ" name="givenewpwQ">
 									<option value="1.내 첫 입학 초등학교는?">1.내 첫 입학 초등학교는?</option>
 									<option value="2.가장 좋아하는 색깔은?">2.가장 좋아하는 색깔은?</option>
@@ -121,6 +122,9 @@
 									
 								</select>
 								<input type="text" id ="givenewpwA" name = "givenewpwA"  placeholder="답변을 입력해주세요!"/>
+							</div>
+							<div id ="givenewpwAdisp">
+							
 							</div>
 						</td>
 	

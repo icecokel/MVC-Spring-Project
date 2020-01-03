@@ -176,6 +176,7 @@ phone.addEventListener("focusout", function(e) {
 	}
 
 })
+var givenewpwA = document.getElementById("givenewpwA");
 
 joinform.addEventListener("submit", function(e) {
 	if (endemail.value != "etcemail" ) {
@@ -215,5 +216,14 @@ joinform.addEventListener("submit", function(e) {
 		e.preventDefault();
 		return;
 	}
+	
+	if(givenewpwA.value.length <=0){
+		givenewpwAdisp.innerHTML = "답변을 기재해 주세요."
+		givenewpwAdisp.style.color = 'red';
+		givenewpwA.focus();
+		e.preventDefault();
+		return;
+	}
+	
 
 });
