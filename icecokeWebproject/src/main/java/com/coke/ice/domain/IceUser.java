@@ -2,7 +2,6 @@ package com.coke.ice.domain;
 
 import java.util.Date;
 
-import org.springframework.stereotype.Service;
 
 import lombok.Data;
 

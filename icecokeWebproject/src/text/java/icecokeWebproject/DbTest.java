@@ -19,31 +19,31 @@ public class DbTest {
 	@Autowired
 	private DataSource dataSource;
 	
-//	@Test
-//	public void dbCon() {
-//		try {
-//			Connection con = dataSource.getConnection();
-//			System.err.println(con);
-//		} catch (Exception e) {
-//			System.out.println(e.getMessage());
-//		}
-//	}
-//	
+	@Test
+	public void dbCon() {
+		try {
+			Connection con = dataSource.getConnection();
+			System.err.println(con);
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+	}
+	
 	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 	
 	
-	@Test
-	public void sdfTest() {
-		try {
-			String yyyy = "2019";
-			String MM = "07";
-			String dd = "30";
-			Date date = sdf.parse(yyyy+"-"+MM+"-"+dd);
-			System.err.println(date);
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
-	}
+//	@Test
+//	public void sdfTest() {
+//		try {
+//			String yyyy = "2019";
+//			String MM = "07";
+//			String dd = "30";
+//			Date date = sdf.parse(yyyy+"-"+MM+"-"+dd);
+//			System.err.println(date);
+//		} catch (ParseException e) {
+//			e.printStackTrace();
+//		}
+//	}
 //	@Test
 //	public void Test() {
 //		System.err.println("인기가요");

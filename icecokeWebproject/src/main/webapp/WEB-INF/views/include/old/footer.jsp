@@ -4,7 +4,7 @@
         <div class="pull-right hidden-xs">
           <b>Version</b> 1.0
         </div>
-       <span><P>The time on the server : ${serverTime}.</P></span>
+       <span>The time on the server : ${serverTime}.</span>
       </footer>
     <script src="/resources/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
   </body>

@@ -2,10 +2,10 @@
 	pageEncoding="UTF-8"%>
 <%@ include file="../include/header.jsp"%>
 <section>
-	<div align='center'>
-		<div><h3>회원 정보 수정</h3></div>
+	<div align='center' class="joinformdiv">
+		<div ><h3>회원 정보 수정</h3></div>
 
-		<table align="center" border="2">
+		<table align="center" border="2" class="table">
 			<thead>
 			<tr align ="center">
 			<td><img src="${user.image}" width ="40px" height="40px"/>
