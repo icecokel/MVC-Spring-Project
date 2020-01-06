@@ -15,6 +15,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.coke.ice.dao.UserDAO;
 import com.coke.ice.domain.IceUser;
+import com.mysql.cj.Session;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -198,6 +199,61 @@ public class UserServiceImpl implements UserService {
 		System.err.println(userDao.newpassword2(user));
 		
 	}
+
+	@Override
+	public void editporifle(HttpServletRequest request) {
+		String email = request.getParameter("profileemail");
+		String nickname = request.getParameter("profilenickname");
+		String password = request.getParameter("profilepassword");
+		String phone = request.getParameter("profilephone");
+		String givenewpwQ =request.getParameter("profilegivenewpwQ");
+		String givenewpwA =request.getParameter("profilegivenewpwA");
+
+		
+		
+		IceUser user =new IceUser();
+		
+		user.setEmail(email);
+		user.setNickname(nickname);
+		
+		user.setPassword(password);
+		user.setPhone(phone);
+		user.setGivenewpwQ(givenewpwQ);
+		user.setGivenewpwA(givenewpwA);
+		
+		userDao.editprofile(user);
+		request.getSession().setAttribute("user", user);
+		System.err.println("회원 정보 수정 결과 : " +  userDao.editprofile(user));
+		
+		// 이미지 수정 기능 추가 해야함.
+	}
+
+	@Override
+	public boolean userverification(HttpServletRequest request) {
+		boolean result =false;
+		String email = request.getParameter("email");
+		String password =request.getParameter("password");
+		
+		System.err.println("email::::::" + email);
+		System.err.println("password::::::" + password);
+		
+		IceUser user = userDao.login(email);
+		
+		System.err.println("userpassword ::::::" +user.toString());
+		if (user != null) {
+			if (BCrypt.checkpw(password, user.getPassword())) {
+
+				user.setPassword(null);
+				request.getSession().setAttribute("user", user);
+				result = true;
+
+			}
+		}
+
+		return result;
+	}
+
+
 		
 		
 

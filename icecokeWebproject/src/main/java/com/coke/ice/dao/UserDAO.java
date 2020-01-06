@@ -39,4 +39,11 @@ public class UserDAO {
 		
 		return sqlSession.update("usermapper.newpassword2", iceUser);
 	}
+	
+	public int editprofile (IceUser iceUser) {
+		
+		return sqlSession.update("usermapper.editprofile", iceUser);
+	}
+	
+
 }

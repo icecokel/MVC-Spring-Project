@@ -40,4 +40,23 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where email = #{email}
 	
 	</update>
+	
+	<update id="editprofile" parameterType="IceUser">
+		update users
+		set 
+		nickname = #{nickname},
+		phone = #{phone},
+		givenewpwA =#{givenewpwA},
+		givenewpwQ = #{givenewpwQ}
+		where email = #{email}
+	
+	</update>
+	
+	<update id="editpassword" parameterType="IceUser">
+	 update users
+	 set
+	 password = #{password}
+	 where email = #{email}
+	</update>
+	
 </mapper>

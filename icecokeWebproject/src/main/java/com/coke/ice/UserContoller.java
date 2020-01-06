@@ -33,6 +33,8 @@ public class UserContoller {
 		if(result == true) {
 			return "redirect:/";
 			
+			
+			
 		}else {
 			attr.addFlashAttribute("msg" ,"없는 아이디 이거나 틀린 비밀번호 입니다.");
 			return "redirect:/user/login";
@@ -87,7 +89,7 @@ public class UserContoller {
 		}else {
 			attr.addFlashAttribute("msg" ,"선택한 질문과 답이 일치 하지 않습니다.");
 		}
-		return "redirect:plznewpw";
+		return "redirect:plznewpw"; 
 	}
 	
 	@RequestMapping (value="/user/profile" , method = RequestMethod.GET)
@@ -96,4 +98,20 @@ public class UserContoller {
 		return "/user/profile";
 	}
 	
+	@RequestMapping (value="/user/passwordchange" , method=RequestMethod.GET)
+	public String passwordchange (Model model) {
+		
+		return "/user/passwordchange";
+	}
+	
+	
+	
+	@RequestMapping (value="/user/passwordchange" , method=RequestMethod.POST)
+	public String passwordchange (Model model, HttpServletRequest request) {
+		
+		return "/user/passwordchange";
+	}
+	
+	
+
 }

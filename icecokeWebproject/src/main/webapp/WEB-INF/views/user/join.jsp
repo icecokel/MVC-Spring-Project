@@ -119,7 +119,6 @@
 									<option value="2.가장 좋아하는 색깔은?">2.가장 좋아하는 색깔은?</option>
 									<option value="3.초등학교시절 장래 희망은?">3.초등학교시절 장래 희망은?</option>
 									<option value="4.처음 키운 애완동물이름은?">4.처음 키운 애완동물이름은?</option>
-									
 								</select>
 								<input type="text" id ="givenewpwA" name = "givenewpwA"  placeholder="답변을 입력해주세요!"/>
 							</div>

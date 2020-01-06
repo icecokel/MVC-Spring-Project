@@ -43,4 +43,14 @@ public class JsonController {
 		return map;
 
 	}
+	@RequestMapping (value="user/verification" , method=RequestMethod.POST)
+	public Map<String , Object> userverification (HttpServletRequest request){
+		boolean result = userService.userverification(request);
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		map.put("result", result +"" );
+		return map;
+		
+	}
 }

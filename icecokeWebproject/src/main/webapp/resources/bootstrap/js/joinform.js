@@ -179,9 +179,7 @@ phone.addEventListener("focusout", function(e) {
 var givenewpwA = document.getElementById("givenewpwA");
 
 joinform.addEventListener("submit", function(e) {
-	if (endemail.value != "etcemail" ) {
-		email.value = emailcheckvalue;
-	}
+	email.value = emailcheckvalue;
 	
 	if (phonecheck == false) {
 		phonedisp.innerHTML = "전화번호는 10 ~ 11자리 이하 숫자로만 작성되어야 합니다.";

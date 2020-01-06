@@ -21,6 +21,10 @@ public interface UserService {
 	
 	public void newpassword2(HttpServletRequest request,String newpassword);
 	
+	public void editporifle(HttpServletRequest request);
+	
+	public boolean userverification(HttpServletRequest request); 
+	
 	
 	
 }
