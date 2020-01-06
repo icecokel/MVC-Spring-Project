@@ -190,6 +190,7 @@ public class UserServiceImpl implements UserService {
 	public void newpassword2(HttpServletRequest request ,String newpassword) {
 		String email =request.getParameter("email");
 		
+		
 		IceUser user =  new IceUser();
 		user.setEmail(email);
 		user.setPassword(newpassword);

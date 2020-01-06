@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -107,9 +108,14 @@ public class UserContoller {
 	
 	
 	@RequestMapping (value="/user/passwordchange" , method=RequestMethod.POST)
-	public String passwordchange (Model model, HttpServletRequest request) {
+	public String passwordchange (RedirectAttributes attr, HttpServletRequest request,@RequestParam("password") String password) {
+		String secupassword = BCrypt.hashpw(password, BCrypt.gensalt(10));
 		
-		return "/user/passwordchange";
+		userService.newpassword2(request, secupassword);
+		attr.addFlashAttribute("msg","비밀번호 변경에 성공했습니다.");
+		System.err.println(secupassword);
+		
+		return "redirect:login";
 	}
 	
 	
