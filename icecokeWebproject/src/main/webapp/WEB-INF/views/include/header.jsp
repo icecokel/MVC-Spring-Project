@@ -98,7 +98,7 @@
 						<li class="nav-item"><a class="nav-link" href="/user/logout">Logout</a></li>
 					</c:if>
 	
-					<li class="nav-item"><a class="nav-link" href="">MyBoard</a></li>
+					<li class="nav-item"><a class="nav-link" href="/board/list">MyBoard</a></li>
 					<li class="nav-item"><a class="nav-link" href="/file/filelist">FileList</a>
 					</li>
 					<li class="nav-item"><a class="nav-link" href="">ETC</a></li>

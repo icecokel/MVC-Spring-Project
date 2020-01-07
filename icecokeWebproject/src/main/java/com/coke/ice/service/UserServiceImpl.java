@@ -189,15 +189,17 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public void newpassword2(HttpServletRequest request ,String newpassword) {
 		String email =request.getParameter("email");
-		
-		
+//		
+//		System.err.println("newpassword2 ::::::::" +email);
+//		System.err.println("newpassword2 ::::::::" +newpassword);
+//		
 		IceUser user =  new IceUser();
 		user.setEmail(email);
 		user.setPassword(newpassword);
 		
 		userDao.newpassword2(user);
 		
-		System.err.println(userDao.newpassword2(user));
+//		System.err.println(userDao.newpassword2(user));
 		
 	}
 
@@ -235,12 +237,13 @@ public class UserServiceImpl implements UserService {
 		String email = request.getParameter("email");
 		String password =request.getParameter("password");
 		
-		System.err.println("email::::::" + email);
-		System.err.println("password::::::" + password);
+//		System.err.println("email::::::" + email);
+//		System.err.println("password::::::" + password);
 		
 		IceUser user = userDao.login(email);
 		
-		System.err.println("userpassword ::::::" +user.toString());
+//		System.err.println("userpassword ::::::" +user.toString());
+		
 		if (user != null) {
 			if (BCrypt.checkpw(password, user.getPassword())) {
 

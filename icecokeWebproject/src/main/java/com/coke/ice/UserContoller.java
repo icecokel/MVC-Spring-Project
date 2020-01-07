@@ -108,8 +108,11 @@ public class UserContoller {
 	
 	
 	@RequestMapping (value="/user/passwordchange" , method=RequestMethod.POST)
-	public String passwordchange (RedirectAttributes attr, HttpServletRequest request,@RequestParam("password") String password) {
+	public String passwordchange (RedirectAttributes attr, HttpServletRequest request,HttpSession session) {
+		String password = request.getParameter("password2");
 		String secupassword = BCrypt.hashpw(password, BCrypt.gensalt(10));
+		session.invalidate();
+		
 		
 		userService.newpassword2(request, secupassword);
 		attr.addFlashAttribute("msg","비밀번호 변경에 성공했습니다.");

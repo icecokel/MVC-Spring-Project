@@ -59,7 +59,8 @@ endemail.addEventListener('change', function(e) {
 		endemail.style.visibility = "hidden";
 
 	}
-
+	
+	method.emailmethod();
 });
 // email 입력 란에서 포커스가 떠나면
 email.addEventListener('focusout', function(e) {

@@ -17,7 +17,7 @@
 				<li class="list-group-item"><a href='/user/join'>계정 생성 페이지로 이동</a></li>
 			</c:if>
 
-			<li class="list-group-item">게시판으로 이동</li>
+			<li class="list-group-item"><a href="/board/list">게시판으로 이동</a></li>
 			<li class="list-group-item"><a href="/file/filelist">파일 리스트로 이동</a></li>
 		</ul>
 	</div>
