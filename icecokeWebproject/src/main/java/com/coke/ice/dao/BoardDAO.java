@@ -15,4 +15,7 @@ public class BoardDAO {
 	public int boardwrite(IceBoard iceBoard) {
 		return sqlSession.insert("boardmapper.boardwrite", iceBoard);
 	}
+	public Integer maxnum() {
+		return sqlSession.selectOne("boardmapper.maxnum");
+	}
 }

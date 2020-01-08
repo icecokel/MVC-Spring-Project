@@ -12,5 +12,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		values(#{boardnum}, #{boardtitle}, #{boardcontent},#{email})
 	</insert>
 		
+		
+	<select id="maxnum" resultType="Integer">
+		select max(boardnum) from board
+	
+	</select>
 </mapper>
 
