@@ -16,5 +16,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select max(boardnum) from board
 	
 	</select>
+	
+	<select id="boardlist" resultType="IceBoard">
+		select *
+		from board	
+		order by boardnum desc
+	</select>
 </mapper>
 

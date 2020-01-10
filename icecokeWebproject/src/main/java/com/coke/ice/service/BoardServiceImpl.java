@@ -2,6 +2,7 @@ package com.coke.ice.service;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -66,6 +67,14 @@ public class BoardServiceImpl implements BoardService {
 		}
 //		System.err.println("보드 서비스 결과 ::::::::::" +result);
 		return result;
+	}
+
+	@Override
+	public List<IceBoard> boardlist(HttpServletRequest request) {
+		List<IceBoard> board = boardDao.boardlist();
+		
+		
+		return board;
 	}
 
 }

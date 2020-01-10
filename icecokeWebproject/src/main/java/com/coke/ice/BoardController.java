@@ -18,7 +18,9 @@ public class BoardController {
 	BoardService boardService;
 	
 	@RequestMapping (value="/board/list" , method =RequestMethod.GET)
-	public String boardlist (Model model) {
+	public String boardlist (Model model,HttpServletRequest request) {
+		boardService.boardlist(request);
+		
 		
 		return "/board/list";
 	}
@@ -41,10 +43,11 @@ public class BoardController {
 			System.err.println("성공");
 			return "redirect:/board/list";
 		}else {
-			System.err.println("실패.");
+			System.err.println("실패");
 			return "redirect:/board/write";
 		}
 		
 	}
+	
 	
 }

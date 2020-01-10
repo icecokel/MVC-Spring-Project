@@ -1,5 +1,7 @@
 package com.coke.ice.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -17,5 +19,10 @@ public class BoardDAO {
 	}
 	public Integer maxnum() {
 		return sqlSession.selectOne("boardmapper.maxnum");
+	}
+	
+	public List<IceBoard> boardlist () {
+		
+		return sqlSession.selectList("boardmapper.boardlist");
 	}
 }

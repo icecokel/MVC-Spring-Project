@@ -12,15 +12,22 @@
 				</tr>
 				<tr>
 					<th scope="col" width="5%">글번호</th>
-					<th scope="col" width="70%" style="text-align:center">글 제목</th>
+					<th scope="col" width="70%" style="text-align: center">글 제목</th>
 					<th scope="col" width="10%">글쓴이</th>
 					<th scope="col" width="10%">수정일</th>
 					<th scope="col" width="5%">조회수</th>
 				</tr>
 			</thead>
 			<tbody>
+				<c:forEach var="boardDto" items="${boardlist }">
 				<tr>
-				</tr>
+					<td>${boardDto.boardnum }</td>
+					<td>${boardDto.boardtitle }</td>
+					<td>${boardDto.nickname }</td>
+					<td>${boardDto.date }</td>
+					<td>${boardDto.boardreadcnt }</td>
+				
+				</tr></c:forEach>
 			</tbody>
 		</table>
 	</div>
