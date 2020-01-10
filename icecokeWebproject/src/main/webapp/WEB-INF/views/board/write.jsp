@@ -2,23 +2,23 @@
 	pageEncoding="UTF-8"%>
 <%@ include file="../include/header.jsp"%>
 <section>
-	<form method="post" enctype="enctype" id="boardform">
+	<form method="post"  id="boardform">
 		<div class="container" role="main">
 
 			<h2>글쓰기</h2>
 
 			<div class="mb-3">
 
-				<label for="title">제목</label> <input type="text"
-					class="form-control" name="boardtitle" id="boardtitle"
+				<label for="title">제목</label> 
+				<input type="text" class="form-control" name="boardtitle" id="boardtitle"
 					placeholder="제목을 입력해 주세요">
 
 			</div>
 
 			<div class="mb-3">
 
-				<label for="reg_id">작성자</label> <input type="text"
-					class="form-control" value="${user.nickname}"
+				<label for="reg_id">작성자</label> 
+				<input type="text" class="form-control" value="${user.nickname}"
 					placeholder="이름을 입력해 주세요">
 
 			</div>
@@ -33,16 +33,11 @@
 
 			<div>
 
-				<button type="submit" class="btn btn-sm btn-primary" id="btnSave">저장</button>
+				<input type="submit" class="btn btn-sm btn-primary" id="btnSave" value = "저장"/>
 				<button type="button" class="btn btn-sm btn-primary" id="btnList">목록</button>
 
 			</div>
-
 		</div>
-
-
 	</form>
 </section>
 <%@ include file="../include/footer.jsp"%>
-<script>
-</script>

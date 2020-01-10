@@ -7,8 +7,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	
 	<insert id="boardwrite" parameterType="IceBoard">
-		insert into BOARD
-		(boardnum, boardtitle, boardcontent ,  email)
+		insert into board(boardnum, boardtitle, boardcontent , email)
 		values(#{boardnum}, #{boardtitle}, #{boardcontent},#{email})
 	</insert>
 		

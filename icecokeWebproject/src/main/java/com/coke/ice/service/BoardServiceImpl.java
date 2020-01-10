@@ -25,19 +25,27 @@ public class BoardServiceImpl implements BoardService {
 		HttpSession session = request.getSession();
 		String boardtitle = request.getParameter("boardtitle");
 		String boardcontent = request.getParameter("boardcontent");
+		
+//		System.err.println("서비스 테스트1 :::::::::" + boardtitle);
+//		System.err.println("서비스 테스트2 :::::::::" + boardcontent);
+		
 		IceUser user = (IceUser) session.getAttribute("user");
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd hh:mm:ss");
 		Date date = new Date();
 		String titletime =sdf.format(date);
 		String email = user.getEmail();
+		
+//		System.err.println("서비스 테스트3 :::::::::" + email);
+		
 		if (boardtitle.length() <= 0) {
 			boardtitle = user.getNickname() + "님이" + titletime + "에 남기신 글입니다.";
 
 		}
 		int boardnum = 1;
 		Integer maxnum = boardDao.maxnum();
-
-		if (maxnum == null) {
+		
+//		System.err.println("서비스 테스트4 :::::::::" + maxnum);
+		if (maxnum != null) {
 			boardnum = maxnum + 1;
 		}
 
@@ -46,9 +54,17 @@ public class BoardServiceImpl implements BoardService {
 		board.setBoardcontent(boardcontent);
 		board.setBoardnum(boardnum);
 		board.setEmail(email);
-
-		boardDao.boardwrite(board);
-
+		
+//		System.err.println("boardDTO:::::" + board.toString());
+		
+		int r = boardDao.boardwrite(board);
+		
+		if(r >=1) {
+			result = true;
+		}else {
+			result = false;
+		}
+//		System.err.println("보드 서비스 결과 ::::::::::" +result);
 		return result;
 	}
 
