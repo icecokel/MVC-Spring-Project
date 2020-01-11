@@ -72,8 +72,11 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public List<IceBoard> boardlist(HttpServletRequest request) {
 		List<IceBoard> board = boardDao.boardlist();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		
-		
+		for(IceBoard tmp : board) {
+			tmp.setDispdate(sdf.format(tmp.getUpdatedate()));
+		}
 		return board;
 	}
 

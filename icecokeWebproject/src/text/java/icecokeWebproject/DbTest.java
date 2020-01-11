@@ -19,16 +19,18 @@ public class DbTest {
 	@Autowired
 	private DataSource dataSource;
 	
-//	@Test
-//	public void dbCon() {
-//		try {
-//			Connection con = dataSource.getConnection();
-//			System.err.println(con);
-//		} catch (Exception e) {
-//			System.out.println(e.getMessage());
-//		}
-//	}
-//	
+	@Test
+	public void dbCon() {
+		try {
+			Connection con = dataSource.getConnection();
+			System.err.println(con);
+			con.close();
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+	
+	}
+	
 	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 	SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy/MM/dd hh:mm:ss");
 	

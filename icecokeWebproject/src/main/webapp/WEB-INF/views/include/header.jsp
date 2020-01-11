@@ -32,6 +32,9 @@
 	padding-left: 10%;
 	padding-right: 10%;
  }
+ input[type="password"] {
+font-family: sans-serif !important;
+}
 </style>
 <!-- JQuery 설정  -->
 <script src="/resources/jquery/jquery.js"></script>
