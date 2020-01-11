@@ -24,7 +24,7 @@
 					<td>${boardDto.boardnum }</td>
 					<td>${boardDto.boardtitle }</td>
 					<td>${boardDto.nickname }</td>
-					<td>${boardDto.date }</td>
+					<td>${boardDto.dispdate }</td>
 					<td>${boardDto.boardreadcnt }</td>
 				
 				</tr></c:forEach>

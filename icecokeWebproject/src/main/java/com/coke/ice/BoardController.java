@@ -1,5 +1,7 @@
 package com.coke.ice;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.coke.ice.domain.IceBoard;
 import com.coke.ice.service.BoardService;
 
 
@@ -19,8 +22,10 @@ public class BoardController {
 	
 	@RequestMapping (value="/board/list" , method =RequestMethod.GET)
 	public String boardlist (Model model,HttpServletRequest request) {
-		boardService.boardlist(request);
+		List<IceBoard> board = boardService.boardlist(request);
 		
+		
+		model.addAttribute("boardlist", board);
 		
 		return "/board/list";
 	}
