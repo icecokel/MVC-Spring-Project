@@ -39,13 +39,14 @@ public class BoardServiceImpl implements BoardService {
 //		System.err.println("서비스 테스트3 :::::::::" + email);
 		
 		if (boardtitle.length() <= 0) {
-			boardtitle = user.getNickname() + "님이" + titletime + "에 남기신 글입니다.";
+			boardtitle = user.getNickname() + "님이 " + titletime + "에 남기신 글입니다.";
 
 		}
 		int boardnum = 1;
 		Integer maxnum = boardDao.maxnum();
 		
 //		System.err.println("서비스 테스트4 :::::::::" + maxnum);
+		
 		if (maxnum != null) {
 			boardnum = maxnum + 1;
 		}
@@ -78,6 +79,17 @@ public class BoardServiceImpl implements BoardService {
 			tmp.setDispdate(sdf.format(tmp.getUpdatedate()));
 		}
 		return board;
+	}
+
+	@Override
+	public boolean boardread(Integer boardnum) {
+		boolean result = false;
+		
+		boardDao.boardread(boardnum);
+		boardDao.readcnt(boardnum);
+		
+		
+		return result;
 	}
 
 }

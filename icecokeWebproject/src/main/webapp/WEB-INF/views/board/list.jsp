@@ -22,7 +22,7 @@
 				<c:forEach var="boardDto" items="${boardlist }">
 				<tr>
 					<td>${boardDto.boardnum }</td>
-					<td>${boardDto.boardtitle }</td>
+					<td><a href="/board/${boardDto.boardnum}">${boardDto.boardtitle }</a></td>
 					<td>${boardDto.nickname }</td>
 					<td>${boardDto.dispdate }</td>
 					<td>${boardDto.boardreadcnt }</td>

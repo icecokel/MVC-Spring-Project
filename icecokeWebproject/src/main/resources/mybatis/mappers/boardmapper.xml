@@ -10,7 +10,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		insert into
 		board(boardnum, boardtitle, boardcontent , email)
 		values(#{boardnum},
-		#{boardtitle}, #{boardcontent},#{email})
+		#{boardtitle}, #{boardcontent},#{email} )
 	</insert>
 
 
@@ -26,15 +26,23 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select> -->
 
 	<select id="boardlist" resultType="IceBoard">
-		SELECT boardnum , boardtitle, boardreadcnt, nickname ,updatedate
+		SELECT boardnum , boardtitle, boardreadcnt, nickname ,updatedate 
 		from board, users
 		WHERE board.email = users.email
 		order by updatedate desc
 	</select>
-
-
-
-
-
+	
+	<select id="boardread" resultType="Iceboard" parameterType="java.lang.Integer">
+		select boardnum, boardtitle, boardcontent, nickname. updatedate
+		from board, users
+		where board.email = users.email	
+	</select>
+	
+	<update id="readcnt" parameterType="java.lang.Integer">
+		update board 
+		set
+		boardreadcnt = boardreadcnt + 1
+		where boardnum =#{boardnum}
+	</update>
 </mapper>
 
