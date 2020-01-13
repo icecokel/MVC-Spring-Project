@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ include file="../include/header.jsp"%>
 <section>
-	<form method="post"  id="boardform">
+	<form method="post">
 		<div class="container" role="main">
 
 			<h2>글쓰기</h2>

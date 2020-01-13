@@ -13,5 +13,7 @@ public interface BoardService {
 	
 	public List<IceBoard> boardlist(HttpServletRequest request);
 	
-	public boolean boardread (Integer boardnum);
+	public IceBoard boardread (int boardnum);
+	
+	public boolean boardupdate (HttpServletRequest request);
 }

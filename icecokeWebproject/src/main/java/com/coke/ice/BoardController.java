@@ -54,13 +54,21 @@ public class BoardController {
 		}
 		
 	}
-	@RequestMapping (value="board/{boardDto.boardnum}", method=RequestMethod.GET)
-	public String boardread(Model model , @PathVariable("board.num") Integer boardnum) {
-		model.addAttribute("boardlist",boardService.boardread(boardnum));
+	@RequestMapping (value="/read/{boardnum}", method=RequestMethod.GET)
+	public String boardread(Model model , @PathVariable("boardnum") int boardnum) {
+	
+		model.addAttribute("boardread",boardService.boardread(boardnum));
 		
-		
-		return "board/read";
+//		System.err.println("보드 컨트롤러 테스트 :::"+boardService.boardread(boardnum));
+		return "/board/read";
 	}
 	
-	
+	@RequestMapping (value="read/" , method=RequestMethod.POST)
+	public String boardupdate (Model model , HttpServletRequest request) {
+		boardService.boardupdate(request);
+		
+		
+		
+		return "redirect:/board/list";
+	}
 }

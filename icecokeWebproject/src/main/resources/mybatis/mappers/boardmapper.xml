@@ -33,7 +33,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<select id="boardread" resultType="Iceboard" parameterType="java.lang.Integer">
-		select boardnum, boardtitle, boardcontent, nickname. updatedate
+		select boardnum, boardtitle, boardcontent, nickname, updatedate
 		from board, users
 		where board.email = users.email	
 	</select>
@@ -42,6 +42,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		update board 
 		set
 		boardreadcnt = boardreadcnt + 1
+		where boardnum =#{boardnum}
+	</update>
+	
+	<update id ="boardupdate" parameterType="IceBoard">
+		update board
+		set
+		boardtitle = #{boardtitle},boardcontent = #{boardcontent}
 		where boardnum =#{boardnum}
 	</update>
 </mapper>

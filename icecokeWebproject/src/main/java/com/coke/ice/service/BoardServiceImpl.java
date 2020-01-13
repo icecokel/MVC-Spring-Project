@@ -82,14 +82,31 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public boolean boardread(Integer boardnum) {
-		boolean result = false;
+	public IceBoard boardread(int boardnum) {
 		
-		boardDao.boardread(boardnum);
 		boardDao.readcnt(boardnum);
 		
+		return boardDao.boardread(boardnum);
+	}
+
+	@Override
+	public boolean boardupdate(HttpServletRequest request) {
+		String boardtitle = request.getParameter("boardtitle");
+		String boardcontent = request.getParameter("boardcontent");
 		
-		return result;
+		IceBoard board =new IceBoard();
+		IceBoard board2 = (IceBoard)request.getSession().getAttribute("boardread");
+		
+		board.setBoardnum(board2.getBoardnum());
+		board.setBoardtitle(boardtitle);
+		board.setBoardcontent(boardcontent);
+		
+		boardDao.boardupdate(board);
+		
+		
+		
+		
+		return false;
 	}
 
 }

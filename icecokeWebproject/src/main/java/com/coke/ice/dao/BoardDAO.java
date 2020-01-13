@@ -26,11 +26,16 @@ public class BoardDAO {
 		return sqlSession.selectList("boardmapper.boardlist");
 	}
 	
-	public IceBoard boardread (Integer boardnum) {
+	public IceBoard boardread (int boardnum) {
 		return sqlSession.selectOne("boardmapper.boardread",boardnum);
 	}
 	
-	public int readcnt (Integer boardnum) {
-		return sqlSession.update("boardmapper.readcnt",boardnum);
+	public void readcnt (int boardnum) {
+		sqlSession.update("boardmapper.readcnt",boardnum);
+	}
+	
+	public int boardupdate (IceBoard iceboard) {
+		
+		return sqlSession.update("boardmapper.boardupdate", iceboard);
 	}
 }
