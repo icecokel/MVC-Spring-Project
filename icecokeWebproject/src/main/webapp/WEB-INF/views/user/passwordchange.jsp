@@ -28,8 +28,9 @@
 	</div>
 
 	<div class="logindiv">
-			<label>비밀번호</label> <input type="password" id=pw name="passowrd"class="form-control"
-				readonly><br /> <label>비밀번호확인</label> <input type="password"
+			<label>비밀번호</label> <input type="password" id="pw" name="password"class="form-control"
+				readonly><br /> 
+				<label>비밀번호확인</label> <input type="password"
 				id=pw2 class="form-control" readonly><br /> <input
 				type="submit" value="비밀번호 변경하기" id="btnchangepw"
 				class="btn btn-primary btn-lg btn-block " 

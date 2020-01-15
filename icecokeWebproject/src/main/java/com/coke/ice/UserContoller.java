@@ -125,7 +125,7 @@ public class UserContoller {
 		String password = request.getParameter("password");
 		String secupassword = BCrypt.hashpw(password, BCrypt.gensalt(10));
 		String email = request.getParameter("inputemail");
-		
+		System.out.println("컨트롤러 ::::::::::"+ password);
 		
 		session.invalidate();
 		
