@@ -79,10 +79,17 @@ public class UserContoller {
 		boolean result = userService.newpassword(request);
 		String newpassword = userService.temppassword(10);
 		String secunewpassword = BCrypt.hashpw(newpassword,BCrypt.gensalt(10));
+		String email = request.getParameter("email");
+		
+		IceUser user = new IceUser();
+		
+		user.setEmail(email);
+		user.setPassword(secunewpassword);
+		
 		
 		if (result == true) {
 
-			userService.newpassword2(request, secunewpassword);
+			userService.newpassword2(request, user);
 			attr.addFlashAttribute("msg" ,"비밀번호를 재발급 해드렸습니다."+"\n"+ newpassword);
 			
 			
