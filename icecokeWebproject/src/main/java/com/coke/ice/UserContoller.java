@@ -9,10 +9,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.coke.ice.domain.IceUser;
 import com.coke.ice.service.UserService;
 
 @Controller
@@ -115,14 +115,21 @@ public class UserContoller {
 	
 	@RequestMapping (value="/user/passwordchange" , method=RequestMethod.POST)
 	public String passwordchange (RedirectAttributes attr, HttpServletRequest request,HttpSession session) {
-		String password = request.getParameter("password2");
+		String password = request.getParameter("password");
 		String secupassword = BCrypt.hashpw(password, BCrypt.gensalt(10));
+		String email = request.getParameter("inputemail");
+		
+		
 		session.invalidate();
 		
+		IceUser user = new IceUser();
+		user.setEmail(email);
+		user.setPassword(secupassword);
 		
-		userService.newpassword2(request, secupassword);
+		System.err.println("컨트롤러\\\\\\\\\\\\" +user.getEmail());
+		System.err.println("컨트롤러\\\\\\\\\\\\" +secupassword);
+		userService.newpassword2(request, user);
 		attr.addFlashAttribute("msg","비밀번호 변경에 성공했습니다.");
-		System.err.println(secupassword);
 		
 		return "redirect:login";
 	}

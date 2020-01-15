@@ -15,7 +15,6 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.coke.ice.dao.UserDAO;
 import com.coke.ice.domain.IceUser;
-import com.mysql.cj.Session;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -187,16 +186,15 @@ public class UserServiceImpl implements UserService {
 		}
 
 	@Override
-	public void newpassword2(HttpServletRequest request ,String newpassword) {
-		String email =request.getParameter("email");
+	public void newpassword2(HttpServletRequest request ,IceUser user) {
 //		
 //		System.err.println("newpassword2 ::::::::" +email);
 //		System.err.println("newpassword2 ::::::::" +newpassword);
 //		
-		IceUser user =  new IceUser();
+		/*IceUser user =  new IceUser();
 		user.setEmail(email);
 		user.setPassword(newpassword);
-		
+		*/
 		userDao.newpassword2(user);
 		
 //		System.err.println(userDao.newpassword2(user));

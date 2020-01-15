@@ -5,6 +5,8 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import com.coke.ice.domain.IceUser;
+
 @Service
 public interface UserService {
 	public boolean login(HttpServletRequest request);
@@ -19,7 +21,7 @@ public interface UserService {
 	
 	public String temppassword(int len);
 	
-	public void newpassword2(HttpServletRequest request,String newpassword);
+	public void newpassword2(HttpServletRequest request,IceUser user);
 	
 	public void editporifle(HttpServletRequest request);
 	
