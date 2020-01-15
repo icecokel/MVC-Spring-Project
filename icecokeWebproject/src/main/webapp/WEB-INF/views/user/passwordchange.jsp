@@ -13,7 +13,7 @@
 			<div class="form-group">
 				<label for="exampleInputEmail1">Email</label> <input type="email"
 					class="form-control" name="inputemail" id="inputemail"
-					aria-describedby="emailHelp" placeholder="email을 입력하세요">
+					aria-describedby="emailHelp" value="${user.email }" readonly>
 			</div>
 			<div class="form-group">
 				<label for="exampleInputPassword1">비밀번호</label> <input

@@ -22,7 +22,7 @@ userverificationbtn.addEventListener("click", function(e) {
 	if (inputemail.value.length <= 0) {
 		return;
 	}
-
+	if(inputemail.value )
 	$.ajax({
 		url : '/user/verification',
 		type : 'POST',
