@@ -234,8 +234,8 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public boolean userverification(HttpServletRequest request) {
 		boolean result =false;
-		String email = request.getParameter("email");
-		String password =request.getParameter("password");
+		String email = request.getParameter("inputemail");
+		String password =request.getParameter("inputpassword");
 		
 //		System.err.println("email::::::" + email);
 //		System.err.println("password::::::" + password);
