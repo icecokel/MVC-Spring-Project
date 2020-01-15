@@ -15,5 +15,5 @@ public interface BoardService {
 	
 	public IceBoard boardread (int boardnum);
 	
-	public boolean boardupdate (HttpServletRequest request);
+	public boolean boardupdate (HttpServletRequest request ,int boardnum);
 }

@@ -63,12 +63,17 @@ public class BoardController {
 		return "/board/read";
 	}
 	
-	@RequestMapping (value="read/" , method=RequestMethod.POST)
-	public String boardupdate (Model model , HttpServletRequest request) {
-		boardService.boardupdate(request);
+	@RequestMapping (value="/read/{boardnum}" , method=RequestMethod.POST)
+	public String boardupdate (Model model , HttpServletRequest request , @PathVariable("boardnum") int boardnum) {
+		boolean result = boardService.boardupdate(request ,boardnum);
 		
+		if (result == true) {
+			System.err.println("성공");
+			return "redirect:/board/list";
+		}else {
+			System.err.println("실패");
+			return "redirect:/board/list";
+		}
 		
-		
-		return "redirect:/board/list";
 	}
 }
