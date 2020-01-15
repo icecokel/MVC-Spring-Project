@@ -76,4 +76,11 @@ public class BoardController {
 		}
 		
 	}
+	@RequestMapping (value="/board/delete/{boardnum}", method=RequestMethod.POST)
+	public String boarddelete (Model model, HttpServletRequest request, @PathVariable("boardnum") int boardnum) {
+		
+		boardService.boarddelete(boardnum);
+		
+		return "redirect:/board/list";
+	}
 }

@@ -51,5 +51,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		boardtitle = #{boardtitle},boardcontent = #{boardcontent}
 		where boardnum =#{boardnum}
 	</update>
+	
+	<delete id="boarddelete" parameterType ="IceBoard">
+		delete from board
+		 where boardnum =#{boardnum};
+	</delete>
 </mapper>
 

@@ -26,27 +26,27 @@ public class BoardServiceImpl implements BoardService {
 		HttpSession session = request.getSession();
 		String boardtitle = request.getParameter("boardtitle");
 		String boardcontent = request.getParameter("boardcontent");
-		
-//		System.err.println("서비스 테스트1 :::::::::" + boardtitle);
-//		System.err.println("서비스 테스트2 :::::::::" + boardcontent);
-		
+
+		// System.err.println("서비스 테스트1 :::::::::" + boardtitle);
+		// System.err.println("서비스 테스트2 :::::::::" + boardcontent);
+
 		IceUser user = (IceUser) session.getAttribute("user");
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd hh:mm:ss");
 		Date date = new Date();
-		String titletime =sdf.format(date);
+		String titletime = sdf.format(date);
 		String email = user.getEmail();
-		
-//		System.err.println("서비스 테스트3 :::::::::" + email);
-		
+
+		// System.err.println("서비스 테스트3 :::::::::" + email);
+
 		if (boardtitle.length() <= 0) {
 			boardtitle = user.getNickname() + "님이 " + titletime + "에 남기신 글입니다.";
 
 		}
 		int boardnum = 1;
 		Integer maxnum = boardDao.maxnum();
-		
-//		System.err.println("서비스 테스트4 :::::::::" + maxnum);
-		
+
+		// System.err.println("서비스 테스트4 :::::::::" + maxnum);
+
 		if (maxnum != null) {
 			boardnum = maxnum + 1;
 		}
@@ -56,17 +56,17 @@ public class BoardServiceImpl implements BoardService {
 		board.setBoardcontent(boardcontent);
 		board.setBoardnum(boardnum);
 		board.setEmail(email);
-		
-//		System.err.println("boardDTO:::::" + board.toString());
-		
+
+		// System.err.println("boardDTO:::::" + board.toString());
+
 		int r = boardDao.boardwrite(board);
-		
-		if(r >=1) {
+
+		if (r >= 1) {
 			result = true;
-		}else {
+		} else {
 			result = false;
 		}
-//		System.err.println("보드 서비스 결과 ::::::::::" +result);
+		// System.err.println("보드 서비스 결과 ::::::::::" +result);
 		return result;
 	}
 
@@ -74,8 +74,8 @@ public class BoardServiceImpl implements BoardService {
 	public List<IceBoard> boardlist(HttpServletRequest request) {
 		List<IceBoard> board = boardDao.boardlist();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-		
-		for(IceBoard tmp : board) {
+
+		for (IceBoard tmp : board) {
 			tmp.setDispdate(sdf.format(tmp.getUpdatedate()));
 		}
 		return board;
@@ -83,32 +83,37 @@ public class BoardServiceImpl implements BoardService {
 
 	@Override
 	public IceBoard boardread(int boardnum) {
-		
+
 		boardDao.readcnt(boardnum);
-		
+
 		return boardDao.boardread(boardnum);
 	}
 
 	@Override
-	public boolean boardupdate(HttpServletRequest request ,int boardnum) {
+	public boolean boardupdate(HttpServletRequest request, int boardnum) {
 		String boardtitle = request.getParameter("boardtitle");
 		String boardcontent = request.getParameter("boardcontent");
-		
-		IceBoard board =new IceBoard();
-		
-		
+
+		IceBoard board = new IceBoard();
+
 		board.setBoardnum(boardnum);
 		board.setBoardtitle(boardtitle);
 		board.setBoardcontent(boardcontent);
-		
+
 		boolean result = false;
 		int r = boardDao.boardupdate(board);
-		if (r >0) {
+		if (r > 0) {
 			result = true;
-		}else {
+		} else {
 			result = false;
 		}
 		return result;
+	}
+
+	@Override
+	public void boarddelete(int boardnum) {
+
+		boardDao.boarddelete(boardnum);
 	}
 
 }

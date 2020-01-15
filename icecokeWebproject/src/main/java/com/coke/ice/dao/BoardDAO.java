@@ -1,5 +1,6 @@
 package com.coke.ice.dao;
 
+
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -37,5 +38,9 @@ public class BoardDAO {
 	public int boardupdate (IceBoard iceboard) {
 		
 		return sqlSession.update("boardmapper.boardupdate", iceboard);
+	}
+	public void boarddelete(int boardnum) {
+		
+		sqlSession.delete("boardmapper.boarddelete", boardnum);
 	}
 }

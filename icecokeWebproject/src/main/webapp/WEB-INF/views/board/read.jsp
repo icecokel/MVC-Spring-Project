@@ -46,7 +46,6 @@
 
 <script>
 
-
 	var btnList = document.getElementById("btnList");
 	
 	btnList.addEventListener("click", function(e) {
@@ -74,7 +73,8 @@
 	readupdate.addEventListener("submit", function(e){
 		
 	})
-
+	
+	
 
 	
 </script>

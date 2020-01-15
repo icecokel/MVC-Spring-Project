@@ -99,6 +99,12 @@ public class UserContoller {
 		return "/user/profile";
 	}
 	
+	@RequestMapping (value="/user/profile" , method = RequestMethod.POST)
+	public String profile (Model model, HttpServletRequest request) {
+		userService.editporifle(request);
+		return "redirect:login";
+	}
+	
 	@RequestMapping (value="/user/passwordchange" , method=RequestMethod.GET)
 	public String passwordchange (Model model) {
 		
