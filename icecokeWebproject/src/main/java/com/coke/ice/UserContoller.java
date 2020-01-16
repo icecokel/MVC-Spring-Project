@@ -118,14 +118,12 @@ public class UserContoller {
 		return "/user/passwordchange";
 	}
 	
-	
-	
 	@RequestMapping (value="/user/passwordchange" , method=RequestMethod.POST)
 	public String passwordchange (RedirectAttributes attr, HttpServletRequest request,HttpSession session) {
 		String password = request.getParameter("password");
 		String secupassword = BCrypt.hashpw(password, BCrypt.gensalt(10));
 		String email = request.getParameter("inputemail");
-		System.out.println("컨트롤러 ::::::::::"+ password);
+//		System.out.println("컨트롤러 ::::::::::"+ password);
 		
 		session.invalidate();
 		
@@ -133,14 +131,16 @@ public class UserContoller {
 		user.setEmail(email);
 		user.setPassword(secupassword);
 		
-		System.err.println("컨트롤러\\\\\\\\\\\\" +user.getEmail());
-		System.err.println("컨트롤러\\\\\\\\\\\\" +secupassword);
+//		System.err.println("컨트롤러\\\\\\\\\\\\" +user.getEmail());
+//		System.err.println("컨트롤러\\\\\\\\\\\\" +secupassword);
 		userService.newpassword2(request, user);
 		attr.addFlashAttribute("msg","비밀번호 변경에 성공했습니다.");
 		
 		return "redirect:login";
 	}
 	
+	
+
 	
 
 }

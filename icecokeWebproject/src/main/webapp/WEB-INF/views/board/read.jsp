@@ -35,6 +35,7 @@
 				<button type="button" class="btn btn-sm btn-primary" id="btnList">목록</button>
 				<c:if test="${boardread.nickname eq user.nickname}">
 			      <input type="button" value ="수정하기" style="visibility:visible" id ="btnupdate"class="btn btn-sm btn-success"/>
+				<input type="button" value ="삭제하기" style="visibility:visible" id ="btndelete" class="btn btn-sm btn-success"/>				
 				</c:if>
 				<input type="submit" value ="완료" style="visibility:hidden" id ="submitupdate" class="btn btn-sm btn-success"/>
 			</div>
@@ -43,38 +44,4 @@
 </section>
 
 <%@ include file="../include/footer.jsp"%>
-
-<script>
-
-	var btnList = document.getElementById("btnList");
-	
-	btnList.addEventListener("click", function(e) {
-		location.href = "/board/list";
-	});
-	
-	var btnupdate = document.getElementById("btnupdate");
-	var submitupdate = document.getElementById("submitupdate");
-	
-	var boardtitle = document.getElementById("boardtitle");
-	var boardcontent = document.getElementById("boardcontent");
-
-	
-	btnupdate.addEventListener("click" , function(e){
-		btnupdate.style.visibility="hidden";
-		submitupdate.style.visibility ="visible";
-		$("#boardtitle").attr("readonly", false);
-		$("#boardcontent").attr("readonly",false);
-		
-	});
-	
-	
-	var readupdate = document.getElementById("readupdate");
-	
-	readupdate.addEventListener("submit", function(e){
-		
-	})
-	
-	
-
-	
-</script>
+<script src="/resources/bootstrap/js/read.js"></script>

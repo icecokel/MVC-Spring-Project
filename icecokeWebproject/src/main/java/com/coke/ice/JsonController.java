@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.coke.ice.service.BoardService;
 import com.coke.ice.service.UserService;
 
 @RestController
@@ -18,6 +19,9 @@ public class JsonController {
 	@Autowired
 	private UserService userService;
 
+	@Autowired
+	private BoardService boardService;
+	
 	// 이메일 중복검사를 위한 메소드
 	@RequestMapping(value = "user/emailcheck", method = RequestMethod.GET)
 	public Map<String, Object> checkemail(HttpServletRequest request) {
@@ -53,4 +57,16 @@ public class JsonController {
 		return map;
 		
 	}
+	
+	@RequestMapping (value="board/delete" , method=RequestMethod.POST)
+	public String boarddelete (HttpServletRequest request) {
+		int boardnum = Integer.parseInt(request.getParameter("boardnum"));
+		
+		boardService.boarddelete(boardnum);
+		
+		return "";
+	}
+
+	
+	
 }
