@@ -37,7 +37,7 @@ font-family: sans-serif !important;
 }
 </style>
 <!-- JQuery 설정  -->
-<script src="/resources/jquery/jquery.js"></script>
+
 
 <head>
 
@@ -72,7 +72,7 @@ font-family: sans-serif !important;
 	<link href="/resources/bootstrap/css/bootstrap.min.css" rel="stylesheet"
 	type="text/css" />
 </head>
-
+<script src="/resources/jquery/jquery.js"></script>
 <body>
 
 	<!-- Navigation -->
