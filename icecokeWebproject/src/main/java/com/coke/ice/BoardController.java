@@ -76,8 +76,9 @@ public class BoardController {
 		}
 		
 	}
-	@RequestMapping (value="/board/delete/{boardnum}", method=RequestMethod.POST)
-	public String boarddelete (Model model, HttpServletRequest request, @PathVariable("boardnum") int boardnum) {
+	
+	@RequestMapping (value="/board/delete/{boardnum}", method=RequestMethod.GET)
+	public String boarddelete (Model model,@PathVariable("boardnum") int boardnum) {
 		
 		boardService.boarddelete(boardnum);
 		
