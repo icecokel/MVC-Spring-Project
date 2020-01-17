@@ -1,6 +1,7 @@
 package com.coke.ice.service;
 
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -73,10 +74,24 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public List<IceBoard> boardlist(HttpServletRequest request) {
 		List<IceBoard> board = boardDao.boardlist();
+		
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-
-		for (IceBoard tmp : board) {
-			tmp.setDispdate(sdf.format(tmp.getUpdatedate()));
+		SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd : hh/mm/ss");
+		Calendar cal= Calendar.getInstance();
+//		cal.set(Calendar.HOUR_OF_DAY,cal.get(Calendar.HOUR_OF_DAY)-9);
+		
+		String today = sdf.format(cal.getTime());
+		
+		System.err.println("today::::::::::"+today);
+		
+		for (IceBoard tmp : board) {	
+			System.err.println(sdf2.format(tmp.getUpdatedate()));
+			if(today.equals((String)sdf.format(tmp.getUpdatedate()))){
+				tmp.setDispdate("TODAY");
+			}else 
+			{
+			tmp.setDispdate(sdf.format(tmp.getUpdatedate()));}
+			
 		}
 		return board;
 	}
@@ -95,11 +110,10 @@ public class BoardServiceImpl implements BoardService {
 		String boardcontent = request.getParameter("boardcontent");
 
 		IceBoard board = new IceBoard();
-
 		board.setBoardnum(boardnum);
 		board.setBoardtitle(boardtitle);
 		board.setBoardcontent(boardcontent);
-
+		
 		boolean result = false;
 		int r = boardDao.boardupdate(board);
 		if (r > 0) {

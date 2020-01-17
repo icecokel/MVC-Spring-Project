@@ -57,7 +57,6 @@ public class JsonController {
 		return map;
 		
 	}
-	
 	@RequestMapping (value="board/delete" , method=RequestMethod.POST)
 	public String boarddelete (HttpServletRequest request) {
 		int boardnum = Integer.parseInt(request.getParameter("boardnum"));
@@ -68,5 +67,6 @@ public class JsonController {
 	}
 
 	
+
 	
 }

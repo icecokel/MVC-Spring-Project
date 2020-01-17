@@ -48,7 +48,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<update id ="boardupdate" parameterType="IceBoard">
 		update board
 		set
-		boardtitle = #{boardtitle},boardcontent = #{boardcontent}
+		boardtitle = #{boardtitle},boardcontent = #{boardcontent}, updatedate=now()
 		where boardnum =#{boardnum}
 	</update>
 	

@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ include file="../include/header.jsp"%>
 <section>
-	<form method="post">
+	<form method="post" id="writeform">
 		<div class="container" role="main">
 
 			<h2>글쓰기</h2>
@@ -19,7 +19,7 @@
 
 				<label for="reg_id">작성자</label> 
 				<input type="text" class="form-control" value="${user.nickname}"
-					placeholder="이름을 입력해 주세요">
+					placeholder="이름을 입력해 주세요" id ="nickname" readonly>
 
 			</div>
 
@@ -41,3 +41,4 @@
 	</form>
 </section>
 <%@ include file="../include/footer.jsp"%>
+<script src="/resources/bootstrap/js/write.js"></script>

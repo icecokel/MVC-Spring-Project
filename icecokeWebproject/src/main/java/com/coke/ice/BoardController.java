@@ -65,6 +65,7 @@ public class BoardController {
 	
 	@RequestMapping (value="/read/{boardnum}" , method=RequestMethod.POST)
 	public String boardupdate (Model model , HttpServletRequest request , @PathVariable("boardnum") int boardnum) {
+		// 업데이트.
 		boolean result = boardService.boardupdate(request ,boardnum);
 		
 		if (result == true) {
@@ -84,4 +85,6 @@ public class BoardController {
 		
 		return "redirect:/board/list";
 	}
+
+	
 }
