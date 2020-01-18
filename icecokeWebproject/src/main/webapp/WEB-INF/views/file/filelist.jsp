@@ -2,28 +2,36 @@
 	pageEncoding="UTF-8"%>
 <%@ include file="../include/header.jsp"%>
 <section>
-<div class="filelistdiv">
-		<table class="table table-striped" >
-		<thead>
-		
+	<div class="filelistdiv">
+		<table class="table" border ="1">
 			<tr>
-				<th width ="10%%">파일 번호</th>
-				<th width ="60%">이름</th>
-				<th width ="15%">크기</th>
-				<th width ="15%">수정일</th>
+				<th colspan="8"style="text-align: center" >파일 리스트</th>
 			</tr>
-			
-			</thead>
-			
 			<tr>
-				<td>1</td>
-				<td>1번 파일</td>
-				<td>1G</td>
-				<td>today</td>
+				<td colspan="3" width="50%" style="text-align: center">파일 업로드</td>
+				<td colspan="5" width="50%" style="text-align: center">파일 다운로드</td>
 			</tr>
-
+			<tr>
+				<td ></td>
+				<td ></td>
+				<td ></td>
+				<td >파일 번호</td>
+				<td >파일 이름</td>
+				<td >업로드</td>
+				<td >파일크기</td>
+				<td >작성자</td>
+			</tr>
+			<tr>
+				<td ></td>
+				<td ></td>
+				<td ></td>
+				<td ></td>
+				<td ></td>
+				<td ></td>
+				<td ></td>
+				<td ></td>
+			</tr>
 		</table>
-	</div> 
-
+	</div>
 </section>
 <%@ include file="../include/footer.jsp"%>
