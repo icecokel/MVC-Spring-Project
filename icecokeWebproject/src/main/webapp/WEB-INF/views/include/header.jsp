@@ -29,8 +29,8 @@
  .filelistdiv{
  	font-family: 'Jeju Gothic', sans-serif;
 	
-	padding-left: 10%;
-	padding-right: 10%;
+	padding-left: 3%;
+	padding-right: 3%;
  }
  input[type="password"] {
 font-family: sans-serif !important;

@@ -38,10 +38,6 @@ public class HomeController {
 		
 	}
 	
-	@RequestMapping(value="file/filelist", method = RequestMethod.GET)
-	public String filelist(Model model) {
-		
-		return "/file/filelist";
-	}
+
 	
 }

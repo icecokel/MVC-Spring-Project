@@ -3,34 +3,19 @@
 <%@ include file="../include/header.jsp"%>
 <section>
 	<div class="filelistdiv">
-		<table class="table" border ="1">
+		<table class="table">
 			<tr>
-				<th colspan="8"style="text-align: center" >파일 리스트</th>
+				<th colspan="2"style="text-align: center" ><h3>파일 리스트</h3></th>
 			</tr>
 			<tr>
-				<td colspan="3" width="50%" style="text-align: center">파일 업로드</td>
-				<td colspan="5" width="50%" style="text-align: center">파일 다운로드</td>
+				<td width="50%" style="text-align: center">파일 업로드</td>
+				<td width="50%" style="text-align: center">파일 다운로드</td>
 			</tr>
-			<tr>
-				<td ></td>
-				<td ></td>
-				<td ></td>
-				<td >파일 번호</td>
-				<td >파일 이름</td>
-				<td >업로드</td>
-				<td >파일크기</td>
-				<td >작성자</td>
+			<tr >
+				<td><iframe src="fileupload" width="100%" height="100%"></iframe></td>
+				<td><iframe src="filedownload" width="100%" height="100%"></iframe></td>
 			</tr>
-			<tr>
-				<td ></td>
-				<td ></td>
-				<td ></td>
-				<td ></td>
-				<td ></td>
-				<td ></td>
-				<td ></td>
-				<td ></td>
-			</tr>
+
 		</table>
 	</div>
 </section>
