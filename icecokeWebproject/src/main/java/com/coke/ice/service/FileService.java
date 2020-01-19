@@ -1,10 +1,9 @@
 package com.coke.ice.service;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 @Service
 public interface FileService {
-	public boolean fileupload(HttpServletRequest request);
+	public boolean fileupload(MultipartHttpServletRequest request);
 }
