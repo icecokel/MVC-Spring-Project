@@ -6,7 +6,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="filemapper">
 	<insert id="fileupload" parameterType="IceFile">
-		insert into filelist (filename , fileUUID, filesize,email)
+		insert into FileList (filename , fileUUID, filesize,email)
 		value (#{filename},#{fileUUID},#{filesize},#{email})
 	</insert>
 </mapper>

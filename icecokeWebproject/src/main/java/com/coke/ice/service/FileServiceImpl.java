@@ -19,14 +19,15 @@ public class FileServiceImpl implements FileService {
 	
 	@Override
 	public boolean fileupload(MultipartHttpServletRequest request) {
+		System.out.println("플레그..");
+		System.out.println("파일 서비스 ::::::" + request.toString());
 		boolean result =false;
-		FTPClient ftp = new FTPClient();
-		
+//		FTPClient ftp = new FTPClient();
 		
 		IceUser user = (IceUser)request.getSession().getAttribute("user");
 		String email = user.getEmail();
 		
-		System.err.println("파일 서비스 ::::::" + request.toString());
+		
 		MultipartFile f =request.getFile("files");
 		
 		String filename = f.getOriginalFilename();
@@ -40,6 +41,7 @@ public class FileServiceImpl implements FileService {
 		file.setFilesize(filesize);
 		file.setFileUUID(fileUUID);
 		
+		System.out.println(file.toString());
 		
 		// db에 상태 값 저장.
 		int r = fileDao.fileupload(file);
