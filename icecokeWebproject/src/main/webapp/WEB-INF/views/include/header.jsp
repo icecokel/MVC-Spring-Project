@@ -117,9 +117,10 @@ font-family: sans-serif !important;
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-8 col-md-10 mx-auto">
-					<div class="site-heading">
+					
+					<div class="site-heading"><a href ="/" style="color:white;text-decoration:none">
 						<h1>ICE COKE Webproject</h1>
-						<span class="subheading">공부 및 편의를 위한 개인 공간입니다.</span>
+						<span class="subheading">공부 및 편의를 위한 개인 공간입니다.</span></a>
 					</div>
 				</div>
 			</div>
