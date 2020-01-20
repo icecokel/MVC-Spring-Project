@@ -32,12 +32,12 @@ public class FileController {
 		
 		return "/file/fileupload";
 	}
-	@RequestMapping(value = "file/fileupload", method = RequestMethod.POST)
+	@RequestMapping(value = "/file/fileupload", method = RequestMethod.POST)
 	public String fileupload(Model model, MultipartHttpServletRequest request) {
 		
 		System.err.println("파일 컨트롤러" + request.toString());
 		fileservice.fileupload(request);
 		
-		return "redirect:file/filelist";
+		return "/file/fileupload";
 	}
 }

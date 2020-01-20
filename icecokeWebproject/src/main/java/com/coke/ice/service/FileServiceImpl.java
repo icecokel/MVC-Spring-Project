@@ -27,12 +27,10 @@ public class FileServiceImpl implements FileService {
 		IceUser user = (IceUser)request.getSession().getAttribute("user");
 		String email = user.getEmail();
 		
-		
 		MultipartFile f =request.getFile("files");
 		
 		String filename = f.getOriginalFilename();
-		UUID uuid = UUID.randomUUID();
-		String fileUUID = uuid.toString();
+		String fileUUID = UUID.randomUUID().toString();
 		String filesize = f.getSize()+"";
 		IceFile file = new IceFile();
 		
@@ -41,7 +39,7 @@ public class FileServiceImpl implements FileService {
 		file.setFilesize(filesize);
 		file.setFileUUID(fileUUID);
 		
-		System.out.println(file.toString());
+		
 		
 		// db에 상태 값 저장.
 		int r = fileDao.fileupload(file);

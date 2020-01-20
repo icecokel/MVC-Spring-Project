@@ -86,13 +86,13 @@ public class BoardServiceImpl implements BoardService {
 		
 		
 		for (IceBoard tmp : board) {	
-			cal.setTime(tmp.getUpdatedate());
-			cal.set(Calendar.HOUR_OF_DAY,cal.get(Calendar.HOUR_OF_DAY)-9);
+//			cal.setTime(tmp.getUpdatedate());
+//			cal.set(Calendar.HOUR_OF_DAY,cal.get(Calendar.HOUR_OF_DAY)-9);
 			
-//			System.err.println(sdf.format(tmp.getUpdatedate()));
+//			System.err.println(sdf2.format(tmp.getUpdatedate()));
 //			System.err.println(cal.getTime());
 //			
-			cal.getTime();
+//			cal.getTime();
 			if(today.equals((String)sdf.format(tmp.getUpdatedate()))){
 				tmp.setDispdate("TODAY");
 			}else 

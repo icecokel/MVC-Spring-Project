@@ -7,3 +7,5 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 <package name="com.coke.ice.domain"/>
 </typeAliases>
 </configuration>
+
+
