@@ -20,14 +20,15 @@
 			</thead>
 			<tbody>
 				<c:forEach var="boardDto" items="${boardlist }">
-				<tr>
-					<td>${boardDto.boardnum }</td>
-					<td><a href="/read/${boardDto.boardnum}">${boardDto.boardtitle }</a></td>
-					<td>${boardDto.nickname }</td>
-					<td>${boardDto.dispdate }</td>
-					<td>${boardDto.boardreadcnt }</td>
-				
-				</tr></c:forEach>
+					<tr>
+						<td>${boardDto.boardnum }</td>
+						<td><a href="/read/${boardDto.boardnum}">${boardDto.boardtitle }</a></td>
+						<td>${boardDto.nickname }</td>
+						<td>${boardDto.dispdate }</td>
+						<td>${boardDto.boardreadcnt }</td>
+
+					</tr>
+				</c:forEach>
 			</tbody>
 		</table>
 	</div>

@@ -12,6 +12,7 @@
 		<div class="container" role="main">
 			<input type="text" id ="boardnum" value="${boardread.boardnum}" style="visibility:hidden"/>
 			<h3>글 상세보기</h3>
+			<p>${msg }</p>
 			
 			<div class="mb-3">
 

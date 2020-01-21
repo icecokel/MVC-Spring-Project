@@ -47,7 +47,9 @@ public class BoardController {
 		
 		if(r == true) {
 			System.err.println("성공");
+			
 			return "redirect:/board/list";
+			
 		}else {
 			System.err.println("실패");
 			return "redirect:/board/write";
@@ -70,10 +72,13 @@ public class BoardController {
 		
 		if (result == true) {
 			System.err.println("성공");
-			return "redirect:/board/list";
+//			request.getSession().setAttribute("msg", "게시글을 수정 했습니다.");
+			return "redirect:/board/read/{boardnum}";
 		}else {
 			System.err.println("실패");
-			return "redirect:/board/list";
+//			request.getSession().setAttribute("msg", "게시글을 수정하지 못했습니다. 다시 시도 해 주십시오.");
+			return "redirect:/board//read/{boardnum}";
+		
 		}
 		
 	}

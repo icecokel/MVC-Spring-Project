@@ -1,7 +1,15 @@
 package com.coke.ice.service;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.PrintWriter;
 import java.util.UUID;
 
+import org.apache.commons.net.PrintCommandListener;
+import org.apache.commons.net.ftp.FTP;
 import org.apache.commons.net.ftp.FTPClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,7 +23,35 @@ import com.coke.ice.domain.IceUser;
 public class FileServiceImpl implements FileService {
 
 	@Autowired
-	FileDAO fileDao;
+	private FileDAO fileDao;
+	
+	FTPClient ftp = null;
+	
+	public FileServiceImpl() {
+		String host = "icecoke.iptime.org";
+		int port = 2222;
+		String username = "root";
+		String password = "qwe123!@#";
+		
+		
+		ftp = new FTPClient();
+		 ftp.addProtocolCommandListener(new PrintCommandListener(new PrintWriter(System.out)));
+		 try {
+			ftp.connect(host, port);
+			ftp.login(username, password);
+			ftp.setFileType(FTP.BINARY_FILE_TYPE);
+	        ftp.enterLocalPassiveMode();
+	        
+	        System.out.println("연결성공");
+
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			System.out.println("FTP 연결 예외."+e.getMessage());
+			e.printStackTrace();
+		}
+		 
+	}
+	
 	
 	@Override
 	public boolean fileupload(MultipartHttpServletRequest request) {
@@ -40,9 +76,29 @@ public class FileServiceImpl implements FileService {
 		file.setFileUUID(fileUUID);
 		
 		
-		
 		// db에 상태 값 저장.
 		int r = fileDao.fileupload(file);
+		// 파일이 서버에 저장될 디렉터리.
+		// mac 에서 작업할  경로.
+		String filepath = "/home/WebProject/WebStorage";
+		// 서버에 전송할 파일 정보.
+		InputStream input;
+		String localfullname ="";
+		try {
+			input = new FileInputStream(new File(localfullname));
+			try {
+				ftp.storeFile(filepath, input);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			// 업로드 기능 구현.
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		
 		
 		if(r >=1) {
 			result = true;
