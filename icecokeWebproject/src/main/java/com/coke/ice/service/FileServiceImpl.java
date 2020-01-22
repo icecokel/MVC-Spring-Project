@@ -99,14 +99,11 @@ public class FileServiceImpl implements FileService {
 			e.printStackTrace();
 		}
 
-		
-		
 		if(r >=1) {
 			result = true;
 		}else {
 			result = false;
 		}
-			
 		
 		
 		return result;
