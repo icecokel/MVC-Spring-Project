@@ -59,7 +59,7 @@ public class FileServiceImpl implements FileService {
 		System.out.println("파일 서비스 ::::::" + request.toString());
 		boolean result =false;
 //		FTPClient ftp = new FTPClient();
-		
+	
 		IceUser user = (IceUser)request.getSession().getAttribute("user");
 		String email = user.getEmail();
 		
@@ -78,16 +78,17 @@ public class FileServiceImpl implements FileService {
 		
 		// db에 상태 값 저장.
 		int r = fileDao.fileupload(file);
-		// 파일이 서버에 저장될 디렉터리.
-		// mac 에서 작업할  경로.
-		String filepath = "/home/WebProject/WebStorage";
+		System.out.println("FTP 서비스:::::"+request.getSession().getServletContext().getRealPath("files"));
+		// 파일이 서버에 저장될 디렉터리.		
+		String filepath = "/home/WebProject/WebStorage/";
 		// 서버에 전송할 파일 정보.
 		InputStream input;
-		String localfullname ="";
+		// 전송할 파일의 전체 경로및 네임.
+		String localfullname =request.getSession().getServletContext().getRealPath("files");
 		try {
 			input = new FileInputStream(new File(localfullname));
 			try {
-				ftp.storeFile(filepath, input);
+				ftp.storeFile(filepath + filename, input);
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

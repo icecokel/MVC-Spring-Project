@@ -13,14 +13,12 @@
 		<c:if test="${user ==null }">
 		
 			<h3>파일 업로드  <br/>서비스는 로그인을 해야 사용 하실 수 있습니다.</h3>
-			<input type="button" value ="로그인 하러가기."  id ="btnlogin"/>
-		
 		</c:if>
 		<c:if test="${user !=null }">
 		<form method="post" enctype="multipart/form-data" >
-			<input type="file" multiple="multiple" id="files" name ="files"><br/>
+			<input type="file" multiple="multiple" id="files" name ="files"  ><br/>
 
-			<div ><textarea id="filelist" readonly></textarea></div>
+			<div ><input type="text" id="filelist" name ="filelist" readonly/></div>
 			<input type="submit" value="업로드"/>
 		</form>
 		</c:if>
@@ -28,11 +26,13 @@
 </section>
 
 <script>
-	var btnlogin = document.getElementById("btnlogin");
+	var files =document.getElementById("files");
+	var filelist =document.getElementById("filelist");
 	
-	btnlogin.addEventListener("click" ,function(e){
-		location.href="/user/login";	
-	});
+ 	files.addEventListener("change",function(e){
+		filelist.value = files.value;
+
+	}) 
 
 
 </script>
