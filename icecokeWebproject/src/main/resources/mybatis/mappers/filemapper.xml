@@ -6,7 +6,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="filemapper">
 	<insert id="fileupload" parameterType="IceFile">
-		insert into FileList (filename , fileUUID, filesize,email)
-		value (#{filename},#{fileUUID},#{filesize},#{email})
+		insert into FileList
+		(filename , fileUUID, filesize,email)
+		value
+		(#{filename},#{fileUUID},#{filesize},#{email})
 	</insert>
+
+	<select id="filedownload" parameterType="java.lang.String"
+		resultType="IceFile">
+		select filenum, filename, fileUploaddate ,filesize,nickname
+		from FileList, users
+		where FileList.email = users.email and FileList.email = #{email}
+		order by fileUploaddate DESC
+	</select>
 </mapper>

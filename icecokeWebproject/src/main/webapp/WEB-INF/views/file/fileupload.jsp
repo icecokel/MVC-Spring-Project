@@ -17,22 +17,8 @@
 		<c:if test="${user !=null }">
 		<form method="post" enctype="multipart/form-data" >
 			<input type="file" multiple="multiple" id="files" name ="files"  ><br/>
-
-			<div ><input type="text" id="filelist" name ="filelist" readonly/></div>
 			<input type="submit" value="업로드"/>
 		</form>
 		</c:if>
 	</div>
 </section>
-
-<script>
-	var files =document.getElementById("files");
-	var filelist =document.getElementById("filelist");
-	
- 	files.addEventListener("change",function(e){
-		filelist.value = files.value;
-
-	}) 
-
-
-</script>

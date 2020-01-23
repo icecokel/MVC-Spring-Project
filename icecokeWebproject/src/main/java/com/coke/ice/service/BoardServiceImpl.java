@@ -97,7 +97,7 @@ public class BoardServiceImpl implements BoardService {
 				tmp.setDispdate("TODAY");
 			}else 
 			{
-			tmp.setDispdate(sdf.format(cal.getTime()));
+			tmp.setDispdate(sdf.format(tmp.getUpdatedate()));
 			
 			}
 //			System.err.println(sdf.format(cal.getTime()));

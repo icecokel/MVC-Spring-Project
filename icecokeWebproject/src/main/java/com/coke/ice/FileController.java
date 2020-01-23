@@ -1,5 +1,9 @@
 package com.coke.ice;
 
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -7,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import com.coke.ice.domain.IceFile;
 import com.coke.ice.service.FileService;
 
 
@@ -22,11 +27,16 @@ public class FileController {
 
 		return "/file/filelist";
 	}
+	
 	@RequestMapping(value = "file/filedownload", method = RequestMethod.GET)
-	public String filedownload(Model model) {
+	public String filedownload(Model model, HttpServletRequest request) {
+		List<IceFile> list = fileservice.filedownload(request);
 		
+		model.addAttribute("filedownload", list);
 		return "/file/filedownload";
 	}
+	
+	
 	@RequestMapping(value = "file/fileupload", method = RequestMethod.GET)
 	public String fileupload(Model model) {
 		
@@ -40,4 +50,5 @@ public class FileController {
 		
 		return "/file/fileupload";
 	}
+	
 }

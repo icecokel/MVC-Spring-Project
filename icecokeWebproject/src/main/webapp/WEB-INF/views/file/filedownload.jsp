@@ -23,16 +23,17 @@
 				</tr>
 			</thead>
 			<tbody>
-				<c:forEach var="boardDto" items="${boardlist }">
+				<c:forEach var="files" items="${filedownload }">
 					<tr>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
+						<td>${files.filenum }</td>
+						<td>${files.filename }</td>
+						<td>${files.nickname }</td>
+						<td>${files.dispdate }</td>
+						<td>${files.filesize }</td>
 					</tr>
 				</c:forEach>
 			</tbody>
 		</table>
 	</div>
 </section>
+

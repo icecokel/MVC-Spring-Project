@@ -13,4 +13,6 @@ public class IceFile {
 	private String email;
 	
 	private String nickname;
+	private String dispdate;
+	
 }
