@@ -78,23 +78,24 @@ public class FileServiceImpl implements FileService {
 		
 		// db에 상태 값 저장.
 		int r = fileDao.fileupload(file);
-		System.out.println("FTP 서비스:::::"+request.getSession().getServletContext().getRealPath("files"));
+//		System.out.println("FTP 서비스:::::"+request.getSession().getServletContext().getRealPath("files"));
 		// 파일이 서버에 저장될 디렉터리.		
 		String filepath = "/home/WebProject/WebStorage/";
 		// 서버에 전송할 파일 정보.
 		InputStream input;
 		// 전송할 파일의 전체 경로및 네임.
-		String localfullname =request.getSession().getServletContext().getRealPath("files");
+//		String localfullname =request.getSession().getServletContext().getRealPath("files");
 		try {
-			input = new FileInputStream(new File(localfullname));
+			
 			try {
+				input = f.getInputStream();
 				ftp.storeFile(filepath + filename, input);
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			// 업로드 기능 구현.
-		} catch (FileNotFoundException e) {
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
