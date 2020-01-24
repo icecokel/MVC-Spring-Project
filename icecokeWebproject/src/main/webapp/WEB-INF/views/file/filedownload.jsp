@@ -7,19 +7,40 @@
 .filelistdiv {
 	font-size: 10px;
 	font-family: 'Jeju Gothic', sans-serif;
-	
+	padding-left: 3%;
+	padding-right: 3%;
 }
 </style>
+
+<link
+	href="/resources/startbootstrap/vendor/bootstrap/css/bootstrap.min.css"
+	rel="stylesheet">
+<link href="/resources/startbootstrap/css/clean-blog.min.css"
+	rel="stylesheet">
+<link href="/resources/bootstrap/css/bootstrap.min.css" rel="stylesheet"
+	type="text/css" />
+<link
+	href="/resources/startbootstrap/vendor/fontawesome-free/css/all.min.css"
+	rel="stylesheet" type="text/css">
+<link
+	href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic'
+	rel='stylesheet' type='text/css'>
+<link
+	href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800'
+	rel='stylesheet' type='text/css'>
+
 <section>
+
 	<div class="filelistdiv">
-		<table class="table" border="1px">
+		<table class="table">
 			<thead>
 				<tr>
-					<td scope="col" width="5%">번호</td>
-					<td scope="col" width="65%" style="text-align: center">파일이름</td>
-					<td scope="col" width="10%">작성자</td>
-					<td scope="col" width="10%">수정일</td>
-					<td scope="col" widtH="10%">파일크기</td>
+					<th scope="col" width="5%">번호</th>
+					<th scope="col" width="65%" style="text-align: center">파일이름
+					</td>
+					<th scope="col" width="10%">작성자</th>
+					<th scope="col" width="10%">수정일</th>
+					<th scope="col" widtH="10%">파일크기</th>
 				</tr>
 			</thead>
 			<tbody>
