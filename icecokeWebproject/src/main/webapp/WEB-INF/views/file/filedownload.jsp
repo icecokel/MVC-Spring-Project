@@ -37,7 +37,7 @@
 				<tr>
 					<th scope="col" width="5%">번호</th>
 					<th scope="col" width="65%" style="text-align: center">파일이름
-					</td>
+					</th>
 					<th scope="col" width="10%">작성자</th>
 					<th scope="col" width="10%">수정일</th>
 					<th scope="col" widtH="10%">파일크기</th>
