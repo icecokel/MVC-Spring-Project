@@ -9,6 +9,8 @@
 				<tr>
 					<td><a href="/board/write"><input type="button"
 							value="글쓰기" class="btn btn-primary"/></a></td>
+					<td><a href="/board/write"><input type="button"
+							value="엑셀출력" class="btn btn-primary"/></a></td>
 				</tr>
 				<tr>
 					<th scope="col" width="5%">글번호</th>
