@@ -18,6 +18,7 @@ import org.apache.poi.ss.usermodel.Workbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
@@ -50,6 +51,13 @@ public class FileController {
 		model.addAttribute("filedownload", list);
 		return "/file/filedownload";
 	}
+	@RequestMapping(value = "filedown/{filenum}", method = RequestMethod.GET)
+	public String filedownload(Model model, @PathVariable("filenum") int filenum) {
+		
+		fileservice.filedown(filenum);
+		
+		return "/file/filelist";
+	}
 	
 	
 	@RequestMapping(value = "file/fileupload", method = RequestMethod.GET)
@@ -65,6 +73,7 @@ public class FileController {
 		
 		return "/file/fileupload";
 	}
+	
 	@RequestMapping(value="/file/exceldownload.xls")
 	public void exceldownload(HttpServletResponse response) {
 		
@@ -147,6 +156,7 @@ public class FileController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+//	    https://offbyone.tistory.com/250 참고 소스.
 	}
 	
 }

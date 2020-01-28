@@ -14,5 +14,7 @@ public interface FileService {
 	public boolean fileupload(MultipartHttpServletRequest request);
 	
 	public List<IceFile> filedownload(HttpServletRequest request);
+	
+	public IceFile filedown(int filenum);
 		
 }

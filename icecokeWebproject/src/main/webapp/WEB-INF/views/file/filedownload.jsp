@@ -47,7 +47,7 @@
 				<c:forEach var="files" items="${filedownload }">
 					<tr>
 						<td>${files.filenum }</td>
-						<td>${files.filename }</td>
+						<td><a href="/filedown/${files.filenum}">${files.filename }</a></td>
 						<td>${files.nickname }</td>
 						<td>${files.dispdate }</td>
 						<td>${files.filesize }</td>

@@ -77,7 +77,7 @@ public class BoardController {
 		}else {
 			System.err.println("실패");
 //			request.getSession().setAttribute("msg", "게시글을 수정하지 못했습니다. 다시 시도 해 주십시오.");
-			return "redirect:/board//read/{boardnum}";
+			return "redirect:/board/read/{boardnum}";
 		
 		}
 		

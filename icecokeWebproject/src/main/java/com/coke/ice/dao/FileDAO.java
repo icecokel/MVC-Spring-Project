@@ -22,4 +22,8 @@ public class FileDAO {
 		return sqlSession.selectList("filemapper.filedownload", email);
 	}
 	
+	public IceFile filedown(int filenum){
+		return sqlSession.selectOne("filemapper.filedown" ,filenum);
+	}
+	 
 }
