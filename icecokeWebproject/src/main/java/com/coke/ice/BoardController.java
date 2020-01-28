@@ -22,8 +22,8 @@ public class BoardController {
 	BoardService boardService;
 	
 	@RequestMapping (value="/board/list" , method =RequestMethod.GET)
-	public String boardlist (Model model,HttpServletRequest request) {
-		List<IceBoard> board = boardService.boardlist(request);
+	public String boardlist (Model model) {
+		List<IceBoard> board = boardService.boardlist();
 		
 		
 		model.addAttribute("boardlist", board);

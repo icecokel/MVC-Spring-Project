@@ -72,7 +72,7 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public List<IceBoard> boardlist(HttpServletRequest request) {
+	public List<IceBoard> boardlist() {
 		List<IceBoard> board = boardDao.boardlist();
 		
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");

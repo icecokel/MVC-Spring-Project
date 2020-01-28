@@ -11,7 +11,7 @@ import com.coke.ice.domain.IceBoard;
 public interface BoardService {
 	public boolean boardwrite(HttpServletRequest request);
 	
-	public List<IceBoard> boardlist(HttpServletRequest request);
+	public List<IceBoard> boardlist();
 	
 	public IceBoard boardread (int boardnum);
 	

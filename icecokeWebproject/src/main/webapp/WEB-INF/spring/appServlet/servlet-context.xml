@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans:beans
-xmlns="http://www.springframework.org/schema/mvc"
+	xmlns="http://www.springframework.org/schema/mvc"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:beans="http://www.springframework.org/schema/beans"
 	xmlns:context="http://www.springframework.org/schema/context"
@@ -20,8 +20,13 @@ xmlns="http://www.springframework.org/schema/mvc"
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<beans:property name="prefix" value="/WEB-INF/views/" />
 		<beans:property name="suffix" value=".jsp" />
+		<beans:property name="order" value="1" />
 	</beans:bean>
 
+	<beans:bean
+		class="org.springframework.web.servlet.view.BeanNameViewResolver">
+		<beans:property name="order" value="0" />
+	</beans:bean>
 	<!-- 클래스 상단에 어노테이션(Component, Controller, Service, Repository )가 추가되면 bean을 
 		자동생성해주는 패키지 설정 DTO를 제외한 모든 클래스는 이 패키지에 만드는 것을 권장 -->
 	<context:component-scan
