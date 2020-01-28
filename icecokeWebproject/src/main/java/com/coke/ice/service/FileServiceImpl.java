@@ -46,7 +46,8 @@ public class FileServiceImpl implements FileService {
 			ftp.login(username, password);
 			ftp.setFileType(FTP.BINARY_FILE_TYPE);
 	        ftp.enterLocalPassiveMode();
-	        
+	        ftp.changeWorkingDirectory(serverpath);
+	        ftp.setControlEncoding("UTF-8");
 	        System.out.println("연결성공");
 
 		} catch (IOException e) {
@@ -95,6 +96,7 @@ public class FileServiceImpl implements FileService {
 			try {
 				input = f.getInputStream();
 				ftp.storeFile(serverpath + fileUUID, input);
+				input.close();
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -164,28 +166,36 @@ public class FileServiceImpl implements FileService {
 
 
 	@Override
-	public IceFile filedown(int filenum) {
-		
+	public boolean filedown(int filenum) {
+		boolean result =false;
+		System.out.println("서비스 ::::::::" + filenum);
 		IceFile icefile = fileDao.filedown(filenum);
+		
+		System.out.println("서비스 ::::::::" + icefile.toString());
+		
 		FileOutputStream output = null;
 		String fileUUID = icefile.getFileUUID();
 		String filename = icefile.getFilename();
-		File file = new File(serverpath, fileUUID);
+		// 저장될 파일 경로
+		String filepath = "C:\\Users\\coke\\Downloads\\Storage\\";
+		File file = new File(filepath+filename);
 		
+		System.out.println("서비스 ::::::::" + file.toString());
 		try {
 			output = new FileOutputStream(file);
-			boolean result = ftp.retrieveFile(filename, output);
-			
-			if(result) {
-			// 성공시 할 작업
+			boolean r = ftp.retrieveFile(fileUUID, output);
+			if(r) {
+				result = true;
 			}else {
-			// 실패 시 할 작업.
+				result = false;
 			}
+			System.out.println("서비스 ::::::::" + result);
+			output.close();
 		} catch (IOException e) {
 			e.printStackTrace();
-		}
+		} 
 		
-		return icefile;
+		return result;
 	}
 
 }

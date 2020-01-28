@@ -19,7 +19,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where FileList.email = users.email and FileList.email = #{email}
 		order by fileUploaddate DESC
 	</select>
-	<select id="filedown" parameterType="java.lang.Integer">
+	<select id="filedown" resultType="IceFile" parameterType="java.lang.Integer">
 		select *
 		from FileList 
 		where filenum =#{filenum}

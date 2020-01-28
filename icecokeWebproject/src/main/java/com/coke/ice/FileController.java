@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.coke.ice.domain.IceBoard;
 import com.coke.ice.domain.IceFile;
@@ -52,11 +53,17 @@ public class FileController {
 		return "/file/filedownload";
 	}
 	@RequestMapping(value = "filedown/{filenum}", method = RequestMethod.GET)
-	public String filedownload(Model model, @PathVariable("filenum") int filenum) {
+	public String filedownload(Model model, @PathVariable("filenum") int filenum,RedirectAttributes attr) {
+		System.out.println("컨트롤러 ::::::::::::");
+		boolean r =fileservice.filedown(filenum);
+		if(r) {
+			attr.addFlashAttribute("msg", "다운로드를 성공했습니다.");
+			return "/file/filedownload";
+		}else {
+			attr.addFlashAttribute("msg", "다운로드를 실패했습니다.");
+			return "/file/filedownload";
+		}
 		
-		fileservice.filedown(filenum);
-		
-		return "/file/filelist";
 	}
 	
 	
@@ -137,12 +144,12 @@ public class FileController {
 	    }
 	    
 	    Calendar cal = Calendar.getInstance();
-	    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+	    SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd hh-mm-ss");
 	    String today =sdf.format(cal.getTime());
 	    
 	    System.out.println("컨트롤러 ::::::"+ today);
 	    
-	    String filename= "IceBoard" + today +".xml";
+	    String filename= "IceBoard" + today +".xls";
 	    response.setContentType("ms-vnd/excel");
 	    System.out.println("컨트롤러 ::::::" + filename);
 	    response.setHeader("Content-Disposition", "attachment;filename=" +filename);
