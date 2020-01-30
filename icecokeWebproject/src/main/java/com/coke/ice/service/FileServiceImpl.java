@@ -96,7 +96,7 @@ public class FileServiceImpl implements FileService {
 			try {
 				input = f.getInputStream();
 				ftp.storeFile(serverpath + fileUUID, input);
-				input.close();
+				
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
