@@ -3,6 +3,7 @@ package com.coke.ice.service;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
@@ -15,6 +16,6 @@ public interface FileService {
 	
 	public List<IceFile> filedownload(HttpServletRequest request);
 	
-	public boolean filedown(int filenum);
+	public boolean filedown(HttpServletResponse response,int filenum);
 		
 }

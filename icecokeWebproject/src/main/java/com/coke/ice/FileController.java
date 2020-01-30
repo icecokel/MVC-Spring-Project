@@ -53,17 +53,11 @@ public class FileController {
 		return "/file/filedownload";
 	}
 	@RequestMapping(value = "filedown/{filenum}", method = RequestMethod.GET)
-	public String filedownload(Model model, @PathVariable("filenum") int filenum,RedirectAttributes attr) {
+	public String filedownload(HttpServletResponse response, @PathVariable("filenum") int filenum) {
 		System.out.println("컨트롤러 ::::::::::::");
-		boolean r =fileservice.filedown(filenum);
-		if(r) {
-			attr.addFlashAttribute("msg", "다운로드를 성공했습니다.");
-			return "/file/filedownload";
-		}else {
-			attr.addFlashAttribute("msg", "다운로드를 실패했습니다.");
-			return "/file/filedownload";
-		}
+		fileservice.filedown(response ,filenum);
 		
+		return "/file/filedownload";
 	}
 	
 	
@@ -78,16 +72,16 @@ public class FileController {
 		System.err.println("파일 컨트롤러" + request.toString());
 		fileservice.fileupload(request);
 		
-		return "/file/fileupload";
+		return "/file/filelist";
 	}
 	
 	@RequestMapping(value="/file/exceldownload.xls")
 	public void exceldownload(HttpServletResponse response) {
 		
-		System.out.println("컨트롤러 ::::::");
+//		System.out.println("컨트롤러 ::::::");
 		List<IceBoard> boardlist = boardservice.boardlist();
 		
-		System.out.println("컨트롤러 ::::::" + boardlist.toString());
+//		System.out.println("컨트롤러 ::::::" + boardlist.toString());
 		
 		Workbook wb = new HSSFWorkbook();
 		Sheet sheet = wb.createSheet("게시판");
@@ -106,7 +100,7 @@ public class FileController {
 	    bodyStyle.setBorderLeft(BorderStyle.THIN);
 	    bodyStyle.setBorderRight(BorderStyle.THIN);
 	    
-	    System.out.println("컨트롤러 :::::: FLAG1" );
+//	    System.out.println("컨트롤러 :::::: FLAG1" );
 	    Row row = null;
 	    Cell cell = null;
 	    int index = 0;
@@ -124,7 +118,7 @@ public class FileController {
 	    cell = row.createCell(3);
 	    cell.setCellStyle(headStyle);
 	    cell.setCellValue("작성일/수정일");
-	    System.out.println("컨트롤러 :::::: FLAG2" );
+//	    System.out.println("컨트롤러 :::::: FLAG2" );
 	    
 	    for(IceBoard tmp : boardlist) {
 	        row = sheet.createRow(index++);
@@ -147,20 +141,19 @@ public class FileController {
 	    SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd hh-mm-ss");
 	    String today =sdf.format(cal.getTime());
 	    
-	    System.out.println("컨트롤러 ::::::"+ today);
+//	    System.out.println("컨트롤러 ::::::"+ today);
 	    
 	    String filename= "IceBoard" + today +".xls";
 	    response.setContentType("ms-vnd/excel");
-	    System.out.println("컨트롤러 ::::::" + filename);
+//	    System.out.println("컨트롤러 ::::::" + filename);
 	    response.setHeader("Content-Disposition", "attachment;filename=" +filename);
 	    
 	    
 	    try {
 			wb.write(response.getOutputStream());
-			 wb.close();
+			wb.close();
 
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 //	    https://offbyone.tistory.com/250 참고 소스.
