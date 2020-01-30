@@ -5,7 +5,6 @@
 @import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
 
 .filelistdiv {
-	font-size: 10px;
 	font-family: 'Jeju Gothic', sans-serif;
 	padding-left: 3%;
 	padding-right: 3%;
@@ -32,7 +31,7 @@
 <section>
 
 	<div class="filelistdiv">
-		<table class="table">
+		<table class="table" >
 			<thead>
 				<tr>
 					<th scope="col" width="5%">번호</th>
@@ -47,7 +46,7 @@
 				<c:forEach var="files" items="${filedownload }">
 					<tr>
 						<td>${files.filenum }</td>
-						<td><a href="/filedown/${files.filenum}">${files.filename }</a></td>
+						<td><a href="/filedown/${files.filenum}" target="_blank">${files.filename }</a></td>
 						<td>${files.nickname }</td>
 						<td>${files.dispdate }</td>
 						<td>${files.filesize }</td>

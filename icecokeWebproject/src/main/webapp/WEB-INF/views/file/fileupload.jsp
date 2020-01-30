@@ -22,20 +22,41 @@
 
 .filelistdiv {
 	font-family: 'Jeju Gothic', sans-serif;
+	
+	padding-left: 20%;
+	padding-right: 20%;
+	
 }
 </style>
 <section>
-	<div align = 'center'>
+	<div align='center' class="filelistdiv">
+
+		<br /> <br /> <br />
 		<c:if test="${user ==null }">
-		
-			<h3>파일 업로드  <br/>서비스는 로그인을 해야 사용 하실 수 있습니다.</h3>
+
+			<h3>
+				파일 업로드 <br />서비스는 로그인을 해야 사용 하실 수 있습니다.
+			</h3>
 		</c:if>
 		<c:if test="${user !=null }">
-		<form method="post" enctype="multipart/form-data" >
-			<!-- <input type="file" multiple="multiple" id="files" name ="files"  ><br/> -->
-			<input type="file" id="files" name ="files"  ><br/>
-			<input type="submit" value="업로드" class="btn btn-primary"/>
-		</form>
+			<form method="post" enctype="multipart/form-data" target="_parent">
+				<!-- <input type="file" multiple="multiple" id="files" name ="files"  ><br/> -->
+				<table class="table">
+					<thead class="thead-dark">
+						<tr >
+							<th><h2 align="center">파일 업로드</h2></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td><input type="file" id="files" name="files"><br /></td>
+						</tr>
+						<tr>
+							<td><input type="submit" value="업로드" class="btn btn-primary" /></td>
+						</tr>
+					</tbody>
+				</table>
+			</form>
 		</c:if>
 	</div>
 </section>
