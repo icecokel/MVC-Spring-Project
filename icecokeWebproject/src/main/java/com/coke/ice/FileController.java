@@ -58,7 +58,6 @@ public class FileController {
 		File downloadFile = fileservice.filedown(response, filenum);
 		
 		
-		
 		model.addAttribute("downloadFile", downloadFile);
 		
 		System.out.println("파일 컨트롤러 ::::::" + downloadFile.toString());

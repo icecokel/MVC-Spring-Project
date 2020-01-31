@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.List;
@@ -12,7 +13,7 @@ import java.util.UUID;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.IOUtils;
 import org.apache.commons.net.PrintCommandListener;
 import org.apache.commons.net.ftp.FTP;
 import org.apache.commons.net.ftp.FTPClient;
@@ -258,20 +259,23 @@ public class FileServiceImpl implements FileService {
 		IceFile icefile = fileDao.filedown(filenum);
 		
 		String fileUUID = icefile.getFileUUID();
+		String filename = icefile.getFilename();
+		
 		
 		InputStream is = null;
-
-
 			
-		File result = new File("");
+		File result = new File(filename);
 		try {
 			is = ftp.retrieveFileStream(fileUUID);
 			System.out.println("파일 서비스 :::2" + is.toString());
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
+		
 		try {
-			FileUtils.copyInputStreamToFile(is, result);
+			OutputStream output = new FileOutputStream(result);
+//			FileUtils.copyInputStreamToFile(is, result);
+			IOUtils.copy(is, output);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

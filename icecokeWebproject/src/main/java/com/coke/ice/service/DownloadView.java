@@ -10,6 +10,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.util.FileCopyUtils;
 import org.springframework.web.servlet.view.AbstractView;
 
 
@@ -29,13 +30,13 @@ public class DownloadView extends AbstractView {
 		} else {
 			fileName = new String(file.getName().getBytes("utf-8"), "iso-8859-1");
 		}
-
 		response.setHeader("Content-Disposition", "attachment; filename=\"" + fileName + "\";");
 		response.setHeader("Content-Transfer-Encoding", "binary");
 		OutputStream out = response.getOutputStream();
 		FileInputStream fis = null;
 		try {
-			
+			fis = new FileInputStream(file);
+			FileCopyUtils.copy(fis, out);
 		}finally {
 			if (fis != null)
 				try {
