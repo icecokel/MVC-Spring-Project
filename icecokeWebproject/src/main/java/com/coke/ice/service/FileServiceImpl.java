@@ -1,10 +1,8 @@
 package com.coke.ice.service;
 
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.List;
@@ -13,6 +11,7 @@ import java.util.UUID;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.net.PrintCommandListener;
 import org.apache.commons.net.ftp.FTP;
@@ -115,6 +114,7 @@ public class FileServiceImpl implements FileService {
 		} else {
 			result = false;
 		}
+		System.out.println("파일업로드 결과 ::::::" + result);
 		return result;
 
 		// https://jeong-pro.tistory.com/136 참고 소스
@@ -261,25 +261,31 @@ public class FileServiceImpl implements FileService {
 		String fileUUID = icefile.getFileUUID();
 		String filename = icefile.getFilename();
 		
-		
+		System.out.println("파일 서비스 :: 파일 UUID " + fileUUID);
 		InputStream is = null;
 			
 		File result = new File(filename);
 		try {
 			is = ftp.retrieveFileStream(fileUUID);
 			System.out.println("파일 서비스 :::2" + is.toString());
+//			OutputStream output = new FileOutputStream(result);
+//
+//			IOUtils.copy(is, output);
+			FileUtils.copyInputStreamToFile(is, result);
+			
 		}catch(Exception e) {
 			e.printStackTrace();
+		}finally {
+			if(is != null) {
+				try {
+					is.close();
+				}catch(Exception e1) {
+					e1.printStackTrace();
+				}
+				
+			}
 		}
 		
-		try {
-			OutputStream output = new FileOutputStream(result);
-//			FileUtils.copyInputStreamToFile(is, result);
-			IOUtils.copy(is, output);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 		System.out.println("파일 서비스 3:::" + result.toString());
 		return result;
 	}
