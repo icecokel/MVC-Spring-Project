@@ -54,13 +54,13 @@ public class FileController {
 	}
 	@RequestMapping(value = "filedown/{filenum}", method = RequestMethod.GET)
 	public String filedownload(Model model,HttpServletResponse response, @PathVariable("filenum") int filenum) {
-		System.out.println("파일 컨트롤러 ::::::" + "FLAG !!!");
+//		System.out.println("파일 컨트롤러 ::::::" + "FLAG !!!");
 		File downloadFile = fileservice.filedown(response, filenum);
 		
 		
 		model.addAttribute("downloadFile", downloadFile);
 		
-		System.out.println("파일 컨트롤러 ::::::" + downloadFile.toString());
+//		System.out.println("파일 컨트롤러 ::::::" + downloadFile.toString());
 		return "download";
 		
 	}
@@ -75,8 +75,9 @@ public class FileController {
 	public String fileupload(Model model, MultipartHttpServletRequest request) {
 		
 		System.err.println("파일 컨트롤러" + request.toString());
-		fileservice.fileupload(request);
+		boolean r =fileservice.fileupload(request);
 		
+		// r 이용해서 progress bar 만들때 ajax 사용하면 될 듯.
 		return "/file/filelist";
 	}
 	

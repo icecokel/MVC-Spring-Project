@@ -255,19 +255,19 @@ public class FileServiceImpl implements FileService {
 
 	@Override
 	public File filedown(HttpServletResponse response, int filenum) {
-		System.out.println("파일 서비스 :::" + "FLAG");
+//		System.out.println("파일 서비스 :::" + "FLAG");
 		IceFile icefile = fileDao.filedown(filenum);
 		
 		String fileUUID = icefile.getFileUUID();
 		String filename = icefile.getFilename();
 		
-		System.out.println("파일 서비스 :: 파일 UUID " + fileUUID);
+//		System.out.println("파일 서비스 :: 파일 UUID " + fileUUID);
 		InputStream is = null;
 			
 		File result = new File(filename);
 		try {
 			is = ftp.retrieveFileStream(fileUUID);
-			System.out.println("파일 서비스 :::2" + is.toString());
+//			System.out.println("파일 서비스 :::2" + is.toString());
 //			OutputStream output = new FileOutputStream(result);
 //
 //			IOUtils.copy(is, output);
@@ -286,7 +286,7 @@ public class FileServiceImpl implements FileService {
 			}
 		}
 		
-		System.out.println("파일 서비스 3:::" + result.toString());
+//		System.out.println("파일 서비스 3:::" + result.toString());
 		return result;
 	}
 

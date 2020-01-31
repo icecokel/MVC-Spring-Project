@@ -22,10 +22,8 @@
 
 .filelistdiv {
 	font-family: 'Jeju Gothic', sans-serif;
-	
 	padding-left: 20%;
 	padding-right: 20%;
-	
 }
 </style>
 <section>
@@ -43,16 +41,21 @@
 				<!-- <input type="file" multiple="multiple" id="files" name ="files"  ><br/> -->
 				<table class="table">
 					<thead class="thead-dark">
-						<tr >
+						<tr>
 							<th><h2 align="center">파일 업로드</h2></th>
 						</tr>
 					</thead>
 					<tbody>
 						<tr>
+							<td>최대 파일 업로드 용량을 2 Gbyte까지 입니다.</td>
+						</tr>
+						<tr>
 							<td><input type="file" id="files" name="files"><br /></td>
 						</tr>
 						<tr>
-							<td><input type="submit" value="업로드" class="btn btn-primary" /></td>
+							<td><input type="submit" value="파일 업로드" class="btn btn-primary" />
+								<a href="/file/filelist"><input type="button"
+									value="파일 리스트로 돌아가기." class="btn btn-warning" /></a></td>
 						</tr>
 					</tbody>
 				</table>
