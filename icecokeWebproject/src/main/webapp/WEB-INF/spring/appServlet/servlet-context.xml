@@ -27,6 +27,10 @@
 		class="org.springframework.web.servlet.view.BeanNameViewResolver">
 		<beans:property name="order" value="0" />
 	</beans:bean>
+	
+	<beans:bean id="download" class="com.coke.ice.service.DownloadView" />
+	
+	
 	<!-- 클래스 상단에 어노테이션(Component, Controller, Service, Repository )가 추가되면 bean을 
 		자동생성해주는 패키지 설정 DTO를 제외한 모든 클래스는 이 패키지에 만드는 것을 권장 -->
 	<context:component-scan

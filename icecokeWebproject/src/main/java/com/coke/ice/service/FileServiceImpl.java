@@ -1,8 +1,9 @@
 package com.coke.ice.service;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.List;
@@ -11,6 +12,7 @@ import java.util.UUID;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.io.FileUtils;
 import org.apache.commons.net.PrintCommandListener;
 import org.apache.commons.net.ftp.FTP;
 import org.apache.commons.net.ftp.FTPClient;
@@ -96,7 +98,7 @@ public class FileServiceImpl implements FileService {
 			try {
 				input = f.getInputStream();
 				ftp.storeFile(serverpath + fileUUID, input);
-				
+
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -113,7 +115,7 @@ public class FileServiceImpl implements FileService {
 			result = false;
 		}
 		return result;
-		
+
 		// https://jeong-pro.tistory.com/136 참고 소스
 	}
 
@@ -149,7 +151,7 @@ public class FileServiceImpl implements FileService {
 				tmp.setFilesize(fileSize + " Mbyte");
 				break;
 			}
-			case 3: { 
+			case 3: {
 				tmp.setFilesize(fileSize + " Gbyte");
 			}
 			}
@@ -158,70 +160,123 @@ public class FileServiceImpl implements FileService {
 		return files;
 
 	}
+//
+//	@Override
+//	public boolean filedown(HttpServletResponse response, int filenum) {
+//		boolean result = false;
+//
+//		// System.out.println("서비스 ::::::::" + filenum);
+//		IceFile icefile = fileDao.filedown(filenum);
+//
+//		// System.out.println("서비스 ::::::::" + icefile.toString());
+//
+//		String fileUUID = icefile.getFileUUID();
+//		String filename = icefile.getFilename();
+//		// 저장될 파일 경로
+//		// String filepath = "C:\\Users\\coke\\Downloads\\Storage\\";
+//		// File file = new File(filepath+filename);
+//		// FileOutputStream output = null;
+//		// System.out.println("서비스 ::::::::" + file.toString());
+//		// try {
+//		// output = new FileOutputStream(file);
+//		// boolean r = ftp.retrieveFile(fileUUID, output);
+//		// if(r) {
+//		// result = true;
+//		// }else {
+//		// result = false;
+//		// }
+//		// System.out.println("서비스 ::::::::" + result);
+//		// output.close();
+//		// } catch (IOException e) {
+//		// e.printStackTrace();
+//		// }
+//
+//		OutputStream os = null;
+//		InputStream is = null;
+//		try {
+//			// 아래 작업을 한번만 할 방법을 찾아보자.
+//			os = response.getOutputStream();
+//
+//			// int length = -1;
+//			// byte[] buffer = new byte[1024];
+//			// try {
+//			// while ((length = is.read(buffer)) > -1) {
+//			// os.write(buffer, 0, length);
+//			//
+//			// }
+//			//
+//			// } catch (IOException e1) {
+//			// result = false;
+//			// e1.printStackTrace();
+//			// }
+//			// 브라우저가 출력하는 것이 아니라 파일 다운로드로 진행 하고 싶을 때 아래 둘 중 하나로 세
+//			// response.setContentType("application/octet-stream");
+//			// response.setContentType("application/application/download");
+//			// os.write(buffer);
+//			
+//			response.setContentLength(Integer.parseInt(icefile.getFilesize()));
+//			response.setHeader("Content-Transfer-Encoding", "binary");
+//			try {
+//				is = ftp.retrieveFileStream(fileUUID);
+//				FileCopyUtils.copy(is, os);
+//			} catch (Exception e1) {
+//				e1.printStackTrace();
+//			}
+//
+//			result = true;
+//
+//		} catch (Exception e) {
+//			System.out.println("여기인가? ::::" + e.getMessage());
+//			e.printStackTrace();
+//
+//			result = false;
+//		} finally {
+//			if (os == null) {
+//				try {
+//					os.flush();
+//					os.close();
+//					System.out.println("파일 다운로드 정상 진행 완료");
+//				} catch (IOException e) {
+//					e.printStackTrace();
+//				}
+//	
+//			}
+//			try {
+//				response.flushBuffer();
+//				ftp.disconnect();
+//			} catch (IOException e) {
+//				e.printStackTrace();
+//			}
+//		}
+//
+//		return result;
+//	}
 
 	@Override
-	public boolean filedown(HttpServletResponse response, int filenum) {
-		boolean result = false;
-
-		// System.out.println("서비스 ::::::::" + filenum);
+	public File filedown(HttpServletResponse response, int filenum) {
+		System.out.println("파일 서비스 :::" + "FLAG");
 		IceFile icefile = fileDao.filedown(filenum);
-
-		// System.out.println("서비스 ::::::::" + icefile.toString());
-
+		
 		String fileUUID = icefile.getFileUUID();
-		String filename = icefile.getFilename();
-		// 저장될 파일 경로
-		// String filepath = "C:\\Users\\coke\\Downloads\\Storage\\";
-		// File file = new File(filepath+filename);
-		// FileOutputStream output = null;
-		// System.out.println("서비스 ::::::::" + file.toString());
-		// try {
-		// output = new FileOutputStream(file);
-		// boolean r = ftp.retrieveFile(fileUUID, output);
-		// if(r) {
-		// result = true;
-		// }else {
-		// result = false;
-		// }
-		// System.out.println("서비스 ::::::::" + result);
-		// output.close();
-		// } catch (IOException e) {
-		// e.printStackTrace();
-		// }
 		
-		OutputStream os = null;
-		try {
-			// 아래 작업을 한번만 할 방법을 찾아보자.
-			os = response.getOutputStream();
-			InputStream is = ftp.retrieveFileStream(fileUUID);
-			int length = -1;
-			byte[] buffer = new byte[1024];
-			try {
-				while ((length = is.read(buffer)) > -1) {
-					os.write(buffer, 0, length);
-						
-				}
-				
-			} catch (IOException e1) {
-				result = false;
-				e1.printStackTrace();
-			}
-//			response.setContentType("application/octet-stream");
-// 			response.setContentType("application/application/download");
-//			os.write(buffer);
-			response.flushBuffer();
-			os.flush();
-			os.close();
-			ftp.disconnect();
-			result = true;
-			
-		} catch (Exception e) {
-			e.printStackTrace();
+		InputStream is = null;
 
-			result = false;
+
+			
+		File result = new File("");
+		try {
+			is = ftp.retrieveFileStream(fileUUID);
+			System.out.println("파일 서비스 :::2" + is.toString());
+		}catch(Exception e) {
+			e.printStackTrace();
 		}
-		
-		
+		try {
+			FileUtils.copyInputStreamToFile(is, result);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		System.out.println("파일 서비스 3:::" + result.toString());
 		return result;
 	}
 

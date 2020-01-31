@@ -1,5 +1,6 @@
 package com.coke.ice;
 
+import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -22,7 +23,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.coke.ice.domain.IceBoard;
 import com.coke.ice.domain.IceFile;
@@ -53,11 +53,17 @@ public class FileController {
 		return "/file/filedownload";
 	}
 	@RequestMapping(value = "filedown/{filenum}", method = RequestMethod.GET)
-	public String filedownload(HttpServletResponse response, @PathVariable("filenum") int filenum) {
-		System.out.println("컨트롤러 ::::::::::::");
-		fileservice.filedown(response ,filenum);
+	public String filedownload(Model model,HttpServletResponse response, @PathVariable("filenum") int filenum) {
+		System.out.println("파일 컨트롤러 ::::::" + "FLAG !!!");
+		File downloadFile = fileservice.filedown(response, filenum);
 		
-		return "/file/filedownload";
+		
+		
+		model.addAttribute("downloadFile", downloadFile);
+		
+		System.out.println("파일 컨트롤러 ::::::" + downloadFile.toString());
+		return "download";
+		
 	}
 	
 	

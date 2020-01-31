@@ -1,5 +1,6 @@
 package com.coke.ice.service;
 
+import java.io.File;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -16,6 +17,6 @@ public interface FileService {
 	
 	public List<IceFile> filedownload(HttpServletRequest request);
 	
-	public boolean filedown(HttpServletResponse response,int filenum);
+	public File filedown(HttpServletResponse response,int filenum);
 		
 }
