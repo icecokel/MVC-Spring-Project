@@ -128,9 +128,10 @@ public class FileServiceImpl implements FileService {
 
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		for (IceFile tmp : files) {
-			int fileSize = Integer.parseInt(tmp.getFilesize());
+		double fileSize = Double.parseDouble(tmp.getFilesize());
 
 			int level = 0;
+			System.out.println(tmp.getFilename() +tmp.getFilesize());
 			while (fileSize > 1024) {
 
 				fileSize = fileSize / 1024;
@@ -139,24 +140,26 @@ public class FileServiceImpl implements FileService {
 
 			switch (level) {
 			case 0: {
-				tmp.setFilesize(fileSize + " byte");
+				tmp.setFilesize(String.format("%.2f", fileSize) + " byte");
 				break;
 			}
 
 			case 1: {
-				tmp.setFilesize(fileSize + " Kbyte");
+				tmp.setFilesize(String.format("%.2f", fileSize) + " Kbyte");
 				break;
 			}
 
 			case 2: {
-				tmp.setFilesize(fileSize + " Mbyte");
+				tmp.setFilesize(String.format("%.2f", fileSize) + " Mbyte");
 				break;
 			}
 			case 3: {
-				tmp.setFilesize(fileSize + " Gbyte");
+				tmp.setFilesize(String.format("%.2f", fileSize) + " Gbyte");
 			}
 			}
 			tmp.setDispdate(sdf.format(tmp.getFileUploaddate()));
+			
+			
 		}
 		return files;
 
