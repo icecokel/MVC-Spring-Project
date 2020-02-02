@@ -10,10 +10,11 @@ import com.coke.ice.domain.IceServer;
 public class ServerDao {
 	
 	@Autowired
-	private SqlSession sqlsession;
+	private SqlSession sqlSession;
+	
 	
 	public IceServer server (int num) {
-		return sqlsession.selectOne("accuntmapper.server", num);
+		return sqlSession.selectOne("accountmapper.server", num);
 	}
 	
 }

@@ -39,13 +39,15 @@ public class FileServiceImpl implements FileService {
 
 	final String serverpath = "/home/WebProject/WebStorage/";
 
-	public FileServiceImpl() {
-		IceServer ftpserver =serverDao.server(1);
-		String host = ftpserver.getHost();
-		int port = ftpserver.getPort();
-		String username = ftpserver.getServerid();
-		String password = ftpserver.getServerpw();
-
+	
+	public void ftpconnect() {
+		IceServer server =serverDao.server(1);
+		
+		String host = server.getHost();
+		int port = server.getPort();
+		String username = server.getServerid();
+		String password = server.getServerpw();
+		
 		ftp = new FTPClient();
 		ftp.addProtocolCommandListener(new PrintCommandListener(new PrintWriter(System.out)));
 		try {
@@ -62,12 +64,12 @@ public class FileServiceImpl implements FileService {
 			System.out.println("FTP 연결 예외." + e.getMessage());
 			e.printStackTrace();
 		}
-
-	}
+	};
+	
 
 	@Override
 	public boolean fileupload(MultipartHttpServletRequest request) {
-
+		ftpconnect();
 		// System.out.println("플레그..");
 		// System.out.println("파일 서비스 ::::::" + request.toString());
 		boolean result = false;
@@ -120,6 +122,13 @@ public class FileServiceImpl implements FileService {
 			result = false;
 		}
 		System.out.println("파일업로드 결과 ::::::" + result);
+		
+		try {
+			ftp.disconnect();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return result;
 
 		// https://jeong-pro.tistory.com/136 참고 소스
@@ -127,6 +136,7 @@ public class FileServiceImpl implements FileService {
 
 	@Override
 	public List<IceFile> filedownload(HttpServletRequest request) {
+		
 		IceUser user = (IceUser) request.getSession().getAttribute("user");
 		String email = user.getEmail();
 		List<IceFile> files = fileDao.filedownload(email);
@@ -136,7 +146,7 @@ public class FileServiceImpl implements FileService {
 		double fileSize = Double.parseDouble(tmp.getFilesize());
 
 			int level = 0;
-			System.out.println(tmp.getFilename() +tmp.getFilesize());
+//			System.out.println(tmp.getFilename() +tmp.getFilesize());
 			while (fileSize > 1024) {
 
 				fileSize = fileSize / 1024;
@@ -169,100 +179,10 @@ public class FileServiceImpl implements FileService {
 		return files;
 
 	}
-//
-//	@Override
-//	public boolean filedown(HttpServletResponse response, int filenum) {
-//		boolean result = false;
-//
-//		// System.out.println("서비스 ::::::::" + filenum);
-//		IceFile icefile = fileDao.filedown(filenum);
-//
-//		// System.out.println("서비스 ::::::::" + icefile.toString());
-//
-//		String fileUUID = icefile.getFileUUID();
-//		String filename = icefile.getFilename();
-//		// 저장될 파일 경로
-//		// String filepath = "C:\\Users\\coke\\Downloads\\Storage\\";
-//		// File file = new File(filepath+filename);
-//		// FileOutputStream output = null;
-//		// System.out.println("서비스 ::::::::" + file.toString());
-//		// try {
-//		// output = new FileOutputStream(file);
-//		// boolean r = ftp.retrieveFile(fileUUID, output);
-//		// if(r) {
-//		// result = true;
-//		// }else {
-//		// result = false;
-//		// }
-//		// System.out.println("서비스 ::::::::" + result);
-//		// output.close();
-//		// } catch (IOException e) {
-//		// e.printStackTrace();
-//		// }
-//
-//		OutputStream os = null;
-//		InputStream is = null;
-//		try {
-//			// 아래 작업을 한번만 할 방법을 찾아보자.
-//			os = response.getOutputStream();
-//
-//			// int length = -1;
-//			// byte[] buffer = new byte[1024];
-//			// try {
-//			// while ((length = is.read(buffer)) > -1) {
-//			// os.write(buffer, 0, length);
-//			//
-//			// }
-//			//
-//			// } catch (IOException e1) {
-//			// result = false;
-//			// e1.printStackTrace();
-//			// }
-//			// 브라우저가 출력하는 것이 아니라 파일 다운로드로 진행 하고 싶을 때 아래 둘 중 하나로 세
-//			// response.setContentType("application/octet-stream");
-//			// response.setContentType("application/application/download");
-//			// os.write(buffer);
-//			
-//			response.setContentLength(Integer.parseInt(icefile.getFilesize()));
-//			response.setHeader("Content-Transfer-Encoding", "binary");
-//			try {
-//				is = ftp.retrieveFileStream(fileUUID);
-//				FileCopyUtils.copy(is, os);
-//			} catch (Exception e1) {
-//				e1.printStackTrace();
-//			}
-//
-//			result = true;
-//
-//		} catch (Exception e) {
-//			System.out.println("여기인가? ::::" + e.getMessage());
-//			e.printStackTrace();
-//
-//			result = false;
-//		} finally {
-//			if (os == null) {
-//				try {
-//					os.flush();
-//					os.close();
-//					System.out.println("파일 다운로드 정상 진행 완료");
-//				} catch (IOException e) {
-//					e.printStackTrace();
-//				}
-//	
-//			}
-//			try {
-//				response.flushBuffer();
-//				ftp.disconnect();
-//			} catch (IOException e) {
-//				e.printStackTrace();
-//			}
-//		}
-//
-//		return result;
-//	}
 
 	@Override
 	public File filedown(HttpServletResponse response, int filenum) {
+		ftpconnect();
 //		System.out.println("파일 서비스 :::" + "FLAG");
 		IceFile icefile = fileDao.filedown(filenum);
 		
@@ -292,7 +212,14 @@ public class FileServiceImpl implements FileService {
 				}
 				
 			}
+			try {
+				ftp.disconnect();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
+		
+
 		
 //		System.out.println("파일 서비스 3:::" + result.toString());
 		return result;
