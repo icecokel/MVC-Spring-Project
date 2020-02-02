@@ -18,5 +18,7 @@ public interface FileService {
 	public List<IceFile> filedownload(HttpServletRequest request);
 	
 	public File filedown(HttpServletResponse response,int filenum);
+	
+	public void filedelete(int filenum);
 		
 }

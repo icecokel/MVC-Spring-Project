@@ -165,4 +165,11 @@ public class FileController {
 //	    https://offbyone.tistory.com/250 참고 소스.
 	}
 	
+	@RequestMapping(value="filedelete/{filenum}" ,method=RequestMethod.GET)
+	public String filedelete(Model model , @PathVariable("filenum") int filenum) {
+		fileservice.filedelete(filenum);
+		
+		return "redirect:/file/filedownload";
+	}
+	
 }

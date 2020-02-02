@@ -26,4 +26,7 @@ public class FileDAO {
 		return sqlSession.selectOne("filemapper.filedown" ,filenum);
 	}
 	 
+	public void filedelete(int filenum) {
+		sqlSession.delete("filemapper.filedelete", filenum);
+	}
 }

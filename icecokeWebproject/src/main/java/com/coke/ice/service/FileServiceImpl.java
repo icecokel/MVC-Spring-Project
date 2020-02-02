@@ -225,4 +225,11 @@ public class FileServiceImpl implements FileService {
 		return result;
 	}
 
+
+	@Override
+	public void filedelete(int filenum) {
+		fileDao.filedelete(filenum);
+		
+	}
+
 }

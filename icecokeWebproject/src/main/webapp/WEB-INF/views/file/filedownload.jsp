@@ -40,6 +40,7 @@
 					<th scope="col" width="10%">작성자</th>
 					<th scope="col" width="10%">수정일</th>
 					<th scope="col" widtH="10%">파일크기</th>
+					<th></th>
 				</tr>
 			</thead>
 			<tbody>
@@ -50,6 +51,7 @@
 						<td>${files.nickname }</td>
 						<td>${files.dispdate }</td>
 						<td>${files.filesize }</td>
+						<td><a href="/filedelete/${files.filenum}" ><input type="button" value="삭제"/></a></td>
 					</tr>
 				</c:forEach>
 			</tbody>

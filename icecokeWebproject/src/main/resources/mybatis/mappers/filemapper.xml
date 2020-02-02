@@ -24,4 +24,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		from FileList 
 		where filenum =#{filenum}
 	</select>
+	
+	<delete id="filedelete" parameterType="IceFile">
+		delete from FileList
+		where filenum =#{filenum}
+	</delete>
 </mapper>
