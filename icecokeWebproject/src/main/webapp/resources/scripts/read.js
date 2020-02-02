@@ -10,11 +10,14 @@ let submitupdate = document.getElementById("submitupdate");
 let boardtitle = document.getElementById("boardtitle");
 let boardcontent = document.getElementById("boardcontent");
 
+$('#boardcontent').summernote('disable')
+
 btnupdate.addEventListener("click", function(e) {
 	btnupdate.style.visibility = "hidden";
 	submitupdate.style.visibility = "visible";
 	$("#boardtitle").attr("readonly", false);
-	$("#boardcontent").attr("readonly", false);
+	$('#boardcontent').summernote('enable')
+	
 
 });
 
