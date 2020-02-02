@@ -173,4 +173,4 @@
 		}
 	});
 </script>
-<script src="/resources/bootstrap/js/joinform.js"></script>
+<script src="/resources/scripts/join.js"></script>

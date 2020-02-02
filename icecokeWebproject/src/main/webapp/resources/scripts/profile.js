@@ -1,11 +1,11 @@
-var passwordchangebtn =document.getElementById("passwordchangebtn");
+let passwordchangebtn =document.getElementById("passwordchangebtn");
 
 passwordchangebtn.addEventListener("click", function(e){
 	location.href="/user/passwordchange";
 });
 
-var profilenickname = document.getElementById("profilenickname");
-var nicknamecheck = false;
+let profilenickname = document.getElementById("profilenickname");
+let nicknamecheck = false;
 
 profilenickname.addEventListener('focusout', function(e) {
 	if (profilenickname.value.trim().length < 1) {
@@ -33,7 +33,7 @@ profilenickname.addEventListener('focusout', function(e) {
 
 
 
-var profileform = document.getElementById("profileform");
+let profileform = document.getElementById("profileform");
 profileform.addEventListener("submit", function(e){
 	
 })

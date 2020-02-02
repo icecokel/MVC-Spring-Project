@@ -1,22 +1,22 @@
-var mainbtn = document.getElementById("mainbtn");
+let mainbtn = document.getElementById("mainbtn");
 
 mainbtn.addEventListener("click", function(e) {
 	location.href = "/"
 })
 
-var logincheckflag = false;
+let logincheckflag = false;
 
-var inputemail = document.getElementById("inputemail");
-var inputpassword = document.getElementById("inputpassword");
+let inputemail = document.getElementById("inputemail");
+let inputpassword = document.getElementById("inputpassword");
 
-var userverificationbtn = document.getElementById("userverificationbtn");
+let userverificationbtn = document.getElementById("userverificationbtn");
 
-var pw = document.getElementById("pw");
-var pw2 = document.getElementById("pw2");
-var btnchangepw = document.getElementById("btnchangepw");
+let pw = document.getElementById("pw");
+let pw2 = document.getElementById("pw2");
+let btnchangepw = document.getElementById("btnchangepw");
 
-var userverificationdiv = document.getElementById("userverificationdiv");
-var msgidsp = document.getElementById("msgidsp");
+let userverificationdiv = document.getElementById("userverificationdiv");
+let msgidsp = document.getElementById("msgidsp");
 
 userverificationbtn.addEventListener("click", function(e) {
 	if (inputemail.value.length <= 0) {
@@ -47,14 +47,14 @@ userverificationbtn.addEventListener("click", function(e) {
 
 });
 
-var pwcheckflag = false;
-var pwcheckflag2 = false;
+let pwcheckflag = false;
+let pwcheckflag2 = false;
 
 pw.addEventListener("keyup",function(e){
 
-	var pwValue = pw.value.trim();
+	let pwValue = pw.value.trim();
 
-	var passRule = /^.*(?=^.{8,15}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$/;
+	let passRule = /^.*(?=^.{8,15}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$/;
 
 	if (passRule.test(pwValue)) {
 		msgidsp.innerHTML = '&nbsp;&nbsp; 비밀번호 강도 강함!';
@@ -81,7 +81,7 @@ pw2.addEventListener("keyup", function(e) {
 });
 
 
-var passwordchangeform = document.getElementById("passwordchangeform");
+let passwordchangeform = document.getElementById("passwordchangeform");
 
 passwordchangeform.addEventListener("submit", function(e) {
 	if (pwcheckflag == false || pwcheckflag2 == false) {

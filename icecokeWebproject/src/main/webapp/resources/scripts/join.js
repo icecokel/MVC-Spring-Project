@@ -1,17 +1,17 @@
-var emailcheck = false;
-var nicknamecheck = false;
+let emailcheck = false;
+let nicknamecheck = false;
 
-var email = document.getElementById("email");
-var nickname = document.getElementById("nickname");
+let email = document.getElementById("email");
+let nickname = document.getElementById("nickname");
 
-var emaildisp = document.getElementById("emaildisp");
-var nicknamedisp = document.getElementById("nicknamedisp");
+let emaildisp = document.getElementById("emaildisp");
+let nicknamedisp = document.getElementById("nicknamedisp");
 
-var endemail = document.getElementById("endemail");
-var endemailtextfield = document.getElementById("endemailtextfield");
-var emailcheckvalue ="";
+let endemail = document.getElementById("endemail");
+let endemailtextfield = document.getElementById("endemailtextfield");
+let emailcheckvalue ="";
 // 반복되는 기능을 매소드로 선언 하여, 호출하기 위함.
-var method = {
+let method = {
 	emailmethod(){
 		
 		
@@ -21,7 +21,7 @@ var method = {
 		}
 		// 순수 자바스크립트로 ajax 구현
 		// ajax 요청 객체 생성
-		var request = new XMLHttpRequest();
+		let request = new XMLHttpRequest();
 		
 		emailcheckvalue = email.value + endemail.value;
 		
@@ -35,9 +35,9 @@ var method = {
 			if (request.readyState == 4) {
 				if (request.status >= 200 && request.status < 300) {
 					// 읽어온 데이터를 변수에 저장
-					var obj = request.responseText;
+					let obj = request.responseText;
 					// json 문자열을 파싱
-					var json = JSON.parse(obj);
+					let json = JSON.parse(obj);
 					if (json.result === "true") {
 						emailcheck = true;
 						emaildisp.innerHTML = '&nbsp;&nbsp;사용 가능한 이메일';
@@ -105,19 +105,19 @@ nickname.addEventListener('focusout', function(e) {
 	});
 });
 
-var pw = document.getElementById("pw");
-var pw1 = document.getElementById("pw1");
+let pw = document.getElementById("pw");
+let pw1 = document.getElementById("pw1");
 
-var pwdisp = document.getElementById("pwdisp");
-var passwordcheck = false;
+let pwdisp = document.getElementById("pwdisp");
+let passwordcheck = false;
 // 비밀번호 강도 정규식
 pw
 		.addEventListener(
 				"keyup",
 				function(e) {
-					var pwVlaue = pw.value.trim();
+					let pwVlaue = pw.value.trim();
 
-					var passRule = /^.*(?=^.{8,15}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$/;
+					let passRule = /^.*(?=^.{8,15}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$/;
 
 					if (passRule.test(pwVlaue)) {
 						pwdisp.innerHTML = '&nbsp;&nbsp; 비밀번호 강도 강함!';
@@ -146,17 +146,17 @@ pw1.addEventListener('focusout', function(e) {
 
 });
 
-var phone = document.getElementById("phone");
-var phonedisp = document.getElementById("phonedisp");
-var phonecheck = false;
-var joinform = document.getElementById("joinform");
+let phone = document.getElementById("phone");
+let phonedisp = document.getElementById("phonedisp");
+let phonecheck = false;
+let joinform = document.getElementById("joinform");
 
 phone.addEventListener("focusout", function(e) {
 	if (phone.value.length <= 11 && phone.value.length >= 10) {
 		// 전화번호 길이 유효성 검사 / true 라면
 
-		for (var i = 0; i < phone.value.length; i = i + 1) {
-			var ch = phone.value.charAt(i);
+		for (let i = 0; i < phone.value.length; i = i + 1) {
+			let ch = phone.value.charAt(i);
 
 			if (ch < '0' || ch > '9') {
 				phonecheck = false;
@@ -177,7 +177,7 @@ phone.addEventListener("focusout", function(e) {
 	}
 
 })
-var givenewpwA = document.getElementById("givenewpwA");
+let givenewpwA = document.getElementById("givenewpwA");
 
 joinform.addEventListener("submit", function(e) {
 	email.value = emailcheckvalue;

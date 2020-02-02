@@ -41,4 +41,4 @@
 	</form>
 </div>
 <%@ include file="../include/footer.jsp"%>
-<script src="/resources/bootstrap/js/passwordchange.js"></script>
+<script src="/resources/scripts/passwordchange.js"></script>

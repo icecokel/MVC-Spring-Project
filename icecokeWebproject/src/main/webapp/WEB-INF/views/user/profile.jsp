@@ -80,4 +80,4 @@
 	</div>
 </section>
 <%@ include file="../include/footer.jsp"%>
-<script src="/resources/bootstrap/js/profileform.js"></script>
+<script src="/resources/scripts/profile.js"></script>

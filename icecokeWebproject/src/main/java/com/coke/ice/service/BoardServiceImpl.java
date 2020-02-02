@@ -7,6 +7,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.servlet.http.HttpUtils;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,9 +28,9 @@ public class BoardServiceImpl implements BoardService {
 		HttpSession session = request.getSession();
 		String boardtitle = request.getParameter("boardtitle");
 		String boardcontent = request.getParameter("boardcontent");
-
+		
 		// System.err.println("서비스 테스트1 :::::::::" + boardtitle);
-		// System.err.println("서비스 테스트2 :::::::::" + boardcontent);
+		System.err.println("서비스 테스트2 :::::::::" + boardcontent);
 
 		IceUser user = (IceUser) session.getAttribute("user");
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd hh:mm:ss");
@@ -51,7 +52,6 @@ public class BoardServiceImpl implements BoardService {
 		if (maxnum != null) {
 			boardnum = maxnum + 1;
 		}
-
 		IceBoard board = new IceBoard();
 		board.setBoardtitle(boardtitle);
 		board.setBoardcontent(boardcontent);

@@ -34,10 +34,10 @@
   </footer>
 
   <!-- Bootstrap core JavaScript -->
-  <script src="/resources/startbootstrap/vendor/jquery/jquery.min.js"></script>
+ <!--  <script src="/resources/startbootstrap/vendor/jquery/jquery.min.js"></script> -->
 
   <!-- Custom scripts for this template -->
-  <script src="/resources/startbootstrap/js/clean-blog.min.js"></script>
+<!--   <script src="/resources/startbootstrap/js/clean-blog.min.js"></script> -->
 
 </body>
 
