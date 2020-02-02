@@ -5,19 +5,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="usermapper">
 	<select id="login" parameterType= "java.lang.String" resultType= "IceUser">
-		select * from users 
+		select * from members 
 		where email =#{email}
 	</select>
 	
 	<select id="checkemail" resultType = "java.lang.String" parameterType ="java.lang.String" >
 		select email
-		from users
+		from members
 		where email = #{email}
 	</select>
 	
 	<select id="checknickname" resultType = "java.lang.String" parameterType ="java.lang.String">
 		select nickname
-		from users
+		from members
 		where nickname = #{nickname}
 	 </select>
 	
@@ -29,20 +29,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<select id="newpassword" parameterType="java.lang.String" resultType ="IceUser">
 		select givenewpwQ, givenewpwA
-		from users
+		from members
 		Where email=#{email}
 	
 	</select>
 	
 	<update id ="newpassword2" parameterType="IceUser" >
-		update users 
+		update members 
 		set password =#{password}
 		where email = #{email}
 	
 	</update>
 	
 	<update id="editprofile" parameterType="IceUser">
-		update users
+		update members
 		set 
 		nickname = #{nickname},
 		phone = #{phone},
@@ -53,7 +53,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</update>
 	
 	<update id="editpassword" parameterType="IceUser">
-	 update users
+	 update members
 	 set
 	 password = #{password}
 	 where email = #{email}

@@ -15,8 +15,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="filedownload" parameterType="java.lang.String"
 		resultType="IceFile">
 		select filenum, filename, fileUploaddate ,filesize,nickname
-		from FileList, users
-		where FileList.email = users.email and FileList.email = #{email}
+		from FileList, members
+		where FileList.email = members.email and FileList.email = #{email}
 		order by fileUploaddate DESC
 	</select>
 	<select id="filedown" resultType="IceFile" parameterType="java.lang.Integer">
