@@ -12,7 +12,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.io.FileUtils;
-import org.apache.commons.io.IOUtils;
 import org.apache.commons.net.PrintCommandListener;
 import org.apache.commons.net.ftp.FTP;
 import org.apache.commons.net.ftp.FTPClient;
@@ -22,7 +21,9 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.coke.ice.dao.FileDAO;
+import com.coke.ice.dao.ServerDao;
 import com.coke.ice.domain.IceFile;
+import com.coke.ice.domain.IceServer;
 import com.coke.ice.domain.IceUser;
 
 @Service
@@ -31,15 +32,19 @@ public class FileServiceImpl implements FileService {
 	@Autowired
 	private FileDAO fileDao;
 
+	@Autowired
+	private ServerDao serverDao;
+	
 	FTPClient ftp = null;
 
 	final String serverpath = "/home/WebProject/WebStorage/";
 
 	public FileServiceImpl() {
-		String host = "icecoke.iptime.org";
-		int port = 2222;
-		String username = "root";
-		String password = "qwe123!@#";
+		IceServer ftpserver =serverDao.server(1);
+		String host = ftpserver.getHost();
+		int port = ftpserver.getPort();
+		String username = ftpserver.getServerid();
+		String password = ftpserver.getServerpw();
 
 		ftp = new FTPClient();
 		ftp.addProtocolCommandListener(new PrintCommandListener(new PrintWriter(System.out)));
@@ -145,16 +150,16 @@ public class FileServiceImpl implements FileService {
 			}
 
 			case 1: {
-				tmp.setFilesize(String.format("%.2f", fileSize) + " Kbyte");
+				tmp.setFilesize(String.format("%.2f", fileSize) + " Kb");
 				break;
 			}
 
 			case 2: {
-				tmp.setFilesize(String.format("%.2f", fileSize) + " Mbyte");
+				tmp.setFilesize(String.format("%.2f", fileSize) + " Mb");
 				break;
 			}
 			case 3: {
-				tmp.setFilesize(String.format("%.2f", fileSize) + " Gbyte");
+				tmp.setFilesize(String.format("%.2f", fileSize) + " Gb");
 			}
 			}
 			tmp.setDispdate(sdf.format(tmp.getFileUploaddate()));
