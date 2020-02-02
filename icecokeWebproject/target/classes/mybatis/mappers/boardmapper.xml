@@ -52,7 +52,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where boardnum =#{boardnum}
 	</update>
 	
-	<delete id="boarddelete" parameterType ="IceBoard">
+	<delete id="boarddelete" parameterType ="java.lang.Integer">
 		delete from board
 		 where boardnum =#{boardnum};
 	</delete>

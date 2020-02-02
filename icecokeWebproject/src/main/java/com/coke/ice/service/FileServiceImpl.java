@@ -228,7 +228,11 @@ public class FileServiceImpl implements FileService {
 
 	@Override
 	public void filedelete(int filenum) {
-		fileDao.filedelete(filenum);
+		int r =fileDao.filemove(filenum);
+		
+		if(r > 0) {
+			fileDao.filedelete(filenum);
+		}
 		
 	}
 

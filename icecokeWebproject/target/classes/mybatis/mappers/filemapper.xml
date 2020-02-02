@@ -25,8 +25,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where filenum =#{filenum}
 	</select>
 	
-	<delete id="filedelete" parameterType="IceFile">
+	<delete id="filedelete" parameterType="java.lang.Integer">
 		delete from FileList
 		where filenum =#{filenum}
 	</delete>
+	
+	
+	
+	<insert id="filemove" parameterType="java.lang.Integer">
+	insert into deletefilelist 
+	(SELECT * 
+	FROM FileList 
+	where filenum = #{filenum})
+	
+	</insert>
 </mapper>
