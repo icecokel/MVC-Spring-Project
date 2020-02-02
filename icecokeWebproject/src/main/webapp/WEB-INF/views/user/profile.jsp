@@ -9,7 +9,7 @@
 		</div>
 		<!--  이미지 수정 기능 추가해야함. -->
 		<form method="post" enctype="multipart/form-data" id="profileform">
-			<table align="center" border="2" class="table">
+			<table border="1" class="table">
 				<thead>
 					<tr align="center">
 						<td colspan="2"><img src="/userimage/${user.image}"
@@ -71,8 +71,9 @@
 
 				<tfoot>
 					<tr align='center'>
-						<td colspan="2"><input type="submit" value="회원정보 수정하기" /> <input
-							type="button" value="회원 탈퇴하기" /></td>
+						<td colspan="2">
+						<input type="submit" value="회원정보 수정하기" /> 
+						<input type="button" value="회원 탈퇴하기" id =btnsecession/></td>
 					</tr>
 				</tfoot>
 			</table>

@@ -59,4 +59,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	 where email = #{email}
 	</update>
 	
+	<insert id="usermove" parameterType="java.lang.Integer">
+	insert into secession 
+	(SELECT * 
+	FROM members 
+	where email = #{email})
+	</insert>
+	
+	<delete id="usersecession" parameterType="java.lang.String">
+	delete from members
+	where email = #{email}	
+	
+	</delete>
+	
+	
+	
 </mapper>
