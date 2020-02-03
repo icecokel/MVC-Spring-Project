@@ -1,28 +1,32 @@
-let btnList = document.getElementById("btnList");
-
-btnList.addEventListener("click", function(e) {
-	location.href = "/board/list";
-});
 
 let btnupdate = document.getElementById("btnupdate");
 let submitupdate = document.getElementById("submitupdate");
-
 let boardtitle = document.getElementById("boardtitle");
-let boardcontent = document.getElementById("boardcontent");
 
-$('#boardcontent').summernote('disable')
+let btndelete = document.getElementById("btndelete");
+let boardnum = document.getElementById("boardnum");
+
+
+$(document).ready(function() {
+	$('#boardcontent2').summernote({
+		toolbar: [],
+		placeholder : 'content',
+		minHeight : 370,
+		maxHeight : null,
+		focus : true,
+		lang : 'ko-KR'
+	});
+});
+//$('#boardcontent').summernote('disable');
 
 btnupdate.addEventListener("click", function(e) {
 	btnupdate.style.visibility = "hidden";
 	submitupdate.style.visibility = "visible";
 	$("#boardtitle").attr("readonly", false);
-	$('#boardcontent').summernote('enable')
-	
+	$('#boardcontent').summernote('enable');
 
 });
 
-let btndelete = document.getElementById("btndelete");
-let boardnum = document.getElementById("boardnum");
 btndelete.addEventListener("click", function(e) {
 	let result = confirm("정말 삭제 하시겠습니까?");
 
@@ -31,14 +35,10 @@ btndelete.addEventListener("click", function(e) {
 		location.href = "/board/delete/" + boardnum.value;
 	}
 
-})
+});
 
-$(document).ready(function() {
-	$('#boardcontent').summernote({
-		placeholder : 'content',
-		minHeight : 370,
-		maxHeight : null,
-		focus : true,
-		lang : 'ko-KR'
-	});
+let btnList = document.getElementById("btnList");
+
+btnList.addEventListener("click", function(e) {
+	location.href = "/board/list";
 });

@@ -146,31 +146,4 @@
 </section>
 <!-- footer.jsp 포함 -->
 <%@ include file="../include/footer.jsp"%>
-
-<script>
-	//메인으로 버튼을 눌렀을 때 메인으로 이동하도록 설정
-	document.getElementById("mainbtn").addEventListener("click", function(e) {
-		//시작 페이지로 이동
-		location.href = "/";
-	});
-
-	//이미지 파일의 선택이 변경되면 호출
-	document.getElementById("image").addEventListener("change", function(e) {
-		//선택한 파일이 있다면
-		//이벤트 처리할 때는 this가 이벤트가 발생한 객체입니다.
-		//자바스크립트에서는 	null이 아니면 true로 간주합니다.	
-		if (this.files && this.files[0]) {
-			//파일의 내용 읽기
-			var reader = new FileReader();
-			//console.log(reader)
-
-			//파일을 읽는 동작은 비동기적으로 동작
-			reader.readAsDataURL(this.files[0]);
-			//파일을 읽는 동작이 끝나면 img 태그에 출력하도록 설정
-			reader.addEventListener("load", function(e) {
-				document.getElementById("img").src = e.target.result;
-			});
-		}
-	});
-</script>
 <script src="/resources/scripts/join.js"></script>

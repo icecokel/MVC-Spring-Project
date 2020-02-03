@@ -7,16 +7,23 @@
 			<h3>회원 정보 수정</h3>
 
 		</div>
-		<!--  이미지 수정 기능 추가해야함. -->
 		<form method="post" enctype="multipart/form-data" id="profileform">
 			<table border="1" class="table">
 				<thead>
 					<tr align="center">
-						<td colspan="2"><img src="/userimage/${user.image}"
-							width="40px" height="40px" /> ${user.nickname}'s Profile</td>
+						<td colspan="2"><img src="/userimage/${user.image}" width="40px"
+							height="40px" id="img"/> ${user.nickname}'s Profile</td>
+						
 					</tr>
 				</thead>
 				<tbody>
+					<tr>
+						<td>
+							<p>프로필 사진 바꾸기</p>
+						</td>
+						<td><input type="file" id="image" name="image"
+							accept=".jpg,.jpeg,.gif,.png" /> <br /></td>
+					</tr>
 					<tr>
 						<td>이메일</td>
 
@@ -32,8 +39,8 @@
 					<tr>
 						<td>닉네임</td>
 
-						<td><input id ="profilenickname" name="profilenickname" type="text"
-							value="${user.nickname}">
+						<td><input id="profilenickname" name="profilenickname"
+							type="text" value="${user.nickname}">
 							<div id="nicknamedisp"></div></td>
 					</tr>
 
@@ -42,10 +49,7 @@
 					<tr>
 						<td>비밀번호</td>
 						<td><input id="passwordchangebtn" type="button"
-							value="비밀번호 변경하기" />
-							
-							
-							</td>
+							value="비밀번호 변경하기" /></td>
 					</tr>
 
 					<tr>
@@ -71,9 +75,8 @@
 
 				<tfoot>
 					<tr align='center'>
-						<td colspan="2">
-						<input type="submit" value="회원정보 수정하기" /> 
-						<input type="button" value="회원 탈퇴하기" id ="btnsecession"/></td>
+						<td colspan="2"><input type="submit" value="회원정보 수정하기" /> <input
+							type="button" value="회원 탈퇴하기" id="btnsecession" /></td>
 					</tr>
 				</tfoot>
 			</table>

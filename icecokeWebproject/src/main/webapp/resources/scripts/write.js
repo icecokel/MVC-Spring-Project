@@ -19,6 +19,7 @@ writeform.addEventListener("submit", function(e) {
 });
 $(document).ready(function() {
 	$('#boardcontent').summernote({
+		
 		placeholder : 'content',
 		minHeight : 370,
 		maxHeight : null,
