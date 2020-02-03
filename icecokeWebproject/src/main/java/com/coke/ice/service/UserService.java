@@ -27,6 +27,7 @@ public interface UserService {
 	
 	public boolean userverification(HttpServletRequest request); 
 	
+	public void usersecession(HttpServletRequest request);
 	
 	
 }

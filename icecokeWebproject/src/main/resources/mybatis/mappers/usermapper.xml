@@ -23,7 +23,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	
 	<insert id="userjoin" parameterType="IceUser">
-		insert into users (email, password, name ,  nickname , phone, birthday, image, givenewpwA, givenewpwQ)
+		insert into members (email, password, name ,  nickname , phone, birthday, image, givenewpwA, givenewpwQ)
 		values(#{email}, #{password}, #{name},#{nickname} ,#{phone} ,#{birthday},#{image} ,#{givenewpwA},#{givenewpwQ})
 	</insert>
 	
@@ -59,7 +59,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	 where email = #{email}
 	</update>
 	
-	<insert id="usermove" parameterType="java.lang.Integer">
+	<insert id="usermove" parameterType="java.lang.String">
 	insert into secession 
 	(SELECT * 
 	FROM members 

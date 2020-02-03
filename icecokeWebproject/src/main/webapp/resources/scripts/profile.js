@@ -34,17 +34,15 @@ profilenickname.addEventListener('focusout', function(e) {
 
 
 let profileform = document.getElementById("profileform");
-profileform.addEventListener("submit", function(e){
-	
-})
 
 let btnsecession = document.getElementById("btnsecession");
-let profileemail = document.getElementById("profileemail");
+
 btnsecession.addEventListener("click", function(e){
 	let result = confirm("정말 탈퇴 하시겠습니까?");
 	
-	if(result == ture){
-		alert("탈퇴가 진행 되었습니다. 그 동안 서비스를 이용해 주셔서 감사합니다.")
-		location.href = "/user/secession" + profileemail.value;
-	}
-})
+	if(result == true){
+		alert("탈퇴가 진행 되었습니다. 그 동안 서비스를 이용해 주셔서 감사합니다.");
+		location.href = "/user/secession";
+	};
+	
+});

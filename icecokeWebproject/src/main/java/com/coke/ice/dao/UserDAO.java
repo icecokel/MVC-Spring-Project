@@ -45,5 +45,13 @@ public class UserDAO {
 		return sqlSession.update("usermapper.editprofile", iceUser);
 	}
 	
+	public int usermove(String email) {
+		return sqlSession.insert("usermapper.usermove", email);
+	}
+	
+	public void usersecession(String email) {
+		sqlSession.delete("usermapper.usersecession",email);
+	}
+	
 
 }

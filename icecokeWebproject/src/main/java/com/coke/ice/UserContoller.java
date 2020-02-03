@@ -140,6 +140,13 @@ public class UserContoller {
 	}
 	
 	
+	@RequestMapping(value="/user/secession" , method=RequestMethod.GET)
+	public String usersecession (HttpServletRequest request, HttpSession session) {
+		userService.usersecession(request);
+		
+		session.invalidate();
+		return "redirect:/";
+	}
 
 	
 

@@ -255,5 +255,18 @@ public class UserServiceImpl implements UserService {
 		return result;
 	}
 
+	@Override
+	public void usersecession(HttpServletRequest request) {
+		IceUser user = (IceUser)request.getSession().getAttribute("user");
+		
+		String email = user.getEmail();
+		
+		int r = userDao.usermove(email);
+		if (r > 0) {
+			userDao.usersecession(email);
+		}
+		
+	}
+
 
 }

@@ -19,6 +19,8 @@ public class IceUser {
 	private String image ;
 	private String givenewpwA;
 	private String givenewpwQ;
+	private Date reqdate;
+	
 	
 	
 	

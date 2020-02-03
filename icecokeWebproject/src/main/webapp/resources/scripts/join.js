@@ -11,7 +11,7 @@ let endemail = document.getElementById("endemail");
 let endemailtextfield = document.getElementById("endemailtextfield");
 let emailcheckvalue ="";
 // 반복되는 기능을 매소드로 선언 하여, 호출하기 위함.
-let method = {
+var method = {
 	emailmethod(){
 		
 		
@@ -180,7 +180,9 @@ phone.addEventListener("focusout", function(e) {
 let givenewpwA = document.getElementById("givenewpwA");
 
 joinform.addEventListener("submit", function(e) {
-	email.value = emailcheckvalue;
+	if (endemail != etcemail){
+		email.value = emailcheckvalue;
+	}
 	
 	if (phonecheck == false) {
 		phonedisp.innerHTML = "전화번호는 10 ~ 11자리 이하 숫자로만 작성되어야 합니다.";

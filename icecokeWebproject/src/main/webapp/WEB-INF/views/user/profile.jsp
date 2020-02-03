@@ -73,7 +73,7 @@
 					<tr align='center'>
 						<td colspan="2">
 						<input type="submit" value="회원정보 수정하기" /> 
-						<input type="button" value="회원 탈퇴하기" id =btnsecession/></td>
+						<input type="button" value="회원 탈퇴하기" id ="btnsecession"/></td>
 					</tr>
 				</tfoot>
 			</table>
