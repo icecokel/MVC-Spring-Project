@@ -8,7 +8,7 @@ let boardnum = document.getElementById("boardnum");
 
 
 $(document).ready(function() {
-	$('#boardcontent2').summernote({
+	$('#boardcontent').summernote({
 		toolbar: [],
 		placeholder : 'content',
 		minHeight : 370,
@@ -17,7 +17,7 @@ $(document).ready(function() {
 		lang : 'ko-KR'
 	});
 });
-//$('#boardcontent').summernote('disable');
+$('#boardcontent').summernote('disable');
 
 btnupdate.addEventListener("click", function(e) {
 	btnupdate.style.visibility = "hidden";
