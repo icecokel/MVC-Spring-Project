@@ -89,30 +89,36 @@ public class XMLContoller {
 			// title 태그 찾아오기
 			NodeList titles=root.getElementsByTagName("title");
 			NodeList contents = root.getElementsByTagName("description");
+			NodeList links =root.getElementsByTagName("link");
 			// title을 하나씩 가져와서 출력
 			for(int i=0; i<5; i++) {
 				Node nodet=titles.item(i);
 				Node nodetitle=nodet.getFirstChild();
 				
+				Node nodel = links.item(i);
+				Node nodelink = nodel.getFirstChild();
+				
 				Node nodec = contents.item(i);
 				Node nodecontent = nodec.getFirstChild();
 				
 				hani = new XMLhani();
-				String title = nodetitle.toString();
-				String content = nodecontent.toString();
+				String titleori = nodetitle.toString();
+				String title = titleori.split("#text: ")[1].split("]")[0];
 				
+				String linkori = nodelink.toString();
+				String link = linkori.split("#text: ")[1].split("]")[0];
+				
+				String content = nodecontent.toString();
 				System.out.println(title);
 				
-				titlelist.add(title);
-				contentlist.add(content);
-				
-				model.addAttribute("titles", titlelist);
-				model.addAttribute("contents", contentlist);
 				
 				hani.setNum(i+1);
 				hani.setTitle(title);
 				hani.setContent(content);
+				hani.setLink(link);
 				hanilist.add(i, hani);
+				
+				System.out.println("link"+ link) ;
 				
 				
 				System.out.println(hanilist.toString());
