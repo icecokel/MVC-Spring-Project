@@ -107,7 +107,7 @@ public class UserContoller {
 	}
 	
 	@RequestMapping (value="/user/profile" , method = RequestMethod.POST)
-	public String profile (Model model, HttpServletRequest request) {
+	public String profile (Model model, MultipartHttpServletRequest request) {
 		userService.editporifle(request);
 		return "redirect:login";
 	}

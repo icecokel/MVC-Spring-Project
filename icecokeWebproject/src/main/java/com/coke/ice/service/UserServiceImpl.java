@@ -113,14 +113,14 @@ public class UserServiceImpl implements UserService {
 		}
 
 		// System.err.print(phone);
-//		System.err.println(birthday);
+		// System.err.println(birthday);
 
 		MultipartFile f = request.getFile("image");
-		
+
 		String origiName = f.getOriginalFilename();
 		String fileName = email + origiName;
 		String path = request.getServletContext().getRealPath("/userimage");
-		
+
 		if (origiName.length() > 0) {
 			File file = new File(path + "/" + fileName);
 			try {
@@ -129,7 +129,7 @@ public class UserServiceImpl implements UserService {
 			} catch (Exception e) {
 				e.printStackTrace();
 				System.out.println(e.getMessage());
-				
+
 				System.out.println("여기일것 같아");
 			}
 		} else {
@@ -178,70 +178,88 @@ public class UserServiceImpl implements UserService {
 		StringBuffer sb = new StringBuffer();
 		for (int i = 0; i < len; i++) {
 			idx = (int) (charSet.length * Math.random());
-			// 36 * 생성된 난수를 Int로 추출 (소숫점제거) 
-			sb.append(charSet[idx]); 
-			} 
-			
-			return sb.toString();
+			// 36 * 생성된 난수를 Int로 추출 (소숫점제거)
+			sb.append(charSet[idx]);
 		}
 
-	@Override
-	public void newpassword2(HttpServletRequest request ,IceUser user) {
-//		
-//		System.err.println("newpassword2 ::::::::" +email);
-//		System.err.println("newpassword2 ::::::::" +newpassword);
-//		
-		/*IceUser user =  new IceUser();
-		user.setEmail(email);
-		user.setPassword(newpassword);
-		*/
-		userDao.newpassword2(user);
-		
-//		System.err.println(userDao.newpassword2(user));
-		
+		return sb.toString();
 	}
 
 	@Override
-	public void editporifle(HttpServletRequest request) {
+	public void newpassword2(HttpServletRequest request, IceUser user) {
+		//
+		// System.err.println("newpassword2 ::::::::" +email);
+		// System.err.println("newpassword2 ::::::::" +newpassword);
+		//
+		/*
+		 * IceUser user = new IceUser(); user.setEmail(email);
+		 * user.setPassword(newpassword);
+		 */
+		userDao.newpassword2(user);
+
+		// System.err.println(userDao.newpassword2(user));
+
+	}
+
+	@Override
+	public void editporifle(MultipartHttpServletRequest request) {
 		String email = request.getParameter("profileemail");
 		String nickname = request.getParameter("profilenickname");
 		String password = request.getParameter("profilepassword");
 		String phone = request.getParameter("profilephone");
-		String givenewpwQ =request.getParameter("profilegivenewpwQ");
-		String givenewpwA =request.getParameter("profilegivenewpwA");
+		String givenewpwQ = request.getParameter("profilegivenewpwQ");
+		String givenewpwA = request.getParameter("profilegivenewpwA");
+		MultipartFile f = request.getFile("profileimage");
+		
+		String fileori = f.getOriginalFilename();
+		String filename = email + fileori;
+		
+		String path = request.getServletContext().getRealPath("/userimage");
 
-		
-		
-		IceUser user =new IceUser();
-		
+		if (fileori.length() > 0) {
+			if ("default.png".equals(fileori)) {
+				filename = "default.png";
+			} else {
+				File file = new File(path + "/" + filename);
+				try {
+					f.transferTo(file);
+				} catch (Exception e) {
+					e.printStackTrace();
+					System.out.println(e.getMessage());
+				}
+			}
+		}
+
+		IceUser user = new IceUser();
+
 		user.setEmail(email);
 		user.setNickname(nickname);
-		
+
 		user.setPassword(password);
 		user.setPhone(phone);
 		user.setGivenewpwQ(givenewpwQ);
 		user.setGivenewpwA(givenewpwA);
-		
+		user.setImage(filename);
 		userDao.editprofile(user);
 		request.getSession().setAttribute("user", user);
-		System.err.println("회원 정보 수정 결과 : " +  userDao.editprofile(user));
-		
+		System.err.println("회원 정보 수정 결과 : " + userDao.editprofile(user));
+
 		// 이미지 수정 기능 추가 해야함.
 	}
 
 	@Override
 	public boolean userverification(HttpServletRequest request) {
-		boolean result =false;
+		boolean result = false;
 		String email = request.getParameter("inputemail");
-		String password =request.getParameter("inputpassword");
-		
-//		System.err.println("email::::::" + email);
-//		System.err.println("password::::::" + password);
-		
+		String password = request.getParameter("inputpassword");
+
+		// System.err.println("email::::::" + email);
+		// System.err.println("password::::::" + password);
+
 		IceUser user = userDao.login(email);
-		
-//		System.err.println("userpassword ::::::" +user.toString());
-		
+
+		// System.err.println("userpassword ::::::" +user.toString());
+
 		if (user != null) {
 			if (BCrypt.checkpw(password, user.getPassword())) {
 
@@ -257,16 +275,15 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public void usersecession(HttpServletRequest request) {
-		IceUser user = (IceUser)request.getSession().getAttribute("user");
-		
+		IceUser user = (IceUser) request.getSession().getAttribute("user");
+
 		String email = user.getEmail();
-		
+
 		int r = userDao.usermove(email);
 		if (r > 0) {
 			userDao.usersecession(email);
 		}
-		
-	}
 
+	}
 
 }

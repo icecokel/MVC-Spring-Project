@@ -23,7 +23,7 @@ public interface UserService {
 	
 	public void newpassword2(HttpServletRequest request,IceUser user);
 	
-	public void editporifle(HttpServletRequest request);
+	public void editporifle(MultipartHttpServletRequest request);
 	
 	public boolean userverification(HttpServletRequest request); 
 	

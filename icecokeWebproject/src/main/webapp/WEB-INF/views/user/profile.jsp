@@ -12,7 +12,7 @@
 				<thead>
 					<tr align="center">
 						<td colspan="2"><img src="/userimage/${user.image}" width="40px"
-							height="40px" id="img"/> ${user.nickname}'s Profile</td>
+							height="40px" id="image"/> ${user.nickname}'s Profile</td>
 						
 					</tr>
 				</thead>
@@ -21,8 +21,10 @@
 						<td>
 							<p>프로필 사진 바꾸기</p>
 						</td>
-						<td><input type="file" id="image" name="image"
-							accept=".jpg,.jpeg,.gif,.png" /> <br /></td>
+						<td><input type="file" id="profileimage" name="profileimage"
+							accept=".jpg,.jpeg,.gif,.png" /> <br />
+							<input type="button" id="btnimgclear" value="이미지 지우기" />
+							</td>
 					</tr>
 					<tr>
 						<td>이메일</td>

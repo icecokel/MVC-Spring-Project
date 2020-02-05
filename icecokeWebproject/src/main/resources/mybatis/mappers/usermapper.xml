@@ -47,9 +47,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		nickname = #{nickname},
 		phone = #{phone},
 		givenewpwA =#{givenewpwA},
-		givenewpwQ = #{givenewpwQ}
+		givenewpwQ = #{givenewpwQ},
+		image = #{image}
 		where email = #{email}
-	
+		
 	</update>
 	
 	<update id="editpassword" parameterType="IceUser">
