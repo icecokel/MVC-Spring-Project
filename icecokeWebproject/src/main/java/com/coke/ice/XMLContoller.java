@@ -6,6 +6,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -21,6 +22,7 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 import com.coke.ice.domain.XMLhani;
+
 
 
 
@@ -67,7 +69,10 @@ public class XMLContoller {
 			System.out.println(e.getMessage());
 			
 		}
-		
+		List<String> titlelist = new ArrayList<>();
+ 		List<String> contentlist = new ArrayList<>();
+ 		XMLhani hani = null;
+ 		List<XMLhani> hanilist = new ArrayList<>();
 		// xml 파싱
 		try {
 			DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
@@ -83,13 +88,39 @@ public class XMLContoller {
 			
 			// title 태그 찾아오기
 			NodeList titles=root.getElementsByTagName("title");
-			
+			NodeList contents = root.getElementsByTagName("description");
 			// title을 하나씩 가져와서 출력
 			for(int i=0; i<5; i++) {
-				Node node=titles.item(i);
-				Node nodetitle=node.getFirstChild();
-				System.out.println(nodetitle.toString());
+				Node nodet=titles.item(i);
+				Node nodetitle=nodet.getFirstChild();
+				
+				Node nodec = contents.item(i);
+				Node nodecontent = nodec.getFirstChild();
+				
+				hani = new XMLhani();
+				String title = nodetitle.toString();
+				String content = nodecontent.toString();
+				
+				System.out.println(title);
+				
+				titlelist.add(title);
+				contentlist.add(content);
+				
+				model.addAttribute("titles", titlelist);
+				model.addAttribute("contents", contentlist);
+				
+				hani.setNum(i+1);
+				hani.setTitle(title);
+				hani.setContent(content);
+				hanilist.add(i, hani);
+				
+				
+				System.out.println(hanilist.toString());
+				model.addAttribute("hanilist",hanilist);
+				
+				
 			}
+
 		} catch (Exception e) {
 			System.out.println("xml 파싱예외.");
 			e.printStackTrace();
