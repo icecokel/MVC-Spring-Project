@@ -22,7 +22,7 @@
 					</h3>
 				</c:if>
 				<c:if test="${user !=null }">
-					<iframe src="filedownload" width="100%" height="500px"></iframe>
+					<iframe src="filedownload" width="100%" height="500px" frameborder="0"></iframe>
 				</c:if>
 			</div>
 		</div>
