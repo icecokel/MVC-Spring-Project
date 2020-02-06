@@ -22,12 +22,43 @@ public class BoardController {
 	BoardService boardService;
 	
 	@RequestMapping (value="/board/list" , method =RequestMethod.GET)
-	public String boardlist (Model model) {
-		List<IceBoard> board = boardService.boardlist();
+	public String boardlist (Model model, HttpServletRequest request) {
+		List<IceBoard> boardori = boardService.boardlist();
+		int boardcnt =0;
+		int pageshow = 10;
+		
+		String pageparam = request.getParameter("page");
+		int page = 0;
+		if(pageparam != null ) {
+			page = Integer.parseInt(pageparam);
+		}else {
+			page = 1;
+		}
+		
+		int lastboard = boardori.size();
+		int firstpage = 0;
+		if(((page -1)*pageshow +pageshow) <boardori.size()) {
+			lastboard = (page -1)*pageshow +pageshow +1;
+		}
+		
+		if(page != 1) {
+			firstpage = (page -1) *pageshow + 1;
+		}
+		
+		System.out.println("보드컨트롤ㄹ러 :::::::" +firstpage);
+		System.out.println("보드컨트롤ㄹ러 :::::::" +lastboard);
+		
+		List<IceBoard> board = boardori.subList(firstpage, lastboard);
+		
+		if((boardori.size()%pageshow==0)) {
+			boardcnt = boardori.size()/pageshow;
+		}else {
+			boardcnt = boardori.size()/pageshow +1;
+		}
 		
 		
 		model.addAttribute("boardlist", board);
-		
+		model.addAttribute("boardcnt", boardcnt);
 		return "/board/list";
 	}
 	@RequestMapping (value="/board/write" , method =RequestMethod.GET)

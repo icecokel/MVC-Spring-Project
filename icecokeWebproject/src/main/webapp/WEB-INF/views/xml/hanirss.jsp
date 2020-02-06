@@ -22,7 +22,7 @@
 	</c:forEach> --%>
 
 	<c:forEach var="hanilist" items="${hanilist }">
-		<p id="hanilist"><a href="${hanilist.link }">${hanilist.num}번기사: ${hanilist.title}</a></p>
+		<p id="hanilist"><a href="${hanilist.link }">${hanilist.num} ) ${hanilist.title}</a></p>
 		
 		<p id="hanicontent">&nbsp;&nbsp;${hanilist.content}</p>
 		

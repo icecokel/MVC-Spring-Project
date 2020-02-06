@@ -9,10 +9,6 @@ let boardnum = document.getElementById("boardnum");
 
 $(document).ready(function() {
 	$('#boardcontent').summernote({
-		toolbar: [],
-		placeholder : 'content',
-		minHeight : 370,
-		maxHeight : null,
 		focus : true,
 		lang : 'ko-KR'
 	});
@@ -24,7 +20,6 @@ btnupdate.addEventListener("click", function(e) {
 	submitupdate.style.visibility = "visible";
 	$("#boardtitle").attr("readonly", false);
 	$('#boardcontent').summernote('enable');
-
 });
 
 btndelete.addEventListener("click", function(e) {

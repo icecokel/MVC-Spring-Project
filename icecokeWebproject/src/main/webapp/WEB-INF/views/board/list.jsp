@@ -8,10 +8,11 @@
 			<thead>
 				<tr>
 					<td><a href="/board/write"><input type="button"
-							value="글쓰기" class="btn btn-primary"/></a></td>
+							value="글쓰기" class="btn btn-primary" /></a></td>
 					<td><a href="/file/exceldownload.xls"><input type="button"
-							value="엑셀출력" class="btn btn-success"/></a></td>
+							value="엑셀출력" class="btn btn-success" /></a></td>
 				</tr>
+
 				<tr>
 					<th scope="col" width="5%">글번호</th>
 					<th scope="col" width="70%" style="text-align: center">글 제목</th>
@@ -33,6 +34,11 @@
 				</c:forEach>
 			</tbody>
 		</table>
+		<div align ='center'>
+			<c:forEach var="i" begin="1" end="${boardcnt}">
+				<a href ="/board/list?page=${i }"><input type="button" value="${i}"/></a>
+			</c:forEach>
+		</div>
 	</div>
 </section>
 

@@ -10,6 +10,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 
 import com.coke.ice.dao.BoardDAO;
 import com.coke.ice.domain.IceBoard;
@@ -72,10 +73,11 @@ public class BoardServiceImpl implements BoardService {
 
 	@Override
 	public List<IceBoard> boardlist() {
+		
 		List<IceBoard> board = boardDao.boardlist();
 		
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-		SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd : hh/mm/ss");
+//		SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd : hh/mm/ss");
 		Calendar cal= Calendar.getInstance();
 //		cal.set(Calendar.HOUR_OF_DAY,cal.get(Calendar.HOUR_OF_DAY)-9);
 		
@@ -100,8 +102,8 @@ public class BoardServiceImpl implements BoardService {
 			
 			}
 //			System.err.println(sdf.format(cal.getTime()));
-			
 		}
+		
 		return board;
 	}
 

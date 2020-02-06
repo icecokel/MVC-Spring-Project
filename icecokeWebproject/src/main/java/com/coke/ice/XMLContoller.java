@@ -106,12 +106,12 @@ public class XMLContoller {
 				String content = nodecontent.toString();
 
 				
-					hani.setNum(i + 1);
-					hani.setTitle(title);
-					hani.setContent(content);
-					hani.setLink(link);
-					
-					hanilist.add(i, hani);
+				hani.setNum(i + 1);
+				hani.setTitle(title);
+				hani.setContent(content);
+				hani.setLink(link);
+				
+				hanilist.add(i, hani);
 				
 				/*
 				 * System.out.println("link"+ link) ;
