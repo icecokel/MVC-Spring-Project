@@ -24,12 +24,16 @@
 				<li class="list-group-item"><a href="/board/list">게시판으로 이동</a></li>
 				<li class="list-group-item"><a href="/file/filelist">파일
 						리스트로 이동</a></li>
+						
 			</c:if>
+			<li class="list-group-item"><p>한겨레 실기간 기사</p>
+			<iframe src ="/xml/hanirss" width="100%" height="500px" frameborder="0"></iframe></li>
 			
 				
 			
 		</ul>
-		<iframe src ="/xml/hanirss" width="100%" height="500px" frameborder="0"></iframe>		
+		
+				
 	</div>
 </section>
 <!-- footer.jsp 파일을 추가 -->

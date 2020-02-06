@@ -39,7 +39,7 @@
 			<div class="mb-3">
 
 				<label for="content">내용</label>
-				<textarea id="boardcontent" name="boardcontent">${boardread.boardcontent }</textarea>
+				<textarea id ="boardcontent" >${boardread.boardcontent }</textarea>
 			</div>
 
 			<div>

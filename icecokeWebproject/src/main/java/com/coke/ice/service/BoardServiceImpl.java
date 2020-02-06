@@ -7,7 +7,6 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import javax.servlet.http.HttpUtils;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -110,7 +109,6 @@ public class BoardServiceImpl implements BoardService {
 	public IceBoard boardread(int boardnum) {
 
 		boardDao.readcnt(boardnum);
-
 		return boardDao.boardread(boardnum);
 	}
 
