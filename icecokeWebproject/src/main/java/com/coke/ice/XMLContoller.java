@@ -111,7 +111,7 @@ public class XMLContoller {
 				hani.setContent(content);
 				hani.setLink(link);
 				
-				hanilist.add(i, hani);
+				hanilist.add(i, hani); 
 				
 				/*
 				 * System.out.println("link"+ link) ;
