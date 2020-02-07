@@ -8,4 +8,5 @@ public class XMLhani {
 	private String title;
 	private String content;
 	private String link;
+	private String img ;
 }

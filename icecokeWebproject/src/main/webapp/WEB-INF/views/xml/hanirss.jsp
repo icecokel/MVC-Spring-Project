@@ -16,16 +16,15 @@
 </c:forEach>
  --%>
 
-	<%-- 	<c:forEach var="i" begin="1" end="5">
-		<li> ${titles } </li>
-		<p> ${contents }</p>
-	</c:forEach> --%>
-
 	<c:forEach var="hanilist" items="${hanilist }">
-		<p id="hanilist"><a href="${hanilist.link }">${hanilist.num} ) ${hanilist.title}</a></p>
-		
+
+		<img src="${hanilist.img }" align ="left">
+		<a href="${hanilist.link }" id="hanilist">${hanilist.num} )
+			${hanilist.title}</a>
 		<p id="hanicontent">&nbsp;&nbsp;${hanilist.content}</p>
-		
+		<br/><br/><br/><br/>
 	</c:forEach>
+
+
 
 </section>

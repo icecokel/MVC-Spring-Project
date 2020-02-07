@@ -118,19 +118,25 @@ public class XMLContoller {
 			
 			hanilist.remove(0);
 			
-			
+			// content 가공하기 위한 for 문.
 			for(int j =0 ; j < hanilist.size() ; j++) {
 				hani = new XMLhani();
 				hani = hanilist.get(j);
 				int contentfio = hani.getContent().lastIndexOf("</table>");
 				int contentlio = hani.getContent().lastIndexOf("]");
-				System.out.println(contentfio);
-				System.out.println(contentlio);
-						
 				String content = hani.getContent().substring(contentfio,contentlio);
 				
+				
+				// 이미지 경로만 잘라내기.
+				int imgfio = hani.getContent().lastIndexOf("http:");
+				int imglio = hani.getContent().lastIndexOf("' border=0>");
+				
+				String img = hani.getContent().substring(imgfio,imglio);
+//				System.out.println(img);
+				
+				hani.setImg(img);
 				hani.setContent(content);
-				System.out.println(hani);
+//				System.out.println(hani);
 			}
 			model.addAttribute("hanilist", hanilist);
 
