@@ -19,42 +19,57 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	</select>
 
-<!-- 	<select id="boardlist" resultType="IceBoard">
-		select *
-		from board
-		order by boardnum desc
-	</select> -->
+	<!-- <select id="boardlist" resultType="IceBoard"> select * from board order 
+		by boardnum desc </select> -->
 
 	<select id="boardlist" resultType="IceBoard">
-		SELECT boardnum , boardtitle, boardreadcnt, nickname ,updatedate 
+		SELECT boardnum , boardtitle,
+		boardreadcnt, nickname ,updatedate
 		from board, members
 		WHERE board.email = members.email
+		order by updatedate
+		desc
+	</select>
+
+	<select id="boardpage" resultType="IceBoard" parameterType="java.lang.Integer">
+
+		select R1.* FROM(
+		SELECT * FROM board
 		order by updatedate desc
+		) R1
+		LIMIT 10 OFFSET #{page}
+
+
 	</select>
-	
-	<select id="boardread" resultType="Iceboard" parameterType="java.lang.Integer">
-		select boardnum, boardtitle, boardcontent, nickname, updatedate
+
+	<select id="boardread" resultType="Iceboard"
+		parameterType="java.lang.Integer">
+		select boardnum, boardtitle, boardcontent, nickname,
+		updatedate
 		from board, members
-		where board.email = members.email	and boardnum = #{boardnum}
+		where board.email = members.email and
+		boardnum = #{boardnum}
 	</select>
-	
+
+
 	<update id="readcnt" parameterType="java.lang.Integer">
-		update board 
+		update board
 		set
 		boardreadcnt = boardreadcnt + 1
 		where boardnum =#{boardnum}
 	</update>
-	
-	<update id ="boardupdate" parameterType="IceBoard">
+
+	<update id="boardupdate" parameterType="IceBoard">
 		update board
 		set
-		boardtitle = #{boardtitle},boardcontent = #{boardcontent}, updatedate=now()
+		boardtitle = #{boardtitle},boardcontent = #{boardcontent},
+		updatedate=now()
 		where boardnum =#{boardnum}
 	</update>
-	
-	<delete id="boarddelete" parameterType ="java.lang.Integer">
+
+	<delete id="boarddelete" parameterType="java.lang.Integer">
 		delete from board
-		 where boardnum =#{boardnum};
+		where boardnum =#{boardnum};
 	</delete>
 </mapper>
 

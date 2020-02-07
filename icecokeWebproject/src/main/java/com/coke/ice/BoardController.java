@@ -23,37 +23,20 @@ public class BoardController {
 	
 	@RequestMapping (value="/board/list" , method =RequestMethod.GET)
 	public String boardlist (Model model, HttpServletRequest request) {
-		List<IceBoard> boardori = boardService.boardlist();
-		int boardcnt =0;
-		int pageshow = 10;
-		
 		String pageparam = request.getParameter("page");
-		int page = 0;
+		int page = 1 ;
 		if(pageparam != null ) {
-			page = Integer.parseInt(pageparam);
+			page = (Integer.parseInt(pageparam)-1)*10;
+		}
+		List<IceBoard> boardori = boardService.boardlist();
+		List<IceBoard> board = boardService.boardpage(page);
+		int boardcnt = 0;
+		int boardsize = boardori.size();
+		
+		if(boardsize % 10 == 0) {
+			boardcnt = boardsize /10;
 		}else {
-			page = 1;
-		}
-		
-		int lastboard = boardori.size();
-		int firstpage = 0;
-		if(((page -1)*pageshow +pageshow) <boardori.size()) {
-			lastboard = (page -1)*pageshow +pageshow +1;
-		}
-		
-		if(page != 1) {
-			firstpage = (page -1) *pageshow + 1;
-		}
-//		
-//		System.out.println("보드컨트롤ㄹ러 :::::::" +firstpage);
-//		System.out.println("보드컨트롤ㄹ러 :::::::" +lastboard);
-//		
-		List<IceBoard> board = boardori.subList(firstpage, lastboard);
-		
-		if((boardori.size()%pageshow==0)) {
-			boardcnt = boardori.size()/pageshow;
-		}else {
-			boardcnt = boardori.size()/pageshow +1;
+			boardcnt = boardsize /10 +1;
 		}
 		
 		

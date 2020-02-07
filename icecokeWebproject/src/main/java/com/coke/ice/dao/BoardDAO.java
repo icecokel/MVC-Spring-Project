@@ -27,6 +27,10 @@ public class BoardDAO {
 		return sqlSession.selectList("boardmapper.boardlist");
 	}
 	
+	public List<IceBoard> boardpage (int page){
+		return sqlSession.selectList("boardmapper.boardpage", page);
+	}
+	
 	public IceBoard boardread (int boardnum) {
 		return sqlSession.selectOne("boardmapper.boardread",boardnum);
 	}

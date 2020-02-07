@@ -28,7 +28,7 @@ public class BoardServiceImpl implements BoardService {
 		HttpSession session = request.getSession();
 		String boardtitle = request.getParameter("boardtitle");
 		String boardcontent = request.getParameter("boardcontent");
-		
+
 		// System.err.println("서비스 테스트1 :::::::::" + boardtitle);
 		System.err.println("서비스 테스트2 :::::::::" + boardcontent);
 
@@ -73,37 +73,35 @@ public class BoardServiceImpl implements BoardService {
 
 	@Override
 	public List<IceBoard> boardlist() {
-		
+
 		List<IceBoard> board = boardDao.boardlist();
-		
+
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-//		SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd : hh/mm/ss");
-		Calendar cal= Calendar.getInstance();
-//		cal.set(Calendar.HOUR_OF_DAY,cal.get(Calendar.HOUR_OF_DAY)-9);
-		
+		// SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd : hh/mm/ss");
+		Calendar cal = Calendar.getInstance();
+		// cal.set(Calendar.HOUR_OF_DAY,cal.get(Calendar.HOUR_OF_DAY)-9);
+
 		String today = sdf.format(cal.getTime());
-		
-//		System.err.println("today::::::::::"+today);
-		
-		
-		for (IceBoard tmp : board) {	
-//			cal.setTime(tmp.getUpdatedate());
-//			cal.set(Calendar.HOUR_OF_DAY,cal.get(Calendar.HOUR_OF_DAY)-9);
-			
-//			System.err.println(sdf2.format(tmp.getUpdatedate()));
-//			System.err.println(cal.getTime());
-//			
-//			cal.getTime();
-			if(today.equals((String)sdf.format(tmp.getUpdatedate()))){
+
+		// System.err.println("today::::::::::"+today);
+
+		for (IceBoard tmp : board) {
+			// cal.setTime(tmp.getUpdatedate());
+			// cal.set(Calendar.HOUR_OF_DAY,cal.get(Calendar.HOUR_OF_DAY)-9);
+
+			// System.err.println(sdf2.format(tmp.getUpdatedate()));
+			// System.err.println(cal.getTime());
+			//
+			// cal.getTime();
+			if (today.equals((String) sdf.format(tmp.getUpdatedate()))) {
 				tmp.setDispdate("TODAY");
-			}else 
-			{
-			tmp.setDispdate(sdf.format(tmp.getUpdatedate()));
-			
+			} else {
+				tmp.setDispdate(sdf.format(tmp.getUpdatedate()));
+
 			}
-//			System.err.println(sdf.format(cal.getTime()));
+			// System.err.println(sdf.format(cal.getTime()));
 		}
-		
+
 		return board;
 	}
 
@@ -123,7 +121,7 @@ public class BoardServiceImpl implements BoardService {
 		board.setBoardnum(boardnum);
 		board.setBoardtitle(boardtitle);
 		board.setBoardcontent(boardcontent);
-		
+
 		boolean result = false;
 		int r = boardDao.boardupdate(board);
 		if (r > 0) {
@@ -138,6 +136,38 @@ public class BoardServiceImpl implements BoardService {
 	public void boarddelete(int boardnum) {
 
 		boardDao.boarddelete(boardnum);
+	}
+
+	@Override
+	public List<IceBoard> boardpage(int page) {
+		List<IceBoard> board = boardDao.boardpage(page);
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		// SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd : hh/mm/ss");
+		Calendar cal = Calendar.getInstance();
+		// cal.set(Calendar.HOUR_OF_DAY,cal.get(Calendar.HOUR_OF_DAY)-9);
+
+		String today = sdf.format(cal.getTime());
+
+		// System.err.println("today::::::::::"+today);
+
+		for (IceBoard tmp : board) {
+			// cal.setTime(tmp.getUpdatedate());
+			// cal.set(Calendar.HOUR_OF_DAY,cal.get(Calendar.HOUR_OF_DAY)-9);
+
+			// System.err.println(sdf2.format(tmp.getUpdatedate()));
+			// System.err.println(cal.getTime());
+			//
+			// cal.getTime();
+			if (today.equals((String) sdf.format(tmp.getUpdatedate()))) {
+				tmp.setDispdate("TODAY");
+			} else {
+				tmp.setDispdate(sdf.format(tmp.getUpdatedate()));
+
+			}
+			// System.err.println(sdf.format(cal.getTime()));
+		}
+
+		return board;
 	}
 
 }

@@ -18,4 +18,6 @@ public interface BoardService {
 	public boolean boardupdate (HttpServletRequest request ,int boardnum);
 	
 	public void boarddelete (int boardnum);
+	
+	public List<IceBoard> boardpage(int page);
 }
