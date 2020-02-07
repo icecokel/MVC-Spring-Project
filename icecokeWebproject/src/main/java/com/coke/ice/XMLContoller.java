@@ -86,7 +86,7 @@ public class XMLContoller {
 			NodeList contents = root.getElementsByTagName("description");
 			NodeList links = root.getElementsByTagName("link");
 			// title을 하나씩 가져와서 출력
-			for (int i = 0; i < 5; i++) {
+			for (int i = 0; i < 6; i++) {
 				Node nodet = titles.item(i);
 				Node nodetitle = nodet.getFirstChild();
 
@@ -98,30 +98,41 @@ public class XMLContoller {
 
 				hani = new XMLhani();
 				String titleori = nodetitle.toString();
-				String title = titleori.split("#text: ")[1].split("]")[0];
-
+				
+				int lio = titleori.lastIndexOf("]");
+				String title = titleori.substring(0, lio);
+				title = title.split("#text:")[1];
+			
 				String linkori = nodelink.toString();
 				String link = linkori.split("#text: ")[1].split("]")[0];
-
-				String content = nodecontent.toString();
-
 				
-				hani.setNum(i + 1);
+				
+				String contentori = nodecontent.toString();
+				hani.setNum(i);
 				hani.setTitle(title);
-				hani.setContent(content);
+				hani.setContent(contentori);
 				hani.setLink(link);
 				
 				hanilist.add(i, hani); 
-				
-				/*
-				 * System.out.println("link"+ link) ;
-				 * 
-				 * 
-				 * System.out.println(hanilist.toString());
-				 */
-				model.addAttribute("hanilist", hanilist);
-
 			}
+			
+			hanilist.remove(0);
+			
+			
+			for(int j =0 ; j < hanilist.size() ; j++) {
+				hani = new XMLhani();
+				hani = hanilist.get(j);
+				int contentfio = hani.getContent().lastIndexOf("</table>");
+				int contentlio = hani.getContent().lastIndexOf("]");
+				System.out.println(contentfio);
+				System.out.println(contentlio);
+						
+				String content = hani.getContent().substring(contentfio,contentlio);
+				
+				hani.setContent(content);
+				System.out.println(hani);
+			}
+			model.addAttribute("hanilist", hanilist);
 
 		} catch (Exception e) {
 			System.out.println("xml 파싱예외.");
