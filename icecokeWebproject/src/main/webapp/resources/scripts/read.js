@@ -15,12 +15,13 @@ $(document).ready(function() {
 });
 $('#boardcontent').summernote('disable');
 
-btnupdate.addEventListener("click", function(e) {
-	btnupdate.style.visibility = "hidden";
-	submitupdate.style.visibility = "visible";
-	$("#boardtitle").attr("readonly", false);
-	$('#boardcontent').summernote('enable');
-});
+//btnupdate.addEventListener("click", function(e) {
+////	btnupdate.style.visibility = "hidden";
+////	submitupdate.style.visibility = "visible";
+////	$("#boardtitle").attr("readonly", false);
+////	$('#boardcontent').summernote('enable');
+//
+//});
 
 btndelete.addEventListener("click", function(e) {
 	let result = confirm("정말 삭제 하시겠습니까?");

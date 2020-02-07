@@ -44,10 +44,10 @@ public class BoardController {
 		if(page != 1) {
 			firstpage = (page -1) *pageshow + 1;
 		}
-		
-		System.out.println("보드컨트롤ㄹ러 :::::::" +firstpage);
-		System.out.println("보드컨트롤ㄹ러 :::::::" +lastboard);
-		
+//		
+//		System.out.println("보드컨트롤ㄹ러 :::::::" +firstpage);
+//		System.out.println("보드컨트롤ㄹ러 :::::::" +lastboard);
+//		
 		List<IceBoard> board = boardori.subList(firstpage, lastboard);
 		
 		if((boardori.size()%pageshow==0)) {
@@ -96,9 +96,25 @@ public class BoardController {
 		return "/board/read";
 	}
 	
-	@RequestMapping (value="/read/{boardnum}" , method=RequestMethod.POST)
-	public String boardupdate (Model model , HttpServletRequest request , @PathVariable("boardnum") int boardnum) {
-		// 업데이트.
+	@RequestMapping (value="/board/delete/{boardnum}", method=RequestMethod.GET)
+	public String boarddelete (Model model,@PathVariable("boardnum") int boardnum) {
+		
+		boardService.boarddelete(boardnum);
+		
+		return "redirect:/board/list";
+	}
+
+	@RequestMapping (value="/update/{boardnum}" , method=RequestMethod.GET)
+	public String boardupdate (Model model ,@PathVariable("boardnum") int boardnum){
+		model.addAttribute("board",boardService.boardread(boardnum));
+		
+		return "/board/update";
+	}
+	
+	@RequestMapping (value="/update/{boardnum}", method=RequestMethod.POST)
+	public String boardupdate (Model model , HttpServletRequest request , @PathVariable("boardnum") int boardnum){
+		System.out.println("보트 업데이트 컨트롤라ㅓ ::"   + boardnum);
+		
 		boolean result = boardService.boardupdate(request ,boardnum);
 		
 		if (result == true) {
@@ -111,16 +127,6 @@ public class BoardController {
 			return "redirect:/board/list";
 		
 		}
-		
 	}
-	
-	@RequestMapping (value="/board/delete/{boardnum}", method=RequestMethod.GET)
-	public String boarddelete (Model model,@PathVariable("boardnum") int boardnum) {
-		
-		boardService.boarddelete(boardnum);
-		
-		return "redirect:/board/list";
-	}
-
 	
 }
