@@ -1,27 +1,12 @@
 
-let btnupdate = document.getElementById("btnupdate");
-let submitupdate = document.getElementById("submitupdate");
-let boardtitle = document.getElementById("boardtitle");
-
 let btndelete = document.getElementById("btndelete");
 let boardnum = document.getElementById("boardnum");
 
+let btnList = document.getElementById("btnList");
 
-$(document).ready(function() {
-	$('#boardcontent').summernote({
-		focus : true,
-		lang : 'ko-KR'
-	});
+btnList.addEventListener("click", function(e) {
+	location.href = "/board/list";
 });
-$('#boardcontent').summernote('disable');
-
-//btnupdate.addEventListener("click", function(e) {
-////	btnupdate.style.visibility = "hidden";
-////	submitupdate.style.visibility = "visible";
-////	$("#boardtitle").attr("readonly", false);
-////	$('#boardcontent').summernote('enable');
-//
-//});
 
 btndelete.addEventListener("click", function(e) {
 	let result = confirm("정말 삭제 하시겠습니까?");
@@ -33,8 +18,3 @@ btndelete.addEventListener("click", function(e) {
 
 });
 
-let btnList = document.getElementById("btnList");
-
-btnList.addEventListener("click", function(e) {
-	location.href = "/board/list";
-});
