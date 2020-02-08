@@ -18,3 +18,11 @@ btndelete.addEventListener("click", function(e) {
 
 });
 
+let btncomment =document.getElementById("btncomment");
+let comment =document.getElementById("comment");
+
+btncomment.addEventListener("click", function(e){
+	
+	
+	
+});

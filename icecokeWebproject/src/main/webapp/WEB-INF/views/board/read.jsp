@@ -3,12 +3,12 @@
 <%@ include file="../include/header.jsp"%>
 
 <style>
- #commentdiv{
- 	font-size:12px;
- }
+#commentdiv {
+	font-size: 12px;
+}
 </style>
 <section>
-	<form method="post" id="readupdate">
+	
 		<div class="container" role="main">
 			<input type="text" id="boardnum" value="${boardread.boardnum}"
 				style="visibility: hidden" />
@@ -48,16 +48,41 @@
 						id="btndelete" class="btn btn-sm btn-success" />
 				</c:if>
 			</div>
-			<b>댓글()</b>
+			<br/> 
+
 			<div>
-				<div id="commentdiv">
-					작성자  &nbsp;&nbsp;작성시간<br/>
-					 &nbsp;&nbsp;comment<br/>
-					답글 &nbsp; 수정 &nbsp; 삭제
-				</div>
+				<table id="commentdiv">
+					<thead>
+						<tr>
+							<th colspan="3" width="900px"><b>댓글(전체 댓글 숫자)</b></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr><td><br/></td></tr>
+						<tr>
+							<td width="2%"> </td>
+							<td width="96%"><textarea rows="2" cols="150" id="comment"></textarea></td>
+							<td width="2%" align="right"><input type="button" value="댓글달기" id="btncomment" /></td>
+						
+						</tr>
+						<tr>
+							<td><br/></td>
+						</tr>
+					</tbody>
+					
+					<tfoot>
+						<tr>
+							<td ></td>
+							<td >작성자 &nbsp;&nbsp;<br />
+								<p>&nbsp;&nbsp;comment 답글 &nbsp; 수정 &nbsp; 삭제</p> 
+							</td>
+							<td width="3%" align="right">작성시간</td>
+						</tr>
+					</tfoot>
+				</table>
 			</div>
 		</div>
-	</form>
+	
 </section>
 
 <%@ include file="../include/footer.jsp"%>
