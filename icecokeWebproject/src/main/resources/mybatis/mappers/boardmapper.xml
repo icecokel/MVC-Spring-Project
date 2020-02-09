@@ -33,12 +33,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<select id="boardpage" resultType="IceBoard" parameterType="java.lang.Integer">
 
-		select R1.* FROM(
-		SELECT * FROM board
+		SELECT boardnum , boardtitle,boardreadcnt, nickname ,updatedate
+		from board, members
+		WHERE board.email = members.email
 		order by updatedate desc
-		) R1
 		LIMIT 10 OFFSET #{page}
-
 
 	</select>
 
@@ -77,6 +76,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		from comment 
 		where boardnum = #{boardnum}
 		order by commentnum desc
+	</select>
+	
+	<select id="commentcnt" resultType="java.lang.Integer" parameterType="java.lang.Integer">
+		SELECT COUNT(commentnum) FROM comment where boardnum = #{boardnum};
 	</select>
 </mapper>
 

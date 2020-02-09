@@ -14,6 +14,7 @@ import org.springframework.ui.Model;
 
 import com.coke.ice.dao.BoardDAO;
 import com.coke.ice.domain.IceBoard;
+import com.coke.ice.domain.IceComment;
 import com.coke.ice.domain.IceUser;
 
 @Service
@@ -168,6 +169,25 @@ public class BoardServiceImpl implements BoardService {
 		}
 
 		return board;
+	}
+
+	@Override
+	public List<IceComment> commentlist(int boardnum) {
+		List<IceComment> clist = boardDao.commentlist(boardnum);
+		
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd hh:mm:ss");
+		for(IceComment tmp : clist) {
+			tmp.setDispdate(sdf.format(tmp.getCommenttime()));
+			
+		}
+		
+		return clist;
+	}
+
+	@Override
+	public int commentcnt(int boardnum) {
+		int commentcnt = boardDao.commentcnt(boardnum);
+		return commentcnt;
 	}
 
 }

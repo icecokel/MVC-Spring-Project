@@ -50,7 +50,11 @@ public class BoardDAO {
 	}
 	
 	public List<IceComment> commentlist (int boardnum){
-		
+		 
 		return sqlSession.selectList("boardmapper.commentlist", boardnum);
+	}
+	
+	public Integer commentcnt (int boardnum) {
+		return sqlSession.selectOne("boardmapper.commentcnt", boardnum);
 	}
 }

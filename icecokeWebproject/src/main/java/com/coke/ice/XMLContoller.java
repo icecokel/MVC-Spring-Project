@@ -122,16 +122,31 @@ public class XMLContoller {
 			for(int j =0 ; j < hanilist.size() ; j++) {
 				hani = new XMLhani();
 				hani = hanilist.get(j);
-				int contentfio = hani.getContent().lastIndexOf("</table>");
+				int contentfio = 1;
+				if(hani.getContent().lastIndexOf("</table>") >1) {
+					contentfio =hani.getContent().lastIndexOf("</table>");
+				}
 				int contentlio = hani.getContent().lastIndexOf("]");
+
+				System.out.println(contentfio);
+				System.out.println(contentlio);
+				
 				String content = hani.getContent().substring(contentfio,contentlio);
 				
+
 				
 				// 이미지 경로만 잘라내기.
 				int imgfio = hani.getContent().lastIndexOf("http:");
 				int imglio = hani.getContent().lastIndexOf("' border=0>");
 				
-				String img = hani.getContent().substring(imgfio,imglio);
+				System.out.println(imgfio);
+				System.out.println(imglio);
+				
+				String img = "";
+				if(imgfio*imglio != 1) {
+					img = hani.getContent().substring(imgfio,imglio);
+				}
+				
 //				System.out.println(img);
 				
 				hani.setImg(img);

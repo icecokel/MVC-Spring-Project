@@ -54,7 +54,7 @@
 				<table id="commentdiv">
 					<thead>
 						<tr>
-							<th colspan="3" width="900px"><b>댓글(전체 댓글 숫자)</b></th>
+							<th colspan="3" width="900px"><b>댓글 (${commentcnt })</b></th>
 						</tr>
 					</thead>
 					<tbody>
@@ -71,13 +71,16 @@
 					</tbody>
 					
 					<tfoot>
+						<c:forEach var="comments" items="${comments }">
 						<tr>
 							<td ></td>
-							<td >작성자 &nbsp;&nbsp;<br />
-								<p>&nbsp;&nbsp;comment 답글 &nbsp; 수정 &nbsp; 삭제</p> 
+							<td ><b>${comments.email } &nbsp;&nbsp;</b><br />
+								<p>&nbsp;&nbsp;${comments.commentcontent } </p>
+								<p> 답글 &nbsp; 수정 &nbsp; 삭제</p>
 							</td>
-							<td width="3%" align="right">작성시간</td>
+							<td width="3%" align="right">${comments.dispdate }</td>
 						</tr>
+						</c:forEach>
 					</tfoot>
 				</table>
 			</div>

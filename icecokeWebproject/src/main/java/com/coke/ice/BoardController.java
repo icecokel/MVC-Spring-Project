@@ -74,6 +74,8 @@ public class BoardController {
 	public String boardread(Model model , @PathVariable("boardnum") int boardnum) {
 	
 		model.addAttribute("boardread",boardService.boardread(boardnum));
+		model.addAttribute("comments", boardService.commentlist(boardnum));
+		model.addAttribute("commentcnt", boardService.commentcnt(boardnum));
 		
 //		System.err.println("보드 컨트롤러 테스트 :::"+boardService.boardread(boardnum));
 		return "/board/read";

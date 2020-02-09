@@ -16,7 +16,7 @@ public class IceComment {
 	
 	
 	private String dispdate;
-	
+	private String nickname;
 	
 }
 
