@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.coke.ice.domain.IceBoard;
+import com.coke.ice.domain.IceComment;
 
 
 @Repository
@@ -46,5 +47,10 @@ public class BoardDAO {
 	public void boarddelete(int boardnum) {
 		
 		sqlSession.delete("boardmapper.boarddelete", boardnum);
+	}
+	
+	public List<IceComment> commentlist (int boardnum){
+		
+		return sqlSession.selectList("boardmapper.commentlist", boardnum);
 	}
 }

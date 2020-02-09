@@ -20,4 +20,6 @@ public interface BoardService {
 	public void boarddelete (int boardnum);
 	
 	public List<IceBoard> boardpage(int page);
+	
+	public List,
 }

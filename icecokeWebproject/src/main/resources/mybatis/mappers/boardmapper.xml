@@ -71,5 +71,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		delete from board
 		where boardnum =#{boardnum};
 	</delete>
+	
+	<select id="commentlist" parameterType="java.lang.Integer" resultType="IceComment">
+		select * 
+		from comment 
+		where boardnum = #{boardnum}
+		order by commentnum desc
+	</select>
 </mapper>
 
