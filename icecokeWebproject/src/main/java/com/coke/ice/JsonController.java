@@ -7,6 +7,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -60,12 +61,14 @@ public class JsonController {
 		
 	}
 
-	@RequestMapping (value="commentlist" ,method=RequestMethod.GET)
-	public List<IceComment> commentlist (HttpServletRequest request){
+	@RequestMapping (value="/commentlist" ,method=RequestMethod.GET)
+	public List<IceComment> commentlist (Model model,HttpServletRequest request){
 		
-		int boardnum = Integer.parseInt(request.getParameter("baordnum"));
+		int boardnum = Integer.parseInt(request.getParameter("boardnum"));
 		
 		List<IceComment> comments = boardService.commentlist(boardnum);
+		
+		model.addAttribute("commentcnt", boardService.commentcnt(boardnum));
 		
 		return comments;
 	}

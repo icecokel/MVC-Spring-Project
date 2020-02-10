@@ -72,9 +72,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</delete>
 	
 	<select id="commentlist" parameterType="java.lang.Integer" resultType="IceComment">
-		select * 
-		from comment 
-		where boardnum = #{boardnum}
+		select commentcontent ,commenttime,commentlevel,targetemail,nickname
+		from comment ,members
+		where comment.email = members.email and boardnum = #{boardnum}
 		order by commentnum desc
 	</select>
 	

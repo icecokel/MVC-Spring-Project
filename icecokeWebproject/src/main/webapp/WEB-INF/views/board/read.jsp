@@ -6,6 +6,11 @@
 #commentdiv {
 	font-size: 12px;
 }
+#dispdate{
+}
+#commentcontent{ display: inline;
+width : 90%;
+}
 </style>
 <section>
 	
@@ -48,7 +53,13 @@
 				</c:if>
 			</div>
 			<br/> 
-
+			<div><b>댓글(${commentcnt})</b></div>
+			<c:if test="${user != null}">
+			<div>
+				<input type="text" class="form-control"id ="commentcontent"/>
+				<input type="button" value="댓글입력" class="btn btn-sm btn-primary"/> 
+			</div>
+			</c:if>
 			<div>
 				<div id="commentlist"> </div>
 				
