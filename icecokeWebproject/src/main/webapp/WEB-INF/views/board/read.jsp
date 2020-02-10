@@ -10,8 +10,7 @@
 <section>
 	
 		<div class="container" role="main">
-			<input type="text" id="boardnum" name ="boardnum" value="${boardread.boardnum}"
-				style="display:none;" />
+
 			<h3>글 상세보기</h3>
 			<p>${msg }</p>
 
@@ -52,11 +51,16 @@
 
 			<div>
 				<div id="commentlist"> </div>
+				
  			</div>
  			
 		</div>
 	
 </section>
+
+<script>
+ var boardnum = ${boardread.boardnum};
+</script>
 
 <%@ include file="../include/footer.jsp"%>
 <script src="/resources/scripts/read.js"></script>
