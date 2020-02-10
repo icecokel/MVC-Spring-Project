@@ -25,8 +25,6 @@ public interface BoardService {
 	public List<IceComment> commentlist (int boardnum);
 	
 	public int commentcnt (int boardnum);
-	
-	public int commentwrite (HttpServletRequest request, int boardnum);
-	
+
 	
 }

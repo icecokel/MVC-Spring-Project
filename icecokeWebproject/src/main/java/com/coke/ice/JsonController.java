@@ -1,16 +1,17 @@
 package com.coke.ice;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.coke.ice.domain.IceComment;
 import com.coke.ice.service.BoardService;
 import com.coke.ice.service.UserService;
 
@@ -59,28 +60,15 @@ public class JsonController {
 		
 	}
 
-	
-	@RequestMapping (value="commentwrite" , method=RequestMethod.POST)
-	public Map<String , Object> commentwrite (HttpServletRequest request) {
-		System.out.println("컨트롤러 접근");
-		String boardnum = request.getParameter("boardnum");
-		int r =boardService.commentwrite(request, Integer.parseInt(boardnum));
-
-		boolean result = false;
-		if (r >= 1) {
-			result = true;
-		}
-		Map<String ,Object> map = new HashMap<String, Object>();
+	@RequestMapping (value="commentlist" ,method=RequestMethod.GET)
+	public List<IceComment> commentlist (HttpServletRequest request){
 		
-		map.put("result",result +"");
+		int boardnum = Integer.parseInt(request.getParameter("baordnum"));
 		
-		return map;
+		List<IceComment> comments = boardService.commentlist(boardnum);
 		
-		
-		
+		return comments;
 	}
-
-	
 
 	
 }

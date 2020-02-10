@@ -51,8 +51,9 @@
 			<br/> 
 
 			<div>
-				
-			</div>
+				<div id="commentlist"> </div>
+ 			</div>
+ 			
 		</div>
 	
 </section>
