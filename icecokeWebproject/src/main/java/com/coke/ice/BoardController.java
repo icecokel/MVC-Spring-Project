@@ -30,6 +30,7 @@ public class BoardController {
 		}
 		List<IceBoard> boardori = boardService.boardlist();
 		List<IceBoard> board = boardService.boardpage(page);
+		
 		int boardcnt = 0;
 		int boardsize = boardori.size();
 		
@@ -113,5 +114,13 @@ public class BoardController {
 		
 		}
 	}
-	
+
+	@RequestMapping (value="board/delete" , method=RequestMethod.POST)
+	public String boarddelete (HttpServletRequest request) {
+		int boardnum = Integer.parseInt(request.getParameter("boardnum"));
+		
+		boardService.boarddelete(boardnum);
+		
+		return "";
+	}
 }

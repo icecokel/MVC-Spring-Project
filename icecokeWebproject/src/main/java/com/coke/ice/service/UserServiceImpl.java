@@ -216,6 +216,7 @@ public class UserServiceImpl implements UserService {
 		
 		String path = request.getServletContext().getRealPath("/userimage");
 
+		
 		if (fileori.length() > 0) {
 			if ("default.png".equals(fileori)) {
 				filename = "default.png";
@@ -228,6 +229,8 @@ public class UserServiceImpl implements UserService {
 					System.out.println(e.getMessage());
 				}
 			}
+		}else {
+			filename = "default.png";
 		}
 
 		IceUser user = new IceUser();

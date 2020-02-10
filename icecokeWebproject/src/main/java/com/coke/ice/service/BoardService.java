@@ -26,5 +26,7 @@ public interface BoardService {
 	
 	public int commentcnt (int boardnum);
 	
+	public int commentwrite (HttpServletRequest request, int boardnum);
+	
 	
 }

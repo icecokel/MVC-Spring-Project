@@ -54,19 +54,19 @@ var method = {
 }
 
 
-//이미지 파일의 선택이 변경되면 호출
+// 이미지 파일의 선택이 변경되면 호출
 document.getElementById("image").addEventListener("change", function(e) {
-	//선택한 파일이 있다면
-	//이벤트 처리할 때는 this가 이벤트가 발생한 객체입니다.
-	//자바스크립트에서는 	null이 아니면 true로 간주합니다.	
+	// 선택한 파일이 있다면
+	// 이벤트 처리할 때는 this가 이벤트가 발생한 객체입니다.
+	// 자바스크립트에서는 null이 아니면 true로 간주합니다.
 	if (this.files && this.files[0]) {
-		//파일의 내용 읽기
+		// 파일의 내용 읽기
 		var reader = new FileReader();
-		//console.log(reader)
+		// console.log(reader)
 
-		//파일을 읽는 동작은 비동기적으로 동작
+		// 파일을 읽는 동작은 비동기적으로 동작
 		reader.readAsDataURL(this.files[0]);
-		//파일을 읽는 동작이 끝나면 img 태그에 출력하도록 설정
+		// 파일을 읽는 동작이 끝나면 img 태그에 출력하도록 설정
 		reader.addEventListener("load", function(e) {
 			document.getElementById("img").src = e.target.result;
 		});
@@ -141,6 +141,7 @@ pw.addEventListener(
 					if (passRule.test(pwVlaue)) {
 						pwdisp.innerHTML = '&nbsp;&nbsp; 비밀번호 강도 강함!';
 						pwdisp.style.color = 'green';
+					
 					} else {
 						pwdisp.innerHTML = '&nbsp;&nbsp; 비밀번호 강도 약함!';
 						pwdisp.style.color = 'red';

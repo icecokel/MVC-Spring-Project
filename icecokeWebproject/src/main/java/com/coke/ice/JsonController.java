@@ -6,6 +6,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -57,13 +58,25 @@ public class JsonController {
 		return map;
 		
 	}
-	@RequestMapping (value="board/delete" , method=RequestMethod.POST)
-	public String boarddelete (HttpServletRequest request) {
-		int boardnum = Integer.parseInt(request.getParameter("boardnum"));
+
+	
+	@RequestMapping (value="/commentwrite" , method=RequestMethod.POST)
+	public Map<String , Object> commentwrite (HttpServletRequest request) {
+		int boardnum = Integer.parseInt(request.getParameter("baordnum"));
+		int r =boardService.commentwrite(request, boardnum);
+
+		boolean result = false;
+		if (r >= 1) {
+			result = true;
+		}
+		Map<String ,Object> map = new HashMap<String, Object>();
 		
-		boardService.boarddelete(boardnum);
+		map.put("result",result +"");
 		
-		return "";
+		return map;
+		
+		
+		
 	}
 
 	

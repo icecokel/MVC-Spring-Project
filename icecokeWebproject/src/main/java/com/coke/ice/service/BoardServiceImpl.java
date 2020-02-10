@@ -190,4 +190,29 @@ public class BoardServiceImpl implements BoardService {
 		return commentcnt;
 	}
 
+	@Override
+	public int commentwrite(HttpServletRequest request, int boardnum) {
+		int result = 0;
+		
+		IceUser user = (IceUser)request.getAttribute("user");
+		
+		String email = user.getEmail();
+		
+		String commentcontent = request.getParameter("comment");
+		int commentlevel = 1;
+		
+		String targetemail = "";
+		
+		IceComment comment = new IceComment();
+		comment.setEmail(email);
+		comment.setBoardnum(boardnum);
+		comment.setCommentlevel(commentlevel);
+		comment.setTargetemail(targetemail);
+		comment.setCommentcontent(commentcontent);
+		
+		result = boardDao.commentwrite(comment);
+		
+		return result;
+	}
+
 }

@@ -57,4 +57,8 @@ public class BoardDAO {
 	public Integer commentcnt (int boardnum) {
 		return sqlSession.selectOne("boardmapper.commentcnt", boardnum);
 	}
+	
+	public int commentwrite (IceComment icecomment) {
+		return sqlSession.insert("boardmapper.commentwrite", icecomment);
+	}
 }

@@ -10,8 +10,8 @@
 <section>
 	
 		<div class="container" role="main">
-			<input type="text" id="boardnum" value="${boardread.boardnum}"
-				style="visibility: hidden" />
+			<input type="text" id="boardnum" name ="boardnum" value="${boardread.boardnum}"
+				style="display:none;" />
 			<h3>글 상세보기</h3>
 			<p>${msg }</p>
 
@@ -61,8 +61,9 @@
 						<tr><td><br/></td></tr>
 						<tr>
 							<td width="2%"> </td>
-							<td width="96%"><textarea rows="2" cols="150" id="comment"></textarea></td>
-							<td width="2%" align="right"><input type="button" value="댓글달기" id="btncomment" /></td>
+							<td width="96%"><textarea rows="2" cols="150" id="comment" name="comment"></textarea></td>
+							<td width="2%" align="right">
+							<input type="button" value="댓글달기" id="btncomment" /></td>
 						
 						</tr>
 						<tr>

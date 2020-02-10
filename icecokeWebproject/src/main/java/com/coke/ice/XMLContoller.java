@@ -128,8 +128,8 @@ public class XMLContoller {
 				}
 				int contentlio = hani.getContent().lastIndexOf("]");
 
-				System.out.println(contentfio);
-				System.out.println(contentlio);
+//				System.out.println(contentfio);
+//				System.out.println(contentlio);
 				
 				String content = hani.getContent().substring(contentfio,contentlio);
 				
@@ -139,8 +139,8 @@ public class XMLContoller {
 				int imgfio = hani.getContent().lastIndexOf("http:");
 				int imglio = hani.getContent().lastIndexOf("' border=0>");
 				
-				System.out.println(imgfio);
-				System.out.println(imglio);
+//				System.out.println(imgfio);
+//				System.out.println(imglio);
 				
 				String img = "";
 				if(imgfio*imglio != 1) {
