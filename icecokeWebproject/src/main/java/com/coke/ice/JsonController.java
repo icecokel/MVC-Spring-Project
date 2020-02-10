@@ -60,10 +60,11 @@ public class JsonController {
 	}
 
 	
-	@RequestMapping (value="/commentwrite" , method=RequestMethod.POST)
+	@RequestMapping (value="commentwrite" , method=RequestMethod.POST)
 	public Map<String , Object> commentwrite (HttpServletRequest request) {
-		int boardnum = Integer.parseInt(request.getParameter("baordnum"));
-		int r =boardService.commentwrite(request, boardnum);
+		System.out.println("컨트롤러 접근");
+		String boardnum = request.getParameter("boardnum");
+		int r =boardService.commentwrite(request, Integer.parseInt(boardnum));
 
 		boolean result = false;
 		if (r >= 1) {

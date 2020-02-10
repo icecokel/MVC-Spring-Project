@@ -51,39 +51,7 @@
 			<br/> 
 
 			<div>
-				<table id="commentdiv">
-					<thead>
-						<tr>
-							<th colspan="3" width="900px"><b>댓글 (${commentcnt })</b></th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr><td><br/></td></tr>
-						<tr>
-							<td width="2%"> </td>
-							<td width="96%"><textarea rows="2" cols="150" id="comment" name="comment"></textarea></td>
-							<td width="2%" align="right">
-							<input type="button" value="댓글달기" id="btncomment" /></td>
-						
-						</tr>
-						<tr>
-							<td><br/></td>
-						</tr>
-					</tbody>
-					
-					<tfoot>
-						<c:forEach var="comments" items="${comments }">
-						<tr>
-							<td ></td>
-							<td ><b>${comments.email } &nbsp;&nbsp;</b><br />
-								<p>&nbsp;&nbsp;${comments.commentcontent } </p>
-								<p> 답글 &nbsp; 수정 &nbsp; 삭제</p>
-							</td>
-							<td width="3%" align="right">${comments.dispdate }</td>
-						</tr>
-						</c:forEach>
-					</tfoot>
-				</table>
+				
 			</div>
 		</div>
 	
