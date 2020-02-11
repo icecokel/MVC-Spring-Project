@@ -99,7 +99,7 @@ public class JsonController {
 		Map<String, Object> map = new HashMap<String, Object>();
 		int commentnum = Integer.parseInt(request.getParameter("comnum"));
 
-		boolean cmc = boardService.commentdelcheck(request, commentnum);
+		boolean cmc = boardService.commentusercheck(request);
 
 		if (cmc) {
 			boolean r = boardService.commentdel(commentnum);
@@ -111,6 +111,23 @@ public class JsonController {
 
 		System.out.println(map);
 		return map;
+	}
+	
+	@RequestMapping (value="/commentupdate", method = RequestMethod.POST)
+	public Map<String , Object> commentupdate (HttpServletRequest request){
+		
+		Map<String , Object> map = new HashMap<String ,Object>();
+		boolean cmc = boardService.commentusercheck(request);
+		
+		if(cmc) {
+			boolean r = boardService.commentupdate(request);
+			map.put("result", r+"");
+		}else {
+			map.put("result", "email");
+		}
+		System.out.println(map);
+		return map;
+		
 	}
 
 }

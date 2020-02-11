@@ -30,5 +30,7 @@ public interface BoardService {
 	
 	public boolean commentdel(int commentnum);
 
-	public boolean commentdelcheck(HttpServletRequest request,int commentnum);
+	public boolean commentusercheck(HttpServletRequest request);
+	
+	public boolean commentupdate(HttpServletRequest request);
 }

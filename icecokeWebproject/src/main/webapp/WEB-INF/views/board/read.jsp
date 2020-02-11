@@ -11,7 +11,7 @@
 #commentcontent,#comment{ display: inline;
 width : 90%;
 }
-#comcontent {
+.comcontent {
 	font-size : 14px;
 	
 }

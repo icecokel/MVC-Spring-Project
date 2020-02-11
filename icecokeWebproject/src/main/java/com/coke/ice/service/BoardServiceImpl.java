@@ -228,9 +228,10 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public boolean commentdelcheck(HttpServletRequest request, int commentnum) {
+	public boolean commentusercheck(HttpServletRequest request) {
 		boolean result = false;
-
+		int commentnum = Integer.parseInt(request.getParameter("comnum"));
+		
 		IceComment r = boardDao.commentdelcheck(commentnum);
 		String email ="";
 		IceUser user = (IceUser) request.getSession().getAttribute("user");
@@ -241,6 +242,25 @@ public class BoardServiceImpl implements BoardService {
 			}
 		}
 
+		return result;
+	}
+
+	@Override
+	public boolean commentupdate(HttpServletRequest request) {
+		boolean result = false;
+		
+		IceComment icecomment = new IceComment();
+		
+		String commentcontent = request.getParameter("comment");
+		int commentnum = Integer.parseInt(request.getParameter("comnum"));
+		icecomment.setCommentnum(commentnum);
+		icecomment.setCommentcontent(commentcontent);
+		int r =boardDao.commentupdate(icecomment);
+		if(r >=1) {
+			result= true;
+		}
+		
+		
 		return result;
 	}
 

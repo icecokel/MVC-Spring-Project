@@ -94,5 +94,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id ="comentdelcheck" parameterType="java.lang.Integer" resultType="IceComment">
 		select email from comment where commentnum = #{commentnum}
 	</select>
+	
+	<update id ="commentupdate" parameterType="IceComment">
+		update comment
+		set
+		commentcontent = #{commentcontent}
+		where commentnum = #{commentnum}
+	
+	</update>
 </mapper>
 
