@@ -39,9 +39,13 @@ function commentlistload(){
 				
 				json.forEach(function(data){
 					htmls+="<div id='commentdiv'>";
-					htmls+="<b>"+data.nickname+"</b>"+""+"<br/>";
-					htmls+="<p>"+data.commentcontent+"     "+data.dispdate+"</p>";
-					htmls+="답장 "+"수정 "+"삭제  "; 
+					htmls+="<b>"+data.nickname+"</b>"+"&nbsp;&nbsp;"+data.dispdate +"<br/>";
+					htmls+="<p id='comcontent'>"+"&nbsp;&nbsp;"+data.commentcontent+"</p>"+"<br/>";
+					htmls+="답장 "; 
+					htmls+="<a href='#'><span onclick='commentupdate("+data.commentnum+")'>수정 </span></a>"; 
+					htmls+="<a href='#'><span onclick='commentdel("+data.commentnum+")'>삭제 </span></a>"; 
+					htmls+="</div>";
+					htmls+="<div id='comupddiv"+data.commentnum+"'>";
 					htmls+="</div>";
 					htmls+="<br/>";
 				});
@@ -51,6 +55,41 @@ function commentlistload(){
 			}
 		}
 	}
+}
+function commentdel(comnum){
+	let comdel = confirm("댓글을 삭제 할까요?");
+	
+	if(comdel == true){
+		$.ajax({
+			url : '/commentdel',
+			dataType : 'json',
+			type : 'POST',
+			data : {"comnum" : comnum },
+			success : function(data){
+				if(data.result === 'true'){
+					alert("댓글이 삭제 되었습니다.");
+					commentlistload();
+					commentcnt();
+				}else if(data.result == "email"){
+					alert("댓글은 작성자만 삭제 할 수 있습니다.");
+				}else{
+					alert("댓글 삭제를 실패 했습니다. 다시 시도 부탁드립니다.");
+				}
+			},
+			error : function(){
+				alert("서버와의 통신이 원활하지 않습니다.")
+			}
+			
+		})
+	}
+}
+function commentupdate(commnum){
+	let divid =document.getElementById("comupddiv"+commnum);
+	let htmls ="<input type='text' name='comment' class='form-control'id ='comment'/>" +
+			"<input type='button' value ='수정완료' class='btn btn-sm btn-primary'/>";
+	
+	divid.innerHTML = htmls;
+	
 }
 
 function commentcnt (){
@@ -67,8 +106,6 @@ function commentcnt (){
 	})
 	
 }
-
-
 
 
 $(document).ready(function(){
@@ -100,11 +137,8 @@ btncommentwrite.addEventListener("click", function(e){
 			commentlistload();
 			commentcnt();
 			}
-			
 		}
-		
 	})
-	
 });
 }
 

@@ -1,10 +1,18 @@
 $(document).ready(function() {
 	$('#boardcontent').summernote({
-		
+		  toolbar: [
+			    ['style', ['bold', 'italic', 'underline', 'clear']],
+			    ['font', ['strikethrough', 'superscript', 'subscript']],
+			    ['fontsize', ['fontsize']],
+			    ['color', ['color']],
+			    ['para', ['ul', 'ol', 'paragraph']],
+			    ['height', ['height']]
+			  ],
 		placeholder : 'content',
 		minHeight : 370,
 		maxHeight : null,
 		focus : true,
+		disableDragAndDrop: true,
 		lang : 'ko-KR'
 	});
 });

@@ -61,4 +61,12 @@ public class BoardDAO {
 	public int commentwrite (IceComment icecomment) {
 		return sqlSession.insert("boardmapper.commentwrite", icecomment);
 	}
+	
+	public IceComment commentdelcheck(int commentnum) {
+		return sqlSession.selectOne("boardmapper.comentdelcheck", commentnum);
+	}
+	
+	public int commentdel (int commentnum) {
+		return sqlSession.delete("boardmapper.commentdel", commentnum);
+	}
 }

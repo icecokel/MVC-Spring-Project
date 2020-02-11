@@ -8,8 +8,12 @@
 }
 #dispdate{
 }
-#commentcontent{ display: inline;
+#commentcontent,#comment{ display: inline;
 width : 90%;
+}
+#comcontent {
+	font-size : 14px;
+	
 }
 </style>
 <section>

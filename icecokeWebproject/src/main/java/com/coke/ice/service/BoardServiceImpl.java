@@ -174,13 +174,13 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public List<IceComment> commentlist(int boardnum) {
 		List<IceComment> clist = boardDao.commentlist(boardnum);
-		
+
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd hh:mm:ss");
-		for(IceComment tmp : clist) {
+		for (IceComment tmp : clist) {
 			tmp.setDispdate(sdf.format(tmp.getCommenttime()));
-			
+
 		}
-		
+
 		return clist;
 	}
 
@@ -191,11 +191,11 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public boolean commentwrite(HttpServletRequest request,int boardnum) {
+	public boolean commentwrite(HttpServletRequest request, int boardnum) {
 		boolean result = false;
 		IceComment icecomment = new IceComment();
-		
-		IceUser user = (IceUser)request.getSession().getAttribute("user");
+
+		IceUser user = (IceUser) request.getSession().getAttribute("user");
 		String commentcontent = request.getParameter("commentcontent");
 		int commentlevel = 1;
 		String targetemail = null;
@@ -204,16 +204,44 @@ public class BoardServiceImpl implements BoardService {
 		icecomment.setCommentlevel(commentlevel);
 		icecomment.setBoardnum(boardnum);
 		icecomment.setTargetemail(targetemail);
-		
+
 		int r = boardDao.commentwrite(icecomment);
-		
-		if(r >=1 ) {
+
+		if (r >= 1) {
 			result = true;
 		}
-		
+
 		return result;
 	}
 
+	@Override
+	public boolean commentdel(int commentnum) {
+		boolean result = false;
 
+		int r = boardDao.commentdel(commentnum);
+		if (r >= 1) {
+			result = true;
+
+		}
+
+		return result;
+	}
+
+	@Override
+	public boolean commentdelcheck(HttpServletRequest request, int commentnum) {
+		boolean result = false;
+
+		IceComment r = boardDao.commentdelcheck(commentnum);
+		String email ="";
+		IceUser user = (IceUser) request.getSession().getAttribute("user");
+		if (user != null) {
+			email = user.getEmail();
+			if (r.getEmail().equals(email)) {
+				result = true;
+			}
+		}
+
+		return result;
+	}
 
 }

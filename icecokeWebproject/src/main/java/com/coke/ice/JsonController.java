@@ -24,11 +24,11 @@ public class JsonController {
 
 	@Autowired
 	private BoardService boardService;
-	
+
 	// 이메일 중복검사를 위한 메소드
 	@RequestMapping(value = "user/emailcheck", method = RequestMethod.GET)
 	public Map<String, Object> checkemail(HttpServletRequest request) {
-		
+
 		boolean result = userService.checkemail(request);
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("result", result + "");
@@ -45,54 +45,72 @@ public class JsonController {
 		boolean result = userService.checknickname(request);
 		Map<String, Object> map = new HashMap<String, Object>();
 //		System.err.println(result);
-		
+
 		map.put("result", result + "");
 		return map;
 
 	}
-	@RequestMapping (value="user/verification" , method=RequestMethod.POST)
-	public Map<String , Object> userverification (HttpServletRequest request){
+
+	@RequestMapping(value = "user/verification", method = RequestMethod.POST)
+	public Map<String, Object> userverification(HttpServletRequest request) {
 		boolean result = userService.userverification(request);
-		
+
 		Map<String, Object> map = new HashMap<String, Object>();
-		
-		map.put("result", result +"" );
+
+		map.put("result", result + "");
 		return map;
-		
+
 	}
 
-	@RequestMapping (value="/commentlist" ,method=RequestMethod.GET)
-	public List<IceComment> commentlist (Model model,HttpServletRequest request){
-				
-		
+	@RequestMapping(value = "/commentlist", method = RequestMethod.GET)
+	public List<IceComment> commentlist(Model model, HttpServletRequest request) {
+
 		int boardnum = Integer.parseInt(request.getParameter("boardnum"));
-		
+
 		List<IceComment> comments = boardService.commentlist(boardnum);
-		
+//		System.out.println(comments.toString());
 		return comments;
 	}
-	@RequestMapping (value="/commentcnt", method=RequestMethod.GET)
-	public Map<String ,Object> commentcnt (Model model, HttpServletRequest request){
+
+	@RequestMapping(value = "/commentcnt", method = RequestMethod.GET)
+	public Map<String, Object> commentcnt(Model model, HttpServletRequest request) {
 		int boardnum = Integer.parseInt(request.getParameter("boardnum"));
-		Map<String ,Object> map = new HashMap<String , Object>();
+		Map<String, Object> map = new HashMap<String, Object>();
 		int r = boardService.commentcnt(boardnum);
-		map.put("comcnt", r+"");
-		
+		map.put("comcnt", r + "");
+
 		return map;
 	}
- 
-	
-	@RequestMapping (value="/commentwrite", method=RequestMethod.POST)
-	public Map<String ,Object> commentwrite (HttpServletRequest request){
+
+	@RequestMapping(value = "/commentwrite", method = RequestMethod.POST)
+	public Map<String, Object> commentwrite(HttpServletRequest request) {
 		int boardnum = Integer.parseInt(request.getParameter("boardnum"));
-	
-		Map<String ,Object> map = new HashMap<String, Object>();
-		
-		boolean r =boardService.commentwrite(request,boardnum);
-		map.put("result", r+"");
+
+		Map<String, Object> map = new HashMap<String, Object>();
+
+		boolean r = boardService.commentwrite(request, boardnum);
+		map.put("result", r + "");
 		return map;
-		
+
+	}
+
+	@RequestMapping(value = "/commentdel", method = RequestMethod.POST)
+	public Map<String, Object> commentdel(HttpServletRequest request) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		int commentnum = Integer.parseInt(request.getParameter("comnum"));
+
+		boolean cmc = boardService.commentdelcheck(request, commentnum);
+
+		if (cmc) {
+			boolean r = boardService.commentdel(commentnum);
+			map.put("result", r + "");
+			System.out.println(r);
+		} else {
+			map.put("result", "email");
+		}
+
+		System.out.println(map);
+		return map;
 	}
 
 }
-

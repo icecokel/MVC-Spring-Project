@@ -28,6 +28,7 @@ public interface BoardService {
 	
 	public boolean commentwrite (HttpServletRequest request, int boardnum);
 	
+	public boolean commentdel(int commentnum);
 
-	
+	public boolean commentdelcheck(HttpServletRequest request,int commentnum);
 }
