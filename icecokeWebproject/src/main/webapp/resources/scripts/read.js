@@ -1,6 +1,6 @@
 
 let btnList = document.getElementById("btnList");
-
+let comcnt = document.getElementById("comcnt");
 btnList.addEventListener("click", function(e) {
 	location.href = "/board/list";
 });
@@ -22,7 +22,7 @@ if (btndelete != null){
 let commentlist = document.getElementById("commentlist");
 
 function commentlistload(){
-	var request=new XMLHttpRequest();
+	let request=new XMLHttpRequest();
 	request.open('GET','/commentlist?boardnum='+boardnum);
 	request.send('');
 
@@ -51,16 +51,62 @@ function commentlistload(){
 			}
 		}
 	}
-
-
 }
+
+function commentcnt (){
+	let htmls = "";
+	
+	$.ajax({
+		url : '/commentcnt?boardnum=' + boardnum,
+		data : 'json',
+		success : function(data){
+			htmls +="<b>" +"댓글(" + data.comcnt +")</b><br/>";
+			comcnt.innerHTML= htmls;
+		}
+		
+	})
+	
+}
+
+
 
 
 $(document).ready(function(){
 	commentlistload();
-	
+	commentcnt();
 });
 
+
+let btncommentwrite = document.getElementById("btncommentwrite");
+let commentcontent = document.getElementById("commentcontent");
+if(btncommentwrite != null){
+btncommentwrite.addEventListener("click", function(e){
+	if(commentcontent.value.trim().length <= 0){
+		return;
+		alert("내용을 입력하세요.");
+	}
+	
+	$.ajax({
+		url : '/commentwrite',
+		type:'POST',
+		dataType:'json',
+		data :{
+			"boardnum" : boardnum, 
+			"commentcontent": commentcontent.value
+		},
+		success:function(data){
+			if(data.result === 'true'){
+			commentcontent.value = "";
+			commentlistload();
+			commentcnt();
+			}
+			
+		}
+		
+	})
+	
+});
+}
 
 
 // 참고 자료.

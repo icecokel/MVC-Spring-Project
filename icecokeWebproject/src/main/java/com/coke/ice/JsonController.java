@@ -63,15 +63,36 @@ public class JsonController {
 
 	@RequestMapping (value="/commentlist" ,method=RequestMethod.GET)
 	public List<IceComment> commentlist (Model model,HttpServletRequest request){
+				
 		
 		int boardnum = Integer.parseInt(request.getParameter("boardnum"));
 		
 		List<IceComment> comments = boardService.commentlist(boardnum);
 		
-		model.addAttribute("commentcnt", boardService.commentcnt(boardnum));
-		
 		return comments;
 	}
-
+	@RequestMapping (value="/commentcnt", method=RequestMethod.GET)
+	public Map<String ,Object> commentcnt (Model model, HttpServletRequest request){
+		int boardnum = Integer.parseInt(request.getParameter("boardnum"));
+		Map<String ,Object> map = new HashMap<String , Object>();
+		int r = boardService.commentcnt(boardnum);
+		map.put("comcnt", r+"");
+		
+		return map;
+	}
+ 
 	
+	@RequestMapping (value="/commentwrite", method=RequestMethod.POST)
+	public Map<String ,Object> commentwrite (HttpServletRequest request){
+		int boardnum = Integer.parseInt(request.getParameter("boardnum"));
+	
+		Map<String ,Object> map = new HashMap<String, Object>();
+		
+		boolean r =boardService.commentwrite(request,boardnum);
+		map.put("result", r+"");
+		return map;
+		
+	}
+
 }
+

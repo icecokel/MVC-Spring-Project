@@ -52,12 +52,12 @@ width : 90%;
 						id="btndelete" class="btn btn-sm btn-success" />
 				</c:if>
 			</div>
-			<br/> 
-			<div><b>댓글(${commentcnt})</b></div>
+			<br/>  
+			<div id ="comcnt"></div>
 			<c:if test="${user != null}">
 			<div>
-				<input type="text" class="form-control"id ="commentcontent"/>
-				<input type="button" value="댓글입력" class="btn btn-sm btn-primary"/> 
+				<input type="text" class="form-control"id ="commentcontent" name ="commentcontent"placeholder="내용을 입력하세요"/>
+				<input type="button" value="댓글입력" id ="btncommentwrite"class="btn btn-sm btn-primary"/> 
 			</div>
 			</c:if>
 			<div>
