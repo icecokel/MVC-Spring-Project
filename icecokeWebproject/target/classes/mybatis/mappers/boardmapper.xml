@@ -98,7 +98,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<update id ="commentupdate" parameterType="IceComment">
 		update comment
 		set
-		commentcontent = #{commentcontent}
+		commentcontent = #{commentcontent}, commenttime= now()
 		where commentnum = #{commentnum}
 	
 	</update>

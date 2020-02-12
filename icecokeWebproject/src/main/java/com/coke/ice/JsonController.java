@@ -98,7 +98,7 @@ public class JsonController {
 	public Map<String, Object> commentdel(HttpServletRequest request) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		int commentnum = Integer.parseInt(request.getParameter("comnum"));
-
+		System.out.println("flag");
 		boolean cmc = boardService.commentusercheck(request);
 
 		if (cmc) {
