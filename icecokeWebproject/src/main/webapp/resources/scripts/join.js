@@ -22,7 +22,13 @@ var method = {
 		// ajax 요청 객체 생성
 		let request = new XMLHttpRequest();
 		
-		emailcheckvalue = email.value + endemail.value;
+		if(endemail == "etcemail"){
+			emailcheckvalue = email.value ;
+		}else{
+			emailcheckvalue = email.value + endemail.value;
+		}
+		
+		console.log(emailcheckvalue);
 		
 		// 요청 주소 생성
 		request.open('GET', 'emailcheck?email=' + emailcheckvalue );
@@ -200,9 +206,9 @@ phone.addEventListener("focusout", function(e) {
 let givenewpwA = document.getElementById("givenewpwA");
 
 joinform.addEventListener("submit", function(e) {
-	if (endemail != etcemail){
+	
 		email.value = emailcheckvalue;
-	}
+	
 	
 	if (phonecheck == false) {
 		phonedisp.innerHTML = "전화번호는 10 ~ 11자리 이하 숫자로만 작성되어야 합니다.";

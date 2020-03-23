@@ -37,11 +37,11 @@ public class FileServiceImpl implements FileService {
 	
 	FTPClient ftp = null;
 
-	final String serverpath = "/home/WebProject/WebStorage/";
+	final String serverpath = "/home/WebStorage/";
 
 	
 	public void ftpconnect() {
-		IceServer server =serverDao.server(1);
+		IceServer server =serverDao.server(1); 
 		
 		String host = server.getHost();
 		int port = server.getPort();
