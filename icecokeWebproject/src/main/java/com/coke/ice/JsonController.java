@@ -35,16 +35,12 @@ public class JsonController {
 		return map;
 
 	}
-	// email 이라는 파라미터를 email 이라는 문자열 변수에 저장
 
-	// nicknamecheck 요청을 처리할 메소드
-	// 파라미터를 Service에 읽도록 했기 때문에 매개변수가
-	// HttpServletRequest
 	@RequestMapping(value = "user/nicknamecheck", method = RequestMethod.GET)
 	public Map<String, Object> checknickname(HttpServletRequest request) {
 		boolean result = userService.checknickname(request);
 		Map<String, Object> map = new HashMap<String, Object>();
-//		System.err.println(result);
+
 
 		map.put("result", result + "");
 		return map;
@@ -68,7 +64,7 @@ public class JsonController {
 		int boardnum = Integer.parseInt(request.getParameter("boardnum"));
 
 		List<IceComment> comments = boardService.commentlist(boardnum);
-//		System.out.println(comments.toString());
+
 		return comments;
 	}
 

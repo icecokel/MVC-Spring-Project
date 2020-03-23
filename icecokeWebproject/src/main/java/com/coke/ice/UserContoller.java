@@ -45,7 +45,7 @@ public class UserContoller {
 	
 	@RequestMapping(value="user/logout" , method=RequestMethod.GET)
 	public String logout(HttpSession session ,RedirectAttributes attr) {
-		// 로그아웃 처리 - 세션을 초기화 해도되고, 세선에서 user만 초기화 해도됨.
+
 		session.invalidate();
 //		session.removeAttribute("user");
 		attr.addFlashAttribute("msg", "로그아웃 하셨습니다.");
@@ -58,7 +58,7 @@ public class UserContoller {
 		
 		return "/user/join";
 	}
-	// 회원가입을 처리하는 메소드
+
 	@RequestMapping (value="user/join" , method = RequestMethod.POST)
 	public String join (MultipartHttpServletRequest request , RedirectAttributes attr) {
 		userService.userjoin(request);
@@ -123,7 +123,6 @@ public class UserContoller {
 		String password = request.getParameter("password");
 		String secupassword = BCrypt.hashpw(password, BCrypt.gensalt(10));
 		String email = request.getParameter("inputemail");
-//		System.out.println("컨트롤러 ::::::::::"+ password);
 		
 		session.invalidate();
 		
@@ -131,8 +130,6 @@ public class UserContoller {
 		user.setEmail(email);
 		user.setPassword(secupassword);
 		
-//		System.err.println("컨트롤러\\\\\\\\\\\\" +user.getEmail());
-//		System.err.println("컨트롤러\\\\\\\\\\\\" +secupassword);
 		userService.newpassword2(request, user);
 		attr.addFlashAttribute("msg","비밀번호 변경에 성공했습니다.");
 		

@@ -54,13 +54,13 @@ public class FileController {
 	}
 	@RequestMapping(value = "filedown/{filenum}", method = RequestMethod.GET)
 	public String filedownload(Model model,HttpServletResponse response, @PathVariable("filenum") int filenum) {
-//		System.out.println("파일 컨트롤러 ::::::" + "FLAG !!!");
+
 		File downloadFile = fileservice.filedown(response, filenum);
 		
 		
 		model.addAttribute("downloadFile", downloadFile);
 		
-//		System.out.println("파일 컨트롤러 ::::::" + downloadFile.toString());
+
 		return "download";
 		
 	}
@@ -78,16 +78,16 @@ public class FileController {
 		boolean r =fileservice.fileupload(request);
 		
 		// r 이용해서 progress bar 만들때 ajax 사용하면 될 듯.
+		
 		return "/file/filelist";
 	}
 	
 	@RequestMapping(value="/file/exceldownload.xls")
 	public void exceldownload(HttpServletResponse response) {
 		
-//		System.out.println("컨트롤러 ::::::");
+
 		List<IceBoard> boardlist = boardservice.boardlist();
-		
-//		System.out.println("컨트롤러 ::::::" + boardlist.toString());
+
 		
 		Workbook wb = new HSSFWorkbook();
 		Sheet sheet = wb.createSheet("게시판");
@@ -106,7 +106,7 @@ public class FileController {
 	    bodyStyle.setBorderLeft(BorderStyle.THIN);
 	    bodyStyle.setBorderRight(BorderStyle.THIN);
 	    
-//	    System.out.println("컨트롤러 :::::: FLAG1" );
+
 	    Row row = null;
 	    Cell cell = null;
 	    int index = 0;
@@ -124,7 +124,7 @@ public class FileController {
 	    cell = row.createCell(3);
 	    cell.setCellStyle(headStyle);
 	    cell.setCellValue("작성일/수정일");
-//	    System.out.println("컨트롤러 :::::: FLAG2" );
+
 	    
 	    for(IceBoard tmp : boardlist) {
 	        row = sheet.createRow(index++);
@@ -147,11 +147,11 @@ public class FileController {
 	    SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd hh-mm-ss");
 	    String today =sdf.format(cal.getTime());
 	    
-//	    System.out.println("컨트롤러 ::::::"+ today);
+
 	    
 	    String filename= "IceBoard" + today +".xls";
 	    response.setContentType("ms-vnd/excel");
-//	    System.out.println("컨트롤러 ::::::" + filename);
+
 	    response.setHeader("Content-Disposition", "attachment;filename=" +filename);
 	    
 	    
@@ -162,7 +162,7 @@ public class FileController {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-//	    https://offbyone.tistory.com/250 참고 소스.
+
 	}
 	
 	@RequestMapping(value="filedelete/{filenum}" ,method=RequestMethod.GET)

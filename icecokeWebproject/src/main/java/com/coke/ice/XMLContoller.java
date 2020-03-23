@@ -127,9 +127,6 @@ public class XMLContoller {
 					contentfio =hani.getContent().lastIndexOf("</table>");
 				}
 				int contentlio = hani.getContent().lastIndexOf("]");
-
-//				System.out.println(contentfio);
-//				System.out.println(contentlio);
 				
 				String content = hani.getContent().substring(contentfio,contentlio);
 				
@@ -137,21 +134,17 @@ public class XMLContoller {
 				
 				// 이미지 경로만 잘라내기.
 				int imgfio = hani.getContent().lastIndexOf("http:");
-				int imglio = hani.getContent().lastIndexOf("' border=0>");
-				
-//				System.out.println(imgfio);
-//				System.out.println(imglio);
-				
+				int imglio = hani.getContent().lastIndexOf("' border=0>");	
+			
 				String img = "";
 				if(imgfio*imglio != 1) {
 					img = hani.getContent().substring(imgfio,imglio);
 				}
 				
-//				System.out.println(img);
+
 				
 				hani.setImg(img);
 				hani.setContent(content);
-//				System.out.println(hani);
 			}
 			model.addAttribute("hanilist", hanilist);
 
@@ -163,7 +156,6 @@ public class XMLContoller {
 		}
 
 		return "/xml/hanirss";
-		// 참고 소스 https://blog.naver.com/ffiwe/221687137070
 	}
 
 }

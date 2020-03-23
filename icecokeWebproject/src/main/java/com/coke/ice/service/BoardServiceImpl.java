@@ -30,7 +30,7 @@ public class BoardServiceImpl implements BoardService {
 		String boardtitle = request.getParameter("boardtitle");
 		String boardcontent = request.getParameter("boardcontent");
 
-		// System.err.println("서비스 테스트1 :::::::::" + boardtitle);
+
 		System.err.println("서비스 테스트2 :::::::::" + boardcontent);
 
 		IceUser user = (IceUser) session.getAttribute("user");
@@ -39,7 +39,7 @@ public class BoardServiceImpl implements BoardService {
 		String titletime = sdf.format(date);
 		String email = user.getEmail();
 
-		// System.err.println("서비스 테스트3 :::::::::" + email);
+
 
 		if (boardtitle.length() <= 0) {
 			boardtitle = user.getNickname() + "님이 " + titletime + "에 남기신 글입니다.";
@@ -48,7 +48,7 @@ public class BoardServiceImpl implements BoardService {
 		int boardnum = 1;
 		Integer maxnum = boardDao.maxnum();
 
-		// System.err.println("서비스 테스트4 :::::::::" + maxnum);
+
 
 		if (maxnum != null) {
 			boardnum = maxnum + 1;
@@ -59,7 +59,7 @@ public class BoardServiceImpl implements BoardService {
 		board.setBoardnum(boardnum);
 		board.setEmail(email);
 
-		// System.err.println("boardDTO:::::" + board.toString());
+
 
 		int r = boardDao.boardwrite(board);
 
@@ -68,7 +68,7 @@ public class BoardServiceImpl implements BoardService {
 		} else {
 			result = false;
 		}
-		// System.err.println("보드 서비스 결과 ::::::::::" +result);
+
 		return result;
 	}
 
@@ -81,29 +81,20 @@ public class BoardServiceImpl implements BoardService {
 		List<IceBoard> board = boardDao.boardlist();
 
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-		// SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd : hh/mm/ss");
+
 		Calendar cal = Calendar.getInstance();
-		// cal.set(Calendar.HOUR_OF_DAY,cal.get(Calendar.HOUR_OF_DAY)-9);
+
 
 		String today = sdf.format(cal.getTime());
 
-		// System.err.println("today::::::::::"+today);
-
 		for (IceBoard tmp : board) {
-			// cal.setTime(tmp.getUpdatedate());
-			// cal.set(Calendar.HOUR_OF_DAY,cal.get(Calendar.HOUR_OF_DAY)-9);
 
-			// System.err.println(sdf2.format(tmp.getUpdatedate()));
-			// System.err.println(cal.getTime());
-			//
-			// cal.getTime();
 			if (today.equals((String) sdf.format(tmp.getUpdatedate()))) {
 				tmp.setDispdate("TODAY");
 			} else {
 				tmp.setDispdate(sdf.format(tmp.getUpdatedate()));
 
 			}
-			// System.err.println(sdf.format(cal.getTime()));
 		}
 
 		return board;
@@ -146,29 +137,18 @@ public class BoardServiceImpl implements BoardService {
 	public List<IceBoard> boardpage(int page) {
 		List<IceBoard> board = boardDao.boardpage(page);
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-		// SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd : hh/mm/ss");
 		Calendar cal = Calendar.getInstance();
-		// cal.set(Calendar.HOUR_OF_DAY,cal.get(Calendar.HOUR_OF_DAY)-9);
 
 		String today = sdf.format(cal.getTime());
 
-		// System.err.println("today::::::::::"+today);
-
 		for (IceBoard tmp : board) {
-			// cal.setTime(tmp.getUpdatedate());
-			// cal.set(Calendar.HOUR_OF_DAY,cal.get(Calendar.HOUR_OF_DAY)-9);
-
-			// System.err.println(sdf2.format(tmp.getUpdatedate()));
-			// System.err.println(cal.getTime());
-			//
-			// cal.getTime();
 			if (today.equals((String) sdf.format(tmp.getUpdatedate()))) {
 				tmp.setDispdate("TODAY");
 			} else {
 				tmp.setDispdate(sdf.format(tmp.getUpdatedate()));
 
 			}
-			// System.err.println(sdf.format(cal.getTime()));
+
 		}
 
 		return board;

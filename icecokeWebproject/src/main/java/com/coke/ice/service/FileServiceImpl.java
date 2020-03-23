@@ -70,10 +70,9 @@ public class FileServiceImpl implements FileService {
 	@Override
 	public boolean fileupload(MultipartHttpServletRequest request) {
 		ftpconnect();
-		// System.out.println("플레그..");
-		// System.out.println("파일 서비스 ::::::" + request.toString());
+
 		boolean result = false;
-		// FTPClient ftp = new FTPClient();
+
 
 		IceUser user = (IceUser) request.getSession().getAttribute("user");
 		String email = user.getEmail();
@@ -90,15 +89,8 @@ public class FileServiceImpl implements FileService {
 		file.setFilesize(filesize);
 		file.setFileUUID(fileUUID);
 
-		// System.out.println("인코딩 확인 " + filename);
-
-		// db에 상태 값 저장.
 		int r = fileDao.fileupload(file);
-		// System.out.println("FTP
-		// 서비스:::::"+request.getSession().getServletContext().getRealPath("files"));
-		// 파일이 서버에 저장될 디렉터리.
 
-		// 서버에 전송할 파일 정보.
 		InputStream input;
 		try {
 
@@ -107,12 +99,12 @@ public class FileServiceImpl implements FileService {
 				ftp.storeFile(serverpath + fileUUID, input);
 
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
+
 				e.printStackTrace();
 			}
 			// 업로드 기능 구현.
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
 		}
 
@@ -126,12 +118,10 @@ public class FileServiceImpl implements FileService {
 		try {
 			ftp.disconnect();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
 		}
 		return result;
-
-		// https://jeong-pro.tistory.com/136 참고 소스
 	}
 
 	@Override
@@ -146,7 +136,7 @@ public class FileServiceImpl implements FileService {
 		double fileSize = Double.parseDouble(tmp.getFilesize());
 
 			int level = 0;
-//			System.out.println(tmp.getFilename() +tmp.getFilesize());
+
 			while (fileSize > 1024) {
 
 				fileSize = fileSize / 1024;
@@ -183,22 +173,19 @@ public class FileServiceImpl implements FileService {
 	@Override
 	public File filedown(HttpServletResponse response, int filenum) {
 		ftpconnect();
-//		System.out.println("파일 서비스 :::" + "FLAG");
+
 		IceFile icefile = fileDao.filedown(filenum);
 		
 		String fileUUID = icefile.getFileUUID();
 		String filename = icefile.getFilename();
 		
-//		System.out.println("파일 서비스 :: 파일 UUID " + fileUUID);
+
 		InputStream is = null;
 			
 		File result = new File(filename);
 		try {
 			is = ftp.retrieveFileStream(fileUUID);
-//			System.out.println("파일 서비스 :::2" + is.toString());
-//			OutputStream output = new FileOutputStream(result);
-//
-//			IOUtils.copy(is, output);
+
 			FileUtils.copyInputStreamToFile(is, result);
 			
 		}catch(Exception e) {
@@ -220,8 +207,7 @@ public class FileServiceImpl implements FileService {
 		}
 		
 
-		
-//		System.out.println("파일 서비스 3:::" + result.toString());
+
 		return result;
 	}
 

@@ -60,9 +60,7 @@ public class BoardController {
 	
 	@RequestMapping (value="board/write" , method =RequestMethod.POST)
 	public String boardwrite (Model model, HttpServletRequest request) {
-//		System.err.println("리퀘스트 확인" +request.toString());
-//		System.err.println("보드타이틀" + request.getParameter("boardtitle"));
-//		System.err.println("보드타이틀" + request.getParameter("boardcontent"));
+
 		
 		boolean r =boardService.boardwrite(request);
 		
@@ -84,7 +82,6 @@ public class BoardController {
 		model.addAttribute("comments", boardService.commentlist(boardnum));
 		model.addAttribute("commentcnt", boardService.commentcnt(boardnum));
 		
-//		System.err.println("보드 컨트롤러 테스트 :::"+boardService.boardread(boardnum));
 		return "/board/read";
 	}
 	
@@ -111,11 +108,10 @@ public class BoardController {
 		
 		if (result == true) {
 			System.err.println("성공");
-//			request.getSession().setAttribute("msg", "게시글을 수정 했습니다.");
+
 			return "redirect:/board/list";
 		}else {
 			System.err.println("실패");
-//			request.getSession().setAttribute("msg", "게시글을 수정하지 못했습니다. 다시 시도 해 주십시오.");
 			return "redirect:/board/list";
 		
 		}

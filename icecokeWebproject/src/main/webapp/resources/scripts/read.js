@@ -86,48 +86,8 @@ function commentdel(comnum) {
 			}
 
 		})
-		//		
+			
 		console.log(comnum);
-
-		//		
-		// let request = new XMLHttpRequest();
-		// let url = '/commentdel';
-		// request.open("POST", url, true);
-		// request.setRequestHeader("Content-Type", "application/json");
-		//
-		// let data = JSON.stringify({
-		// "comnum" : comnum
-		// });
-		// request.send(data);
-		//
-		// request.onreadystatechange = function() {
-		// // 정상 응답이 오면
-		// if (request.readyState == 4) {
-		// if (request.status >= 200 && request.status < 300) {
-		// // 읽어온 데이터를 변수에 저장
-		// let obj = request.responseText;
-		// // json 문자열을 파싱
-		// let json = JSON.parse(obj);
-		//
-		// let htmls = "";
-		//
-		// json.forEach(function(data) {
-		// if (data.result === 'true') {
-		// alert("댓글이 삭제 되었습니다.");
-		// commentlistload();
-		// commentcnt();
-		// } else if (data.result == "email") {
-		// alert("댓글은 작성자만 삭제 할 수 있습니다.");
-		// } else {
-		// alert("댓글 삭제를 실패 했습니다. 다시 시도 부탁드립니다.");
-		// }
-		//
-		// })
-		//
-		// }else{alert("서버와의 통신이 원활하지 않습니다.");}
-		//				
-		// }
-		// }
 
 	}
 }

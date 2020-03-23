@@ -15,7 +15,6 @@ public class FileDAO {
 	
 	public int fileupload(IceFile icefile) {
 		
-//		System.out.println("DAO :::::::"+icefile);
 		return sqlSession.insert("filemapper.fileupload", icefile);
 	}
 	public List<IceFile> filedownload(String email) {

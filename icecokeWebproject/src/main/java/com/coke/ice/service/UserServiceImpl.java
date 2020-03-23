@@ -66,9 +66,6 @@ public class UserServiceImpl implements UserService {
 		String nickname = request.getParameter("nickname");
 		String r = userDao.checknickname(nickname);
 
-		// System.err.println(nickname);
-		// System.err.println(r);
-
 		if (r == null) {
 			result = true;
 		} else {
@@ -92,11 +89,7 @@ public class UserServiceImpl implements UserService {
 
 		String givenewpwA = request.getParameter("givenewpwA");
 		String givenewpwQ = request.getParameter("givenewpwQ");
-
-		// System.err.println(yyyy);
-		// System.err.println(MM);
-		// System.err.println(dd);
-
+		
 		String birth = yyyy + "-" + MM + "-" + dd;
 
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
@@ -112,8 +105,6 @@ public class UserServiceImpl implements UserService {
 			e.printStackTrace();
 		}
 
-		// System.err.print(phone);
-		// System.err.println(birthday);
 
 		MultipartFile f = request.getFile("image");
 
@@ -187,17 +178,9 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public void newpassword2(HttpServletRequest request, IceUser user) {
-		//
-		// System.err.println("newpassword2 ::::::::" +email);
-		// System.err.println("newpassword2 ::::::::" +newpassword);
-		//
-		/*
-		 * IceUser user = new IceUser(); user.setEmail(email);
-		 * user.setPassword(newpassword);
-		 */
+
 		userDao.newpassword2(user);
 
-		// System.err.println(userDao.newpassword2(user));
 
 	}
 
@@ -255,13 +238,7 @@ public class UserServiceImpl implements UserService {
 		boolean result = false;
 		String email = request.getParameter("inputemail");
 		String password = request.getParameter("inputpassword");
-
-		// System.err.println("email::::::" + email);
-		// System.err.println("password::::::" + password);
-
 		IceUser user = userDao.login(email);
-
-		// System.err.println("userpassword ::::::" +user.toString());
 
 		if (user != null) {
 			if (BCrypt.checkpw(password, user.getPassword())) {
