@@ -75,6 +75,9 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public List<IceBoard> boardlist() {
 
+		System.out.println("flag!@");
+		
+		
 		List<IceBoard> board = boardDao.boardlist();
 
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");

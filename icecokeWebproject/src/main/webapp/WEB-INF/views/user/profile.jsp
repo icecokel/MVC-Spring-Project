@@ -23,7 +23,7 @@
 						</td>
 						<td><input type="file" id="profileimage" name="profileimage"
 							accept=".jpg,.jpeg,.gif,.png" /> <br />
-							<input type="button" id="btnimgclear" value="이미지 지우기" />
+							<input type="button" class="btn btn-warning" id="btnimgclear" value="이미지 지우기" />
 							</td>
 					</tr>
 					<tr>
@@ -50,7 +50,7 @@
 
 					<tr>
 						<td>비밀번호</td>
-						<td><input id="passwordchangebtn" type="button"
+						<td><input class="btn btn-primary" id="passwordchangebtn" type="button"
 							value="비밀번호 변경하기" /></td>
 					</tr>
 
@@ -77,8 +77,9 @@
 
 				<tfoot>
 					<tr align='center'>
-						<td colspan="2"><input type="submit" value="회원정보 수정하기" /> <input
-							type="button" value="회원 탈퇴하기" id="btnsecession" /></td>
+						<td colspan="2"><input type="submit" value="회원정보 수정하기" class="btn btn-success"/> 
+						<input
+							type="button"class="btn btn-secondary" value="회원 탈퇴하기" id="btnsecession" /></td>
 					</tr>
 				</tfoot>
 			</table>

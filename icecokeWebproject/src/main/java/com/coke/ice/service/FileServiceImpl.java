@@ -122,7 +122,7 @@ public class FileServiceImpl implements FileService {
 			result = false;
 		}
 		System.out.println("파일업로드 결과 ::::::" + result);
-		
+		  
 		try {
 			ftp.disconnect();
 		} catch (IOException e) {

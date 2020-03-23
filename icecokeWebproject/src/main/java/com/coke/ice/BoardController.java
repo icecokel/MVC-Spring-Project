@@ -23,13 +23,19 @@ public class BoardController {
 	
 	@RequestMapping (value="/board/list" , method =RequestMethod.GET)
 	public String boardlist (Model model, HttpServletRequest request) {
+		
+		System.out.println("flag!");
+		
 		String pageparam = request.getParameter("page");
-		int page = 1 ;
+		int page = 0 ;
 		if(pageparam != null ) {
 			page = (Integer.parseInt(pageparam)-1)*10;
 		}
 		List<IceBoard> boardori = boardService.boardlist();
 		List<IceBoard> board = boardService.boardpage(page);
+		
+		System.out.println(page);
+		System.out.println(board);
 		
 		int boardcnt = 0;
 		int boardsize = boardori.size();
