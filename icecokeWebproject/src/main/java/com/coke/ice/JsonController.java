@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -26,7 +28,7 @@ public class JsonController {
 	private BoardService boardService;
 
 	// 이메일 중복검사를 위한 메소드
-	@RequestMapping(value = "user/emailcheck", method = RequestMethod.GET)
+	@GetMapping("user/emailcheck")
 	public Map<String, Object> checkemail(HttpServletRequest request) {
 
 		boolean result = userService.checkemail(request);
@@ -36,7 +38,7 @@ public class JsonController {
 
 	}
 
-	@RequestMapping(value = "user/nicknamecheck", method = RequestMethod.GET)
+	@GetMapping("user/nicknamecheck")
 	public Map<String, Object> checknickname(HttpServletRequest request) {
 		boolean result = userService.checknickname(request);
 		Map<String, Object> map = new HashMap<String, Object>();
@@ -47,7 +49,7 @@ public class JsonController {
 
 	}
 
-	@RequestMapping(value = "user/verification", method = RequestMethod.POST)
+	@PostMapping("user/verification")
 	public Map<String, Object> userverification(HttpServletRequest request) {
 		boolean result = userService.userverification(request);
 
@@ -58,7 +60,7 @@ public class JsonController {
 
 	}
 
-	@RequestMapping(value = "/commentlist", method = RequestMethod.GET)
+	@GetMapping("/commentlist")
 	public List<IceComment> commentlist(Model model, HttpServletRequest request) {
 
 		int boardnum = Integer.parseInt(request.getParameter("boardnum"));
@@ -68,7 +70,7 @@ public class JsonController {
 		return comments;
 	}
 
-	@RequestMapping(value = "/commentcnt", method = RequestMethod.GET)
+	@GetMapping("/commentcnt")
 	public Map<String, Object> commentcnt(Model model, HttpServletRequest request) {
 		int boardnum = Integer.parseInt(request.getParameter("boardnum"));
 		Map<String, Object> map = new HashMap<String, Object>();
@@ -78,7 +80,7 @@ public class JsonController {
 		return map;
 	}
 
-	@RequestMapping(value = "/commentwrite", method = RequestMethod.POST)
+	@PostMapping("/commentwrite")
 	public Map<String, Object> commentwrite(HttpServletRequest request) {
 		int boardnum = Integer.parseInt(request.getParameter("boardnum"));
 
@@ -90,7 +92,7 @@ public class JsonController {
 
 	}
 
-	@RequestMapping(value = "/commentdel", method = RequestMethod.POST)
+	@PostMapping("/commentdel")
 	public Map<String, Object> commentdel(HttpServletRequest request) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		int commentnum = Integer.parseInt(request.getParameter("comnum"));
@@ -109,7 +111,7 @@ public class JsonController {
 		return map;
 	}
 	
-	@RequestMapping (value="/commentupdate", method = RequestMethod.POST)
+	@PostMapping("/commentupdate")
 	public Map<String , Object> commentupdate (HttpServletRequest request){
 		
 		Map<String , Object> map = new HashMap<String ,Object>();

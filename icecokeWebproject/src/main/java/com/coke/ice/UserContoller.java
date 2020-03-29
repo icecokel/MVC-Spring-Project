@@ -7,8 +7,8 @@ import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -22,19 +22,18 @@ public class UserContoller {
 	private UserService userService;
 	
 	
-	@RequestMapping(value = "/user/login", method = RequestMethod.GET)
+	@GetMapping("/user/login")
 	public String login (Model model) {
 		
 		return "/user/login";
 	}
 	
-	@RequestMapping(value = "/user/login", method = RequestMethod.POST)
+	@PostMapping("/user/login")
 	public String login (Model model, HttpServletRequest request, RedirectAttributes attr) {
 		boolean result = userService.login(request);
 		if(result == true) {
 			return "redirect:/";
-			
-			
+
 			
 		}else {
 			attr.addFlashAttribute("msg" ,"없는 아이디 이거나 틀린 비밀번호 입니다.");
@@ -43,7 +42,7 @@ public class UserContoller {
 		
 	}
 	
-	@RequestMapping(value="user/logout" , method=RequestMethod.GET)
+	@GetMapping("user/logout")
 	public String logout(HttpSession session ,RedirectAttributes attr) {
 
 		session.invalidate();
@@ -53,13 +52,13 @@ public class UserContoller {
 		return "redirect:/";
 	}
 	
-	@RequestMapping (value="/user/join" , method= RequestMethod.GET)
+	@GetMapping("/user/join")
 	public String join (Model model) {
 		
 		return "/user/join";
 	}
 
-	@RequestMapping (value="user/join" , method = RequestMethod.POST)
+	@PostMapping("user/join")
 	public String join (MultipartHttpServletRequest request , RedirectAttributes attr) {
 		userService.userjoin(request);
 		
@@ -68,13 +67,13 @@ public class UserContoller {
 		return "redirect:login";
 		
 	}
-	@RequestMapping (value="/user/plznewpw" , method = RequestMethod.GET)
+	@GetMapping("/user/plznewpw")
 	public String plznewpw (Model model) {
 		
 		return "/user/plznewpw";
 	}
 	
-	@RequestMapping (value="/user/plznewpw" , method = RequestMethod.POST)
+	@PostMapping("/user/plznewpw")
 	public String plznewpw (Model model, HttpServletRequest request, RedirectAttributes attr) {
 		boolean result = userService.newpassword(request);
 		String newpassword = userService.temppassword(10);
@@ -100,25 +99,25 @@ public class UserContoller {
 		return "redirect:plznewpw"; 
 	}
 	
-	@RequestMapping (value="/user/profile" , method = RequestMethod.GET)
+	@GetMapping("/user/profile")
 	public String profile (Model model) {
 		
 		return "/user/profile";
 	}
 	
-	@RequestMapping (value="/user/profile" , method = RequestMethod.POST)
+	@PostMapping("/user/profile" )
 	public String profile (Model model, MultipartHttpServletRequest request) {
 		userService.editporifle(request);
 		return "redirect:login";
 	}
 	
-	@RequestMapping (value="/user/passwordchange" , method=RequestMethod.GET)
+	@GetMapping("/user/passwordchange")
 	public String passwordchange (Model model) {
 		
 		return "/user/passwordchange";
 	}
 	
-	@RequestMapping (value="/user/passwordchange" , method=RequestMethod.POST)
+	@PostMapping("/user/passwordchange")
 	public String passwordchange (RedirectAttributes attr, HttpServletRequest request,HttpSession session) {
 		String password = request.getParameter("password");
 		String secupassword = BCrypt.hashpw(password, BCrypt.gensalt(10));
@@ -137,7 +136,7 @@ public class UserContoller {
 	}
 	
 	
-	@RequestMapping(value="/user/secession" , method=RequestMethod.GET)
+	@GetMapping("/user/secession")
 	public String usersecession (HttpServletRequest request, HttpSession session) {
 		userService.usersecession(request);
 		

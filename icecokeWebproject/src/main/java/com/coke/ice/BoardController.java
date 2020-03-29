@@ -7,9 +7,10 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.PostMapping;
+
 
 import com.coke.ice.domain.IceBoard;
 import com.coke.ice.service.BoardService;
@@ -21,7 +22,8 @@ public class BoardController {
 	@Autowired
 	BoardService boardService;
 	
-	@RequestMapping (value="/board/list" , method =RequestMethod.GET)
+
+	@GetMapping("/board/list")
 	public String boardlist (Model model, HttpServletRequest request) {
 		
 		System.out.println("flag!");
@@ -51,14 +53,14 @@ public class BoardController {
 		model.addAttribute("boardcnt", boardcnt);
 		return "/board/list";
 	}
-	@RequestMapping (value="/board/write" , method =RequestMethod.GET)
+	@GetMapping("/board/write")
 	public String boardwrite (Model model) {
 		
 		return "/board/write";
 	}
 	
 	
-	@RequestMapping (value="board/write" , method =RequestMethod.POST)
+	@PostMapping("board/write")
 	public String boardwrite (Model model, HttpServletRequest request) {
 
 		
@@ -75,7 +77,7 @@ public class BoardController {
 		}
 		
 	}
-	@RequestMapping (value="/read/{boardnum}", method=RequestMethod.GET)
+	@GetMapping("/read/{boardnum}")
 	public String boardread(Model model , @PathVariable("boardnum") int boardnum) {
 	
 		model.addAttribute("boardread",boardService.boardread(boardnum));
@@ -85,22 +87,14 @@ public class BoardController {
 		return "/board/read";
 	}
 	
-	@RequestMapping (value="/board/delete/{boardnum}", method=RequestMethod.GET)
-	public String boarddelete (Model model,@PathVariable("boardnum") int boardnum) {
-		
-		boardService.boarddelete(boardnum);
-		
-		return "redirect:/board/list";
-	}
-
-	@RequestMapping (value="/update/{boardnum}" , method=RequestMethod.GET)
+	@GetMapping("/update/{boardnum}")
 	public String boardupdate (Model model ,@PathVariable("boardnum") int boardnum){
 		model.addAttribute("board",boardService.boardread(boardnum));
 		
 		return "/board/update";
 	}
 	
-	@RequestMapping (value="/update/{boardnum}", method=RequestMethod.POST)
+	@PostMapping("/update/{boardnum}")
 	public String boardupdate (Model model , HttpServletRequest request , @PathVariable("boardnum") int boardnum){
 		System.out.println("보트 업데이트 컨트롤라ㅓ ::"   + boardnum);
 		
@@ -117,7 +111,7 @@ public class BoardController {
 		}
 	}
 
-	@RequestMapping (value="board/delete" , method=RequestMethod.POST)
+	@PostMapping("board/delete")
 	public String boarddelete (HttpServletRequest request) {
 		int boardnum = Integer.parseInt(request.getParameter("boardnum"));
 		

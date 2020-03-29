@@ -19,7 +19,9 @@ import org.apache.poi.ss.usermodel.Workbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
@@ -39,20 +41,22 @@ public class FileController {
 	@Autowired
 	private BoardService boardservice;
 	
-	@RequestMapping(value = "file/filelist", method = RequestMethod.GET)
+	
+	@GetMapping("file/filelist")
 	public String filelist(Model model) {
 
 		return "/file/filelist";
 	}
 	
-	@RequestMapping(value = "file/filedownload", method = RequestMethod.GET)
+	@GetMapping("file/filedownload")
 	public String filedownload(Model model, HttpServletRequest request) {
 		List<IceFile> list = fileservice.filedownload(request);
 		
 		model.addAttribute("filedownload", list);
 		return "/file/filedownload";
 	}
-	@RequestMapping(value = "filedown/{filenum}", method = RequestMethod.GET)
+	
+	@GetMapping("filedown/{filenum}")
 	public String filedownload(Model model,HttpServletResponse response, @PathVariable("filenum") int filenum) {
 
 		File downloadFile = fileservice.filedown(response, filenum);
@@ -66,12 +70,13 @@ public class FileController {
 	}
 	
 	
-	@RequestMapping(value = "file/fileupload", method = RequestMethod.GET)
+	@GetMapping("file/fileupload")
 	public String fileupload(Model model) {
 		
 		return "/file/fileupload";
 	}
-	@RequestMapping(value = "/file/fileupload", method = RequestMethod.POST)
+	
+	@PostMapping("/file/fileupload")
 	public String fileupload(Model model, MultipartHttpServletRequest request) {
 		
 		System.err.println("파일 컨트롤러" + request.toString());
@@ -167,6 +172,8 @@ public class FileController {
 	
 	@RequestMapping(value="filedelete/{filenum}" ,method=RequestMethod.GET)
 	public String filedelete(Model model , @PathVariable("filenum") int filenum) {
+		
+		
 		fileservice.filedelete(filenum);
 		
 		return "redirect:/file/filedownload";
