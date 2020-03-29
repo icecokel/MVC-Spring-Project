@@ -14,5 +14,6 @@ public class IceFile {
 	
 	private String nickname;
 	private String dispdate;
+	private int dispNum;
 	
 }
