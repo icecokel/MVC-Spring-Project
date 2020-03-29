@@ -130,9 +130,11 @@ public class FileServiceImpl implements FileService {
 		IceUser user = (IceUser) request.getSession().getAttribute("user");
 		String email = user.getEmail();
 		List<IceFile> files = fileDao.filedownload(email);
-
+		int dispNum = 1;
+		
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		for (IceFile tmp : files) {
+			tmp.setDispNum(dispNum);
 		double fileSize = Double.parseDouble(tmp.getFilesize());
 
 			int level = 0;
