@@ -1,4 +1,5 @@
 <img src="https://user-images.githubusercontent.com/55083854/77358113-9f14a200-6d8c-11ea-9271-8b5ce6fe81db.JPG" width = "65%"/>
+   [>>  AWS server 확인하러가기 << ](http://52.79.236.107:8080)
 
 ## icecokeWebProject
 
@@ -23,4 +24,3 @@
    * 비통기 통신
      * ajax를 이용한 닉네임, 이메일 확인 및 댓글 서비스 구현
      
-   [AWS server ](http://52.79.236.107:8080)
