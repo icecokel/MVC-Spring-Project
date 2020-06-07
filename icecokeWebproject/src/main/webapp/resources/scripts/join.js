@@ -10,7 +10,7 @@ let nicknamedisp = document.getElementById("nicknamedisp");
 let endemail = document.getElementById("endemail");
 let endemailtextfield = document.getElementById("endemailtextfield");
 let emailcheckvalue ="";
-// 반복되는 기능을 매소드로 선언 하여, 호출하기 위함.
+// 반복되는 기능을 Function로 선언 하여, 호출하기 위함.
 var method = {
 	emailmethod(){
 		
@@ -85,7 +85,6 @@ endemail.addEventListener('change', function(e) {
 		endemail.style.visibility = "hidden";
 
 	}
-	
 	method.emailmethod();
 });
 // email 입력 란에서 포커스가 떠나면
@@ -102,7 +101,7 @@ email.addEventListener('focusout', function(e) {
 		}
 					
 
-	// 매소드를 호출하여 간단하게 기능 구현.
+	// Function를 호출하여 간단하게 기능 구현.
 	}else{
 		method.emailmethod();
 	}

@@ -42,7 +42,7 @@ function commentlistload() {
 					htmls += "<p class='comcontent'id='comcontent"
 							+ data.commentnum + "'>" + "&nbsp;&nbsp;"
 							+ data.commentcontent + "</p>" + "<br/>";
-					htmls += "답장 ";
+					
 					htmls += "<a href='#'><span onclick='commentupdate("
 							+ data.commentnum + ")'>수정 </span></a>";
 					htmls += "<a href='#'><span onclick='commentdel("

@@ -11,7 +11,7 @@
 		<property name="driverClassName"
 			value="com.mysql.cj.jdbc.Driver"></property>
 		<property name="url"
-			value="jdbc:mysql://192.168.0.5:3306/icecoke_db?useSSL=false&amp;serverTimezone=Asia/Seoul&amp;autoReconnection=true">
+			value="jdbc:mysql://localhost:3306/icecoke_db?useSSL=false&amp;serverTimezone=Asia/Seoul&amp;autoReconnection=true">
 
 		</property>
 		<!-- <property name="url" value="jdbc:mysql://192.168.0.5:3306/mysql?useSSL=false&amp;autoReconnection=true"> 

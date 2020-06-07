@@ -12,6 +12,8 @@
 				</li>
 				<li class="list-group-item"><a href='/user/login'>로그인
 						페이지로이동</a></li>
+				<li class="list-group-item"><a href='/user/join'>계정 생성 페이지로
+						이동</a></li>
 
 			</c:if>
 
@@ -19,8 +21,7 @@
 				<div class="alert alert-success" role="alert" align='center'>
 					<a href="#" class="alert-link">${user.nickname}님</a> 로그인을 성공 하셨습니다.
 				</div>
-				<li class="list-group-item"><a href='/user/join'>계정 생성 페이지로
-						이동</a></li>
+
 				<li class="list-group-item"><a href="/board/list">게시판으로 이동</a></li>
 				<li class="list-group-item"><a href="/file/filelist">파일
 						리스트로 이동</a></li>
