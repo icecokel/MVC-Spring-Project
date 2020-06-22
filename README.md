@@ -2,7 +2,7 @@
 
 <img src="https://user-images.githubusercontent.com/55083854/77358113-9f14a200-6d8c-11ea-9271-8b5ce6fe81db.JPG" width = "65%"/>
 
- [>>AWS server 확인하러가기<<](http://52.78.5.224:8080)
+ [>>AWS server 확인하러가기<<](http://15.164.73.234:8080)
 
 ### 개인 공부 및 편의를 위한 프로젝트
  * 리눅스 서버 공부 
